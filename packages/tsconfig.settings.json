@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+
+        "esModuleInterop": true,
+        "target": "esnext",
+        "module": "commonjs",
+        "strict": true
+    }
+}

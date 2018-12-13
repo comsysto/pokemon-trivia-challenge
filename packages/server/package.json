@@ -1,0 +1,29 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "author": "Christian Ivicevic <christian.ivicevic@comsysto.com>",
+    "homepage": "https://github.com/ChristianIvicevic/graphql-pokemon#readme",
+    "license": "MIT",
+    "main": "build/server.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ChristianIvicevic/graphql-pokemon.git"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start": "node build/server.js",
+        "dev": "ts-node src/server.ts",
+        "test": "echo \"Error: run tests from root\" && exit 1"
+    },
+    "bugs": {
+        "url": "https://github.com/ChristianIvicevic/graphql-pokemon/issues"
+    },
+    "dependencies": {
+        "graphql-yoga": "^1.16.7",
+        "ts-node": "^7.0.1",
+        "tslint": "^5.11.0",
+        "tslint-config-prettier": "^1.17.0",
+        "tslint-plugin-prettier": "^2.0.1",
+        "typescript": "^3.2.2"
+    }
+}

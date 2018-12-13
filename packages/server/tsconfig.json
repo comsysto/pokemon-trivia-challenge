@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig.settings.json",
+    "compilerOptions": {
+        "outDir": "build",
+        "rootDir": "src",
+        "lib": ["esnext"],
+        "allowJs": false,
+        "skipLibCheck": false,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true
+    }
+}

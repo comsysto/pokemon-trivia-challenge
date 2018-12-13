@@ -27,6 +27,9 @@ Temporary Items
 .apdisk
 
 ### Node ###
+# Output
+build
+
 # Logs
 logs
 *.log
