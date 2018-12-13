@@ -1,15 +1,16 @@
-import { IResolvers } from "graphql-middleware/dist/types";
 import { GraphQLServer } from "graphql-yoga";
+import { Props } from "graphql-yoga/dist/types";
+import { GQLResolver } from "./schema";
 
 const resolvers = {
     Query: {
-        helloWorld: () => "Hello, World from GraphQL :)",
+        helloWorld: (_, {}) => "Hello, World from GraphQL :)",
     },
-};
+} as GQLResolver;
 
 const graphqlServer = new GraphQLServer({
-    typeDefs: "./src/schema.graphql",
-    resolvers: resolvers as IResolvers<any, any>,
-});
+    typeDefs: "./schema.graphql",
+    resolvers,
+} as Props);
 
 graphqlServer.start(() => console.log("🚀 GraphQL Server running on http://localhost:4000"));
