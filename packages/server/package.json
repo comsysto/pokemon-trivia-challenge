@@ -14,14 +14,20 @@
         "build": "tsc",
         "start": "node build/server.js",
         "dev": "ts-node src/server.ts",
-        "test": "echo \"Error: run tests from root\" && exit 1"
+        "test": "jest"
+    },
+    "jest": {
+        "preset": "ts-jest"
     },
     "bugs": {
         "url": "https://github.com/ChristianIvicevic/graphql-pokemon/issues"
     },
     "dependencies": {
         "@pongsatt/graphql-schema-typescript": "^1.0.25",
+        "@types/jest": "^23.3.10",
         "graphql-yoga": "^1.16.7",
+        "jest": "^23.6.0",
+        "ts-jest": "^23.10.5",
         "ts-node": "^7.0.1",
         "tslint": "^5.11.0",
         "tslint-config-prettier": "^1.17.0",
