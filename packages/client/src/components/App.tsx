@@ -4,7 +4,11 @@ import logo from "./logo.svg";
 import "./App.scss";
 
 class App extends Component {
-    render() {
+    public componentWillMount() {
+        document.title = "Pokémon Trivia Challenge";
+    }
+
+    public render() {
         return (
             <div className="App">
                 <header className="App-header">
