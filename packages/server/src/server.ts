@@ -1,12 +1,11 @@
 import { GraphQLServer } from "graphql-yoga";
 import { Props } from "graphql-yoga/dist/types";
+import openTriviaDBApiResolvers from "./resolvers/OpenTriviaDBApiResolvers";
 import { GQLResolver } from "./schema";
 
-const resolvers = {
-    Query: {
-        helloWorld: (_, {}) => "Hello, World from GraphQL :)",
-    },
-} as GQLResolver;
+const resolvers: GQLResolver = {
+    ...openTriviaDBApiResolvers,
+};
 
 const graphqlServer = new GraphQLServer({
     typeDefs: "./schema.graphql",

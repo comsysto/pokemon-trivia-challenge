@@ -1,5 +1,28 @@
 type Query {
-    helloWorld: String!
+    """
+    Fetches a question from the Open Trivia DB Api. You can optionally specify a difficulty and question type.
+    """
+    getQuestion(difficulty: QuestionDifficulty, type: QuestionType): Question!
+}
+
+enum QuestionDifficulty {
+    EASY
+    MEDIUM
+    HARD
+}
+
+enum QuestionType {
+    MULTIPLE
+    BOOLEAN
+}
+
+type Question {
+    category: String!
+    type: String!
+    difficulty: String!
+    question: String!
+    correctAnswer: String!
+    incorrectAnswers: [String!]!
 }
 
 schema {

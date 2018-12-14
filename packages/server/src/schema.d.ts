@@ -9,7 +9,31 @@ import { GraphQLResolveInfo } from 'graphql';
  *                             *
  *******************************/
 export interface GQLQuery {
-  helloWorld: string;
+  
+  /**
+   * Fetches a question from the Open Trivia DB Api. You can optionally specify a difficulty and question type.
+   */
+  getQuestion: GQLQuestion;
+}
+
+export enum GQLQuestionDifficulty {
+  EASY = 'EASY',
+  MEDIUM = 'MEDIUM',
+  HARD = 'HARD'
+}
+
+export enum GQLQuestionType {
+  MULTIPLE = 'MULTIPLE',
+  BOOLEAN = 'BOOLEAN'
+}
+
+export interface GQLQuestion {
+  category: string;
+  type: string;
+  difficulty: string;
+  question: string;
+  correctAnswer: string;
+  incorrectAnswers: string[];
 }
 
 /*********************************
@@ -24,11 +48,49 @@ export interface GQLQuery {
  */
 export interface GQLResolver {
   Query?: GQLQueryTypeResolver;
+  Question?: GQLQuestionTypeResolver;
 }
 export interface GQLQueryTypeResolver<TParent = any> {
-  helloWorld?: QueryToHelloWorldResolver<TParent>;
+  getQuestion?: QueryToGetQuestionResolver<TParent>;
 }
 
-export interface QueryToHelloWorldResolver<TParent = any, TResult = string|Promise<string>> {
+export interface QueryToGetQuestionArgs {
+  difficulty?: GQLQuestionDifficulty;
+  type?: GQLQuestionType;
+}
+export interface QueryToGetQuestionResolver<TParent = any, TResult = GQLQuestion|Promise<GQLQuestion>> {
+  (parent: TParent, args: QueryToGetQuestionArgs, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface GQLQuestionTypeResolver<TParent = any> {
+  category?: QuestionToCategoryResolver<TParent>;
+  type?: QuestionToTypeResolver<TParent>;
+  difficulty?: QuestionToDifficultyResolver<TParent>;
+  question?: QuestionToQuestionResolver<TParent>;
+  correctAnswer?: QuestionToCorrectAnswerResolver<TParent>;
+  incorrectAnswers?: QuestionToIncorrectAnswersResolver<TParent>;
+}
+
+export interface QuestionToCategoryResolver<TParent = any, TResult = string|Promise<string>> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface QuestionToTypeResolver<TParent = any, TResult = string|Promise<string>> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface QuestionToDifficultyResolver<TParent = any, TResult = string|Promise<string>> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface QuestionToQuestionResolver<TParent = any, TResult = string|Promise<string>> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface QuestionToCorrectAnswerResolver<TParent = any, TResult = string|Promise<string>> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
+}
+
+export interface QuestionToIncorrectAnswersResolver<TParent = any, TResult = Array<string>|Promise<Array<string>>> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult;
 }

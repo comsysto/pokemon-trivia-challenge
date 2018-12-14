@@ -25,6 +25,7 @@
     "dependencies": {
         "@pongsatt/graphql-schema-typescript": "^1.0.25",
         "@types/jest": "^23.3.10",
+        "axios": "^0.18.0",
         "graphql-yoga": "^1.16.7",
         "jest": "^23.6.0",
         "ts-jest": "^23.10.5",
