@@ -1,11 +1,7 @@
 {
     "extends": "../tsconfig.settings.json",
     "compilerOptions": {
-        "plugins": [
-            {
-                "name": "typescript-plugin-css-modules"
-            }
-        ],
+        "plugins": [{ "name": "typescript-plugin-css-modules" }],
         "lib": ["esnext", "dom"],
         "allowJs": true,
         "skipLibCheck": false,
@@ -18,5 +14,6 @@
         "module": "esnext",
         "isolatedModules": true
     },
-    "include": ["src"]
+    "include": ["src"],
+    "exclude": ["node_modules"]
 }

@@ -1,0 +1,10 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    height: calc(100vh - #{$pt-navbar-height});
+}

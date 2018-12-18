@@ -1,14 +1,14 @@
 .container {
     margin-top: 32px;
-    display: "flex";
-    justify-content: "content";
-    align-items: "center";
-    flex-direction: "column";
+    display: flex;
+    justify-content: content;
+    align-items: center;
+    flex-direction: column;
     width: 800px;
 }
 
 .child {
-    margin: 16px;
+    margin: 8px;
     width: 100%;
 }
 

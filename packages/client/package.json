@@ -24,7 +24,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "tslint src/**/*.{ts,tsx} --format verbose"
+        "lint": "tslint -c ../tslint.json src/**/*.{ts,tsx} --format verbose"
     },
     "eslintConfig": {
         "extends": "react-app"
