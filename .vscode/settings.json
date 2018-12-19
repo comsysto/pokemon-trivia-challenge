@@ -1,3 +1,7 @@
 {
-    "typescript.tsdk": "./node_modules/typescript/lib"
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "tslint.configFile": "./packages/tslint.json",
+    "tslint.ignoreDefinitionFiles": true,
+    "tslint.rulesDirectory": "./node_modules/tslint-microsoft-contrib",
+    "tslint.packageManager": "yarn"
 }

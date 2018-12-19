@@ -1,6 +1,6 @@
 import { NonIdealState } from "@blueprintjs/core";
 import React from "react";
-import { PokeBallType, BallButton } from "./BallButton";
+import { BallButton, PokeBallType } from "./BallButton";
 import styles from "./DifficultySelection.module.scss";
 
 export function DifficultySelection() {

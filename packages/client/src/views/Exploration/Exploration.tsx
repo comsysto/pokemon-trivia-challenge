@@ -10,9 +10,7 @@ export function ExplorationView() {
             <div className={styles.column}>
                 <ZoneSelection />
             </div>
-            <div className={styles.column}>
-                {Math.random() < 0.5 ? <Empty /> : <ZoneDetails />}
-            </div>
+            <div className={styles.column}>{Math.random() < 0.5 ? <Empty /> : <ZoneDetails />}</div>
         </div>
     );
 }

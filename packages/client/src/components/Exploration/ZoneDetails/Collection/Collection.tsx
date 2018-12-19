@@ -1,7 +1,7 @@
 import React from "react";
-import { PokemonCard } from "./PokemonCard";
 import styles from "./Collection.module.scss";
 import { Header, IHeaderProps } from "./Header";
+import { PokemonCard } from "./PokemonCard";
 
 export interface ICollectionProps extends IHeaderProps {}
 

@@ -8,11 +8,12 @@ export interface IPokemonCardProps {
 
 export function PokemonCard(props: IPokemonCardProps) {
     const id = Math.floor(Math.random() * 650) + 0;
+    const intent = props.isCollected ? Intent.SUCCESS : Intent.DANGER;
 
     return (
         <Card className={styles.card} elevation={Elevation.TWO}>
             <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} />
-            <Tag intent={props.isCollected || false ? Intent.SUCCESS : Intent.DANGER}>Name</Tag>
+            <Tag intent={intent}>Name</Tag>
         </Card>
     );
 }

@@ -1,11 +1,27 @@
 {
-    "extends": ["tslint:recommended"],
+    "extends": ["tslint:recommended", "tslint-microsoft-contrib"],
+    "rulesDirectory": ["../node_modules/tslint-microsoft-contrib"],
     "rules": {
         "object-literal-sort-keys": false,
         "trailing-comma": false,
         "interface-name": false,
         "no-console": false,
         "semicolon": [true, "always", "ignore-bound-class-methods"],
-        "no-empty-interface": false
+        "no-empty-interface": false,
+
+        "quotemark": false,
+        "export-name": false,
+        "import-name": false,
+        "typedef": false,
+        "function-name": false,
+        "match-default-export-name": false,
+        "no-implicit-dependencies": false,
+        "no-submodule-imports": false,
+        "completed-docs": false,
+        "insecure-random": false,
+        "no-import-side-effect": false,
+        "strict-boolean-expressions": [true, "allow-boolean-or-undefined"],
+        "react-a11y-img-has-alt": false,
+        "no-relative-imports": false
     }
 }

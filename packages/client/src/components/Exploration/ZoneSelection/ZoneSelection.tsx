@@ -1,6 +1,6 @@
 import { Card, IPanel, PanelStack } from "@blueprintjs/core";
 import React, { Component } from "react";
-import { ZonePanel, IZonePanelProps, ZoneType } from "./ZonePanel";
+import { IZonePanelProps, ZonePanel, ZoneType } from "./ZonePanel";
 import styles from "./ZoneSelection.module.scss";
 
 export interface IZoneSelectionProps {}
@@ -35,11 +35,11 @@ export class ZoneSelection extends Component<IZoneSelectionProps, IZoneSelection
         );
     }
 
-    private addToPanelStack = (newPanel: IPanel) => {
+    private readonly addToPanelStack = (newPanel: IPanel) => {
         this.setState((state) => ({ currentPanelStack: [newPanel, ...state.currentPanelStack] }));
     };
 
-    private removeFromPanelStack = (_: IPanel) => {
+    private readonly removeFromPanelStack = (_: IPanel) => {
         this.setState((state) => ({ currentPanelStack: state.currentPanelStack.slice(1) }));
     };
 }

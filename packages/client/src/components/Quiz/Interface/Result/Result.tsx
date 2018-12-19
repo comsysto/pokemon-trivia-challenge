@@ -7,8 +7,10 @@ export interface IResultProps {
 }
 
 export function Result(props: IResultProps) {
+    const intent = props.isCorrect ? Intent.SUCCESS : Intent.DANGER;
+
     return (
-        <Callout intent={props.isCorrect ? Intent.SUCCESS : Intent.DANGER} className={styles.callout}>
+        <Callout intent={intent} className={styles.callout}>
             <H4>{props.isCorrect ? "Your answer is correct!" : "Your answer is incorrect!"}</H4>
             <p>
                 Click <em>Continue</em> to encounter the next Pokémon in the current zone, otherwise click{" "}

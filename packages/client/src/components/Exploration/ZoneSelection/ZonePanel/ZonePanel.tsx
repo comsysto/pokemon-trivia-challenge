@@ -2,17 +2,19 @@ import { IPanelProps, ITreeNode, Tree } from "@blueprintjs/core";
 import React, { Component } from "react";
 
 // Fake Items
+// tslint:disable:no-increment-decrement
 let id = 0;
 
 const regions = ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola"];
 const regionItems: ITreeNode[] = regions.map(
-    (region) => ({ id: id++, label: region, hasCaret: false, icon: "globe" } as ITreeNode)
+    (region): ITreeNode => ({ id: id++, label: region, hasCaret: false, icon: "globe" })
 );
 
 const zones = ["Route 1", "Route 2", "Route 3"];
 const zoneItems: ITreeNode[] = zones.map(
-    (zone) => ({ id: id++, label: zone, hasCaret: false, icon: "map" } as ITreeNode)
+    (zone): ITreeNode => ({ id: id++, label: zone, hasCaret: false, icon: "map" })
 );
+// tslint:enable:no-increment-decrement
 
 export enum ZoneType {
     Region,
@@ -46,7 +48,7 @@ export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePan
         return <Tree contents={this.state.treeNodes} onNodeClick={this.onNodeClick} />;
     }
 
-    private onNodeClick = (nodeData: ITreeNode, _: number[], __: React.MouseEvent<HTMLElement>) => {
+    private readonly onNodeClick = (nodeData: ITreeNode, _: number[], __: React.MouseEvent<HTMLElement>) => {
         if (this.props.zoneType === ZoneType.Region) {
             this.props.openPanel({
                 component: ZonePanel,

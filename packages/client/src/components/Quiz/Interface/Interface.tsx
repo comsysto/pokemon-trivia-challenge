@@ -6,9 +6,11 @@ import { Question } from "./Question";
 import { Result } from "./Result";
 
 export function Interface() {
+    const isCorrect = Math.random() < 0.5;
+
     return (
         <div className={styles.container}>
-            <Result isCorrect={Math.random() < 0.5} />
+            <Result isCorrect={isCorrect} />
             <Question />
             <Answers />
             <ActionButtons />

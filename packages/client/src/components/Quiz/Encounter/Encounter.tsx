@@ -26,11 +26,7 @@ export function Encounter() {
 
     return (
         <BlueprintCard className={styles.sidebar}>
-            <NonIdealState
-                title="Name"
-                icon={<Card />}
-                description={<Stats {...statsProps} />}
-            />
+            <NonIdealState title="Name" icon={<Card />} description={<Stats {...statsProps} />} />
         </BlueprintCard>
     );
 }
