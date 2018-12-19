@@ -5,6 +5,7 @@
         "trailing-comma": false,
         "interface-name": false,
         "no-console": false,
-        "semicolon": [true, "always", "ignore-bound-class-methods"]
+        "semicolon": [true, "always", "ignore-bound-class-methods"],
+        "no-empty-interface": false
     }
 }

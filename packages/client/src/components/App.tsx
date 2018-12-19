@@ -1,11 +1,10 @@
 import { FocusStyleManager } from "@blueprintjs/core";
 import React, { Component } from "react";
+import { Exploration } from "../views/Exploration";
+import { GameMode } from "../views/GameMode";
+import { Quiz } from "../views/Quiz";
 import styles from "./App.module.scss";
-import { ExplorationView } from "./ExplorationView";
-import { GameModeView } from "./GameModeView";
-import { Navbar } from "./Navbar";
-import { QuestionCard } from "./QuestionCard";
-import { QuizView } from "./QuizView";
+import { Appbar } from "./Appbar";
 
 export class App extends Component {
     public componentWillMount() {
@@ -16,11 +15,11 @@ export class App extends Component {
 
     public render() {
         return (
-            <div className={`bp3-dark ${styles.rootContainer}`}>
-                <Navbar />
-                {/* <GameModeView /> */}
-                <ExplorationView />
-                {/* <QuizView /> */}
+            <div className={`bp3-dark ${styles.container}`}>
+                <Appbar />
+                <GameMode />
+                {/* <Exploration /> */}
+                {/* <Quiz /> */}
             </div>
         );
     }

@@ -1,0 +1,84 @@
+import { IPanelProps, ITreeNode, Tree } from "@blueprintjs/core";
+import React, { Component } from "react";
+
+// Fake Items
+let id = 0;
+
+const regions = ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola"];
+const regionItems: ITreeNode[] = regions.map(
+    (region) => ({ id: id++, label: region, hasCaret: false, icon: "globe" } as ITreeNode)
+);
+
+const zones = ["Route 1", "Route 2", "Route 3"];
+const zoneItems: ITreeNode[] = zones.map(
+    (zone) => ({ id: id++, label: zone, hasCaret: false, icon: "map" } as ITreeNode)
+);
+
+export enum ZoneType {
+    Region,
+    Zone,
+}
+
+export interface IExplorationZoneSelectionPanelProps {
+    zoneType: ZoneType;
+}
+
+export interface IExplorationZoneSelectionPanelState {
+    readonly treeNodes: ITreeNode[];
+}
+
+export class ExplorationZoneSelectionPanel extends Component<
+    IPanelProps & IExplorationZoneSelectionPanelProps,
+    IExplorationZoneSelectionPanelState
+> {
+    public readonly state: IExplorationZoneSelectionPanelState = {
+        treeNodes: [],
+    };
+
+    public componentDidMount() {
+        this.setState({
+            treeNodes: this.props.zoneType === ZoneType.Region ? regionItems : zoneItems,
+        });
+    }
+
+    public componentWillUnmount() {
+        this.deselectAllItems();
+    }
+
+    public render() {
+        return <Tree contents={this.state.treeNodes} onNodeClick={this.onNodeClick} />;
+    }
+
+    private onNodeClick = (nodeData: ITreeNode, _: number[], __: React.MouseEvent<HTMLElement>) => {
+        if (this.props.zoneType === ZoneType.Region) {
+            this.props.openPanel({
+                component: ExplorationZoneSelectionPanel,
+                props: {
+                    zoneType: ZoneType.Zone,
+                },
+                title: "Zone",
+            });
+        } else {
+            this.deselectAllItems();
+            nodeData.isSelected = true;
+            this.setState((state) => state);
+        }
+    };
+
+    private deselectAllItems() {
+        this.forEachNode(this.state.treeNodes, (node) => (node.isSelected = false));
+    }
+
+    private forEachNode(nodes: ITreeNode[], callback: (node: ITreeNode) => void) {
+        if (nodes === null) {
+            return;
+        }
+
+        for (const node of nodes) {
+            callback(node);
+            if (node.childNodes !== undefined) {
+                this.forEachNode(node.childNodes, callback);
+            }
+        }
+    }
+}
