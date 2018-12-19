@@ -1,8 +1,8 @@
 import { Card as BlueprintCard, NonIdealState } from "@blueprintjs/core";
 import React from "react";
-import { QuizEncounterCard } from "./Card";
+import { Card } from "./Card";
 import styles from "./Encounter.module.scss";
-import { ChanceToCatch, IQuizEncounterStatsProps, QuizEncounterStats } from "./Stats";
+import { ChanceToCatch, IStatsProps, Stats } from "./Stats";
 
 function getRandomChance() {
     const index = Math.floor(Math.random() * 3) + 0;
@@ -18,8 +18,8 @@ function getRandomChance() {
     }
 }
 
-export function QuizEncounter() {
-    const statsProps: IQuizEncounterStatsProps = {
+export function Encounter() {
+    const statsProps: IStatsProps = {
         isCollected: Math.random() < 0.5,
         chanceToCatch: getRandomChance(),
     };
@@ -28,8 +28,8 @@ export function QuizEncounter() {
         <BlueprintCard className={styles.sidebar}>
             <NonIdealState
                 title="Name"
-                icon={<QuizEncounterCard />}
-                description={<QuizEncounterStats {...statsProps} />}
+                icon={<Card />}
+                description={<Stats {...statsProps} />}
             />
         </BlueprintCard>
     );

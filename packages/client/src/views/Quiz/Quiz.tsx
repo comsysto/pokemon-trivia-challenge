@@ -1,16 +1,16 @@
 import React from "react";
-import { QuizDifficultySelection } from "../../components/Quiz/DifficultySelection";
-import { QuizEncounter } from "../../components/Quiz/Encounter";
-import { QuizInterface } from "../../components/Quiz/Interface";
+import { DifficultySelection } from "../../components/Quiz/DifficultySelection";
+import { Encounter } from "../../components/Quiz/Encounter";
+import { Interface } from "../../components/Quiz/Interface";
 import styles from "./Quiz.module.scss";
 
-export function Quiz() {
+export function QuizView() {
     return (
         <div className={styles.row}>
             <div className={styles.column}>
-                <QuizEncounter />
+                <Encounter />
             </div>
-            <div className={styles.column}>{Math.random() < 0.5 ? <QuizDifficultySelection /> : <QuizInterface />}</div>
+            <div className={styles.column}>{Math.random() < 0.5 ? <DifficultySelection /> : <Interface />}</div>
         </div>
     );
 }

@@ -1,29 +1,29 @@
 import React from "react";
-import { ExplorationZoneDetailsCollectionCard } from "./Card";
+import { PokemonCard } from "./PokemonCard";
 import styles from "./Collection.module.scss";
-import { ExplorationZoneDetailsCollectionHeader, IExplorationZoneDetailsCollectionHeaderProps } from "./Header";
+import { Header, IHeaderProps } from "./Header";
 
-export interface IExplorationZoneDetailsCollectionProps extends IExplorationZoneDetailsCollectionHeaderProps {}
+export interface ICollectionProps extends IHeaderProps {}
 
-export function ExplorationZoneDetailsCollection(props: IExplorationZoneDetailsCollectionProps) {
+export function Collection(props: ICollectionProps) {
     return (
         <div>
             <div className={styles.row}>
-                <ExplorationZoneDetailsCollectionHeader {...props} />
+                <Header {...props} />
             </div>
             <div className={styles.row}>
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
-                <ExplorationZoneDetailsCollectionCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
+                <PokemonCard isCollected={props.isCollection} />
             </div>
         </div>
     );

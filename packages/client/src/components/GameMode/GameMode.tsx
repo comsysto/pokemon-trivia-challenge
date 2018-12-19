@@ -1,14 +1,14 @@
 import { Button, Card, Elevation, H4, Intent } from "@blueprintjs/core";
 import React from "react";
-import styles from "./Card.module.scss";
+import styles from "./GameMode.module.scss";
 
-export interface IGameModeCardProps {
+export interface IGameModeProps {
     title: string;
     description: string;
     actionText: string;
 }
 
-export function GameModeCard(props: IGameModeCardProps) {
+export function GameMode(props: IGameModeProps) {
     return (
         <Card className={styles.card} elevation={Elevation.ONE}>
             <H4>{props.title}</H4>

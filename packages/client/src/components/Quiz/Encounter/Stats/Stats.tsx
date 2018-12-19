@@ -13,12 +13,12 @@ const chanceIntents: Record<ChanceToCatch, Intent> = {
     High: Intent.SUCCESS,
 };
 
-export interface IQuizEncounterStatsProps {
+export interface IStatsProps {
     chanceToCatch: ChanceToCatch;
     isCollected: boolean;
 }
 
-export function QuizEncounterStats(props: IQuizEncounterStatsProps) {
+export function Stats(props: IStatsProps) {
     const collectionIntent = props.isCollected ? Intent.SUCCESS : Intent.DANGER;
     const collectionIcon = props.isCollected ? "tick" : "cross";
     const collectionText = props.isCollected ? "Collected" : "Not Collected";

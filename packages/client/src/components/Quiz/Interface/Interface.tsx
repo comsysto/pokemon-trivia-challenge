@@ -1,17 +1,17 @@
 import React from "react";
-import { QuizInterfaceActionButtons } from "./ActionButtons";
-import { QuizInterfaceAnswers } from "./Answers";
+import { ActionButtons } from "./ActionButtons";
+import { Answers } from "./Answers";
 import styles from "./Interface.module.scss";
-import { QuizInterfaceQuestion } from "./Question";
-import { QuizInterfaceResult } from "./Result";
+import { Question } from "./Question";
+import { Result } from "./Result";
 
-export function QuizInterface() {
+export function Interface() {
     return (
         <div className={styles.container}>
-            <QuizInterfaceResult isCorrect={Math.random() < 0.5} />
-            <QuizInterfaceQuestion />
-            <QuizInterfaceAnswers />
-            <QuizInterfaceActionButtons />
+            <Result isCorrect={Math.random() < 0.5} />
+            <Question />
+            <Answers />
+            <ActionButtons />
         </div>
     );
 }

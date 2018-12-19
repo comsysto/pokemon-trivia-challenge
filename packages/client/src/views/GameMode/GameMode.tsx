@@ -1,8 +1,8 @@
 import React from "react";
-import { GameModeCard, IGameModeCardProps } from "../../components/GameMode/Card";
+import { GameMode, IGameModeProps } from "../../components/GameMode";
 import styles from "./GameMode.module.scss";
 
-const gameModeCards: IGameModeCardProps[] = [
+const gameModeCards: IGameModeProps[] = [
     {
         title: "Exploration Mode",
         description: `Adventure through various regions and try to catch all Pokémon by answering trivia qustions in
@@ -19,11 +19,11 @@ const gameModeCards: IGameModeCardProps[] = [
     },
 ];
 
-export function GameMode() {
+export function GameModeView() {
     return (
         <div className={styles.container}>
             {gameModeCards.map((props) => (
-                <GameModeCard {...props} />
+                <GameMode {...props} />
             ))}
         </div>
     );

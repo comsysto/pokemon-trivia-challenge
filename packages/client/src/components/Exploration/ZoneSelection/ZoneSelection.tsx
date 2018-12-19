@@ -1,26 +1,23 @@
 import { Card, IPanel, PanelStack } from "@blueprintjs/core";
 import React, { Component } from "react";
-import { ExplorationZoneSelectionPanel, IExplorationZoneSelectionPanelProps, ZoneType } from "./Panel";
+import { ZonePanel, IZonePanelProps, ZoneType } from "./ZonePanel";
 import styles from "./ZoneSelection.module.scss";
 
-export interface IExplorationZoneSelectionProps {}
-export interface IExplorationZoneSelectionState {
+export interface IZoneSelectionProps {}
+export interface IZoneSelectionState {
     readonly currentPanelStack: IPanel[];
 }
 
-export class ExplorationZoneSelection extends Component<
-    IExplorationZoneSelectionProps,
-    IExplorationZoneSelectionState
-> {
-    public initialPanel: IPanel<IExplorationZoneSelectionPanelProps> = {
-        component: ExplorationZoneSelectionPanel,
+export class ZoneSelection extends Component<IZoneSelectionProps, IZoneSelectionState> {
+    public initialPanel: IPanel<IZonePanelProps> = {
+        component: ZonePanel,
         props: {
             zoneType: ZoneType.Region,
         },
         title: "Region",
     };
 
-    public readonly state: IExplorationZoneSelectionState = {
+    public readonly state: IZoneSelectionState = {
         // Here be dragons...
         currentPanelStack: [(this.initialPanel as unknown) as IPanel],
     };

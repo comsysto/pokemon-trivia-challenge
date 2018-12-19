@@ -2,11 +2,11 @@ import { Callout, H4, Intent } from "@blueprintjs/core";
 import React from "react";
 import styles from "./Result.module.scss";
 
-export interface IQuizInterfaceResultProps {
+export interface IResultProps {
     isCorrect?: boolean;
 }
 
-export function QuizInterfaceResult(props: IQuizInterfaceResultProps) {
+export function Result(props: IResultProps) {
     return (
         <Callout intent={props.isCorrect ? Intent.SUCCESS : Intent.DANGER} className={styles.callout}>
             <H4>{props.isCorrect ? "Your answer is correct!" : "Your answer is incorrect!"}</H4>

@@ -2,7 +2,7 @@ import { NonIdealState } from "@blueprintjs/core";
 import React from "react";
 import styles from "./Empty.module.scss";
 
-export function ExplorationZoneDetailsEmpty() {
+export function Empty() {
     return (
         <div className={styles.container}>
             <NonIdealState

@@ -8,7 +8,7 @@ export enum PokeBallType {
     Ultra = "Ultra",
 }
 
-export interface IQuizDifficultySelectionBallButtonProps {
+export interface IBallButtonProps {
     pokeBallType: PokeBallType;
 }
 
@@ -30,7 +30,7 @@ const difficultyIntent: Record<PokeBallType, Intent> = {
     Ultra: Intent.DANGER,
 };
 
-export function QuizDifficultySelectionBallButton(props: IQuizDifficultySelectionBallButtonProps) {
+export function BallButton(props: IBallButtonProps) {
     return (
         <Tooltip
             content={

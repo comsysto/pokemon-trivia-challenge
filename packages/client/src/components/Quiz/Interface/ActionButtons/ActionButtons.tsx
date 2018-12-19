@@ -2,7 +2,7 @@ import { Button, Card, Elevation, Intent } from "@blueprintjs/core";
 import React from "react";
 import styles from "./ActionButtons.module.scss";
 
-export function QuizInterfaceActionButtons() {
+export function ActionButtons() {
     return (
         <Card className={styles.actions} elevation={Elevation.ZERO}>
             <div className={styles.actionsRow}>

@@ -1,7 +1,7 @@
 import { H5, Intent, ProgressBar } from "@blueprintjs/core";
 import React from "react";
 
-export function ExplorationZoneDetailsProgress() {
+export function Progress() {
     const progress = Math.random();
 
     return (

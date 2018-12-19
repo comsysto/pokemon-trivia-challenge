@@ -19,19 +19,16 @@ export enum ZoneType {
     Zone,
 }
 
-export interface IExplorationZoneSelectionPanelProps {
+export interface IZonePanelProps {
     zoneType: ZoneType;
 }
 
-export interface IExplorationZoneSelectionPanelState {
+export interface IZonePanelState {
     readonly treeNodes: ITreeNode[];
 }
 
-export class ExplorationZoneSelectionPanel extends Component<
-    IPanelProps & IExplorationZoneSelectionPanelProps,
-    IExplorationZoneSelectionPanelState
-> {
-    public readonly state: IExplorationZoneSelectionPanelState = {
+export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePanelState> {
+    public readonly state: IZonePanelState = {
         treeNodes: [],
     };
 
@@ -52,7 +49,7 @@ export class ExplorationZoneSelectionPanel extends Component<
     private onNodeClick = (nodeData: ITreeNode, _: number[], __: React.MouseEvent<HTMLElement>) => {
         if (this.props.zoneType === ZoneType.Region) {
             this.props.openPanel({
-                component: ExplorationZoneSelectionPanel,
+                component: ZonePanel,
                 props: {
                     zoneType: ZoneType.Zone,
                 },

@@ -1,6 +1,6 @@
 import { H1 } from "@blueprintjs/core";
 import React from "react";
 
-export function ExplorationZoneDetailsHeader() {
+export function Header() {
     return <H1>Dragonspiral Tower</H1>;
 }

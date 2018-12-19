@@ -2,7 +2,7 @@ import { Callout, Card, Elevation, H4 } from "@blueprintjs/core";
 import React from "react";
 import styles from "./Question.module.scss";
 
-export function QuizInterfaceQuestion() {
+export function Question() {
     return (
         <Card className={styles.question} elevation={Elevation.ZERO}>
             <Callout className={styles.callout}>

@@ -1,12 +1,12 @@
 import { Card, Elevation, Intent, Tag } from "@blueprintjs/core";
 import React from "react";
-import styles from "./Card.module.scss";
+import styles from "./PokemonCard.module.scss";
 
-export interface IExplorationZoneDetailsCollectionCardProps {
+export interface IPokemonCardProps {
     isCollected?: boolean;
 }
 
-export function ExplorationZoneDetailsCollectionCard(props: IExplorationZoneDetailsCollectionCardProps) {
+export function PokemonCard(props: IPokemonCardProps) {
     const id = Math.floor(Math.random() * 650) + 0;
 
     return (
