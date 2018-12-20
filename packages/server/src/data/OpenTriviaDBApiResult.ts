@@ -5,6 +5,7 @@ export interface OpenTriviaDBApiResult {
 
 interface Question {
     category: string;
+    // tslint:disable-next-line:no-reserved-keywords
     type: Type;
     difficulty: Difficulty;
     question: string;

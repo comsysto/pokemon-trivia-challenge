@@ -1,7 +1,7 @@
 import { GQLResolver } from "../schema";
 import { fetchQuestion } from "../utils/OpenTriviaDBApi";
 
-const resolvers: GQLResolver = {
+export const openTriviaDBApiResolvers: GQLResolver = {
     Query: {
         getQuestion: async (_, args) => {
             const fetchResult = await fetchQuestion(args);
@@ -27,5 +27,3 @@ const resolvers: GQLResolver = {
         },
     },
 };
-
-export default resolvers;

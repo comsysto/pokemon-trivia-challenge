@@ -14,7 +14,8 @@
         "build": "tsc",
         "start": "node build/server.js",
         "dev": "ts-node src/server.ts",
-        "test": "jest"
+        "test": "jest",
+        "lint": "tslint -c ../tslint.json -p . --format stylish"
     },
     "jest": {
         "preset": "ts-jest"

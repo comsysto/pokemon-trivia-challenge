@@ -8,6 +8,8 @@
         "no-console": false,
         "semicolon": [true, "always", "ignore-bound-class-methods"],
         "no-empty-interface": false,
+        "no-angle-bracket-type-assertion": true,
+        "newline-before-return": false,
 
         "quotemark": false,
         "export-name": false,
@@ -20,8 +22,9 @@
         "completed-docs": false,
         "insecure-random": false,
         "no-import-side-effect": false,
-        "strict-boolean-expressions": [true, "allow-boolean-or-undefined"],
+        "strict-boolean-expressions": false,
         "react-a11y-img-has-alt": false,
-        "no-relative-imports": false
+        "no-relative-imports": false,
+        "prefer-type-cast": false
     }
 }
