@@ -1,9 +1,9 @@
-export interface OpenTriviaDbApiResult {
+export interface OpenTriviaDbApiResponse {
     response_code: number;
-    results: Question[];
+    results: QuestionResponse[];
 }
 
-interface Question {
+interface QuestionResponse {
     category: string;
     // tslint:disable-next-line:no-reserved-keywords
     type: Type;
