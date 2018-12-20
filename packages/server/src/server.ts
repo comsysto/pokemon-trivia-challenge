@@ -1,18 +1,15 @@
-import { IResolvers } from "graphql-tools";
 import { GraphQLServer } from "graphql-yoga";
-import { Props } from "graphql-yoga/dist/types";
-import { openTriviaDBApiResolvers } from "./resolvers/OpenTriviaDBApiResolvers";
-import { GQLResolver } from "./schema";
+import { Context } from "./api";
+import { resolvers } from "./resolvers";
 
-const resolvers: GQLResolver = {
-    ...openTriviaDBApiResolvers,
-};
+const context: Context = {};
 
-const graphqlServerProps: Props = {
-    typeDefs: "./schema.graphql",
-    resolvers: resolvers as IResolvers,
-};
-const graphqlServer = new GraphQLServer(graphqlServerProps);
+const graphqlServer = new GraphQLServer({
+    typeDefs: "./src/schema.graphql",
+    resolvers,
+    context,
+    // tslint:disable-next-line:no-any
+} as any);
 
 void graphqlServer.start(() => {
     console.log("🚀 GraphQL Server running on http://localhost:4000");

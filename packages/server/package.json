@@ -10,12 +10,12 @@
         "url": "git+https://github.com/ChristianIvicevic/graphql-pokemon.git"
     },
     "scripts": {
-        "gen-schema-types": "graphql-schema-typescript generate-ts schema.graphql --output src/schema.d.ts",
         "build": "tsc",
         "start": "node build/server.js",
         "dev": "ts-node src/server.ts",
         "test": "jest",
-        "lint": "tslint -c ../tslint.json -p . --format stylish"
+        "lint": "tslint -c ../tslint.json -p . --format stylish",
+        "graphqlgen": "graphqlgen"
     },
     "jest": {
         "preset": "ts-jest"
@@ -28,6 +28,7 @@
         "@types/jest": "^23.3.10",
         "axios": "^0.18.0",
         "graphql-yoga": "^1.16.7",
+        "graphqlgen": "^0.4.0",
         "jest": "^23.6.0",
         "ts-jest": "^23.10.5",
         "ts-node": "^7.0.1",

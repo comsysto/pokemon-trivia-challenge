@@ -1,4 +1,4 @@
-export interface OpenTriviaDBApiResult {
+export interface OpenTriviaDbApiResult {
     response_code: number;
     results: Question[];
 }

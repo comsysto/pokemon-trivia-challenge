@@ -1,11 +1,11 @@
 import axios from "axios";
 import * as qs from "querystring";
-import { OpenTriviaDBApiResult } from "../data/OpenTriviaDBApiResult";
-import { QueryToGetQuestionArgs } from "../schema";
+import { OpenTriviaDbApiResult } from "../data/OpenTriviaDbApiResult";
+import { QueryResolvers } from "../generated/schema";
 
 const apiEndpoint = "https://opentdb.com/api.php";
 
-function getApiUrlFromArguments({ difficulty, type }: QueryToGetQuestionArgs, amount: number = 1) {
+function getApiUrlFromArguments({ difficulty, type }: QueryResolvers.ArgsTriviaQuestion, amount: number = 1) {
     const querystring = qs.stringify({
         difficulty: (difficulty || "").toLowerCase(),
         type: (type || "").toLowerCase(),
@@ -14,7 +14,7 @@ function getApiUrlFromArguments({ difficulty, type }: QueryToGetQuestionArgs, am
     return `${apiEndpoint}?${querystring}`;
 }
 
-export async function fetchQuestion(args: QueryToGetQuestionArgs) {
-    const request = await axios.get<OpenTriviaDBApiResult>(getApiUrlFromArguments(args));
+export async function fetchQuestion(args: QueryResolvers.ArgsTriviaQuestion) {
+    const request = await axios.get<OpenTriviaDbApiResult>(getApiUrlFromArguments(args));
     return request.data;
 }

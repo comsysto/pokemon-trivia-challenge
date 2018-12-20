@@ -1,0 +1,61 @@
+schema {
+    query: Query,
+}
+
+type Query {
+    ######################### Open Trivia DB API
+    """
+    Fetches a question from the Open Trivia DB API. You can optionally specify a difficulty and question type.
+    """
+    triviaQuestion(difficulty: QuestionDifficulty, type: QuestionType): Question!
+
+    ######################### PokeAPI
+    region(id: Int!): Region!
+    """
+    A list of regions (organized areas) of the Pokémon world.
+    """
+    regions: [Region!]!
+}
+
+######################### Open Trivia DB API
+
+enum QuestionDifficulty {
+    EASY
+    MEDIUM
+    HARD
+}
+
+enum QuestionType {
+    MULTIPLE
+    BOOLEAN
+}
+
+type Question {
+    category: String!
+    type: String!
+    difficulty: String!
+    question: String!
+    correctAnswer: String!
+    incorrectAnswers: [String!]!
+}
+
+######################### PokeAPI
+
+# type Name {
+#     name: String!
+#     language: Language!
+# }
+
+# type Language {
+#     id: Int!
+#     name: String!
+#     # names: [Name!]!
+#     iso3166: String!
+# }
+
+type Region {
+    id: Int!
+    # locations: NamedApiResource!
+    name: String!
+    # names: [Name!]!
+}

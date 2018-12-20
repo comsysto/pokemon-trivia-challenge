@@ -1,0 +1,10 @@
+GET https://pokeapi.co/api/v2/region/
+GET https://pokeapi.co/api/v2/region/1/
+GET https://pokeapi.co/api/v2/location/93/
+GET https://pokeapi.co/api/v2/location-area/307/
+GET https://pokeapi.co/api/v2/pokemon/17/
+GET https://pokeapi.co/api/v2/pokemon/17/encounters
+GET https://pokeapi.co/api/v2/pokemon-species/17/
+GET https://pokeapi.co/api/v2/version/26/
+
+GET https://pokeapi.co/api/v2/language/6/
