@@ -1,4 +1,4 @@
-import { Resolvers } from "../generated/schema";
+import { Resolvers } from "../api/ResolverTypes";
 
 import { Query } from "./Query";
 import { Question } from "./Question";

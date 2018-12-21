@@ -1,4 +1,4 @@
-import { RegionResolvers } from "../generated/schema";
+import { RegionResolvers } from "../api/ResolverTypes";
 
 export const Region: RegionResolvers.Type = {
     ...RegionResolvers.defaultResolvers,

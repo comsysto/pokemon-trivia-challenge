@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as qs from "querystring";
+import { QueryResolvers } from "../api/ResolverTypes";
 import { OpenTriviaDbApiResponse } from "../data/OpenTriviaDbApiResponse";
-import { QueryResolvers } from "../generated/schema";
 
 const apiEndpoint = "https://opentdb.com/api.php";
 

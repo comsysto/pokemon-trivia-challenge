@@ -1,10 +1,10 @@
 language: typescript
-schema: ./src/schema.graphql
-context: ./src/api.ts:Context
+schema: ./src/api/Schema.graphql
+context: ./src/api/SchemaTypes.ts:Context
 models:
     files:
-        - ./src/api.ts
-output: ./src/generated/schema.ts
+        - ./src/api/SchemaTypes.ts
+output: ./src/api/ResolverTypes.ts
 resolver-scaffolding:
-    output: ./src/generated/tmp-resolvers/
+    output: ./src/api/generated/resolvers/
     layout: file-per-type
