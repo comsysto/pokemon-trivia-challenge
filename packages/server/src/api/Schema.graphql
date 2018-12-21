@@ -10,6 +10,12 @@ type Query {
     triviaQuestion(difficulty: QuestionDifficulty, type: QuestionType): Question!
 
     ######################### PokeAPI
+    location(id: Int!): Location!
+    """
+    A list of locations that can be visited within games.
+    """
+    locations: [Location!]!
+
     region(id: Int!): Region!
     """
     A list of regions (organized areas) of the Pokémon world.

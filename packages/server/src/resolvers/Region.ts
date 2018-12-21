@@ -1,6 +1,6 @@
 import { RegionResolvers } from "../api/ResolverTypes";
 import { Location } from "../api/SchemaTypes";
-import { LocationResponse, NamedResourceListResponse } from "../data/PokeApiResponse";
+import { LocationResponse } from "../data/PokeApiResponse";
 import { fetchPokeApi } from "../utils/PokeApiHelper";
 
 export const Region: RegionResolvers.Type = {
