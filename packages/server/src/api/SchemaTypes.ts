@@ -1,4 +1,11 @@
-export interface Context {
+export interface Context {}
+
+export interface ApiResource {
+    url: string;
+}
+
+export interface NamedApiResource extends ApiResource {
+    name: string;
 }
 
 export interface Question {
@@ -14,4 +21,17 @@ export interface Question {
 export interface Region {
     id: number;
     name: string;
+    names: Name[];
+}
+
+export interface Name {
+    name: string;
+    language: NamedApiResource;
+}
+
+export interface Language {
+    id: number;
+    name: string;
+    names: Name[];
+    iso3166: string;
 }

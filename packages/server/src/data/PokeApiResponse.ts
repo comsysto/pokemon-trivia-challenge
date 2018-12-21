@@ -1,27 +1,27 @@
 export interface ApiResourceResponse {
-    name: string;
+    url: string;
 }
 
 export interface NamedApiResourceResponse extends ApiResourceResponse {
-    url: string;
+    name: string;
 }
 
 export interface ResourceListResponse<ResourceType extends ApiResourceResponse | NamedApiResourceResponse> {
     count: number;
     next?: string;
-    previous: string;
+    previous?: string;
     results: ResourceType[];
 }
 
 export interface NameResponse {
     name: string;
-    language: NamedApiResourceResponse[];
+    language: NamedApiResourceResponse;
 }
 
 export interface LanguageResponse {
     id: number;
     name: string;
-    // names: Name[];
+    names: NameResponse[];
     iso3166: string;
 }
 

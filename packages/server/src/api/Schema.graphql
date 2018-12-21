@@ -41,21 +41,21 @@ type Question {
 
 ######################### PokeAPI
 
-# type Name {
-#     name: String!
-#     language: Language!
-# }
+type Name {
+    name: String!
+    language: Language!
+}
 
-# type Language {
-#     id: Int!
-#     name: String!
-#     # names: [Name!]!
-#     iso3166: String!
-# }
+type Language {
+    id: Int!
+    name: String!
+    names: [Name!]!
+    iso3166: String!
+}
 
 type Region {
     id: Int!
     # locations: NamedApiResource!
     name: String!
-    # names: [Name!]!
+    names: [Name!]!
 }

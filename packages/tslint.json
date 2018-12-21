@@ -29,5 +29,10 @@
         "no-backbone-get-set-outside-model": false,
         "no-object-literal-type-assertion": false,
         "variable-name": false
+    },
+    "linterOptions": {
+        "exclude": [
+            "**/ResolverTypes.ts"
+        ]
     }
 }

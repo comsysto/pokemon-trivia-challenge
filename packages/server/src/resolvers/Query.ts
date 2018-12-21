@@ -18,9 +18,9 @@ export const Query: QueryResolvers.Type = {
             type: result.type,
         };
     },
-    region: async (_, args): Promise<Region> => {
-        const { id, name } = await fetchPokeApi<RegionResponse>("region", { id: args.id });
-        return { id, name };
+    region: async (_, { id }): Promise<Region> => {
+        const { name, names } = await fetchPokeApi<RegionResponse>("region", { id });
+        return { id, name, names };
     },
     regions: async (): Promise<Region[]> => {
         const { results } = await fetchPokeApi<RegionsResponse>("region");

@@ -15,7 +15,7 @@ type PokeApiEndpoint = "region" | "language";
 
 export async function fetchPokeApi<ResponseType>(endpoint: PokeApiEndpoint, where?: PokeApiWhere) {
     const apiUrl = buildUrl(`${endpoint}/${where !== undefined ? where.id || where.name : ""}`);
-    const request = await axios.get<ResponseType>(apiUrl);
     console.log(`GET ${apiUrl}`);
+    const request = await axios.get<ResponseType>(apiUrl);
     return request.data;
 }
