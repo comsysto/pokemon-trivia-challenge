@@ -55,7 +55,22 @@ type Language {
 
 type Region {
     id: Int!
-    # locations: NamedApiResource!
     name: String!
     names: [Name!]!
+    locations: [Location!]!
+}
+
+type Location {
+    id: Int!
+    name: String!
+    names: [Name!]!
+    region: Region!
+    areas: [LocationArea!]!
+}
+
+type LocationArea {
+    id: Int!
+    name: String!
+    names: [Name!]!
+    location: Location!
 }

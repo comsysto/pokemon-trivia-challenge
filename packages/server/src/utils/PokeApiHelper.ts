@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiEndpoint = "https://pokeapi.co/api/v2/";
 
-type PokeApiEndpoint = "region" | "language";
+type PokeApiEndpoint = "region" | "language" | "location" | "location-area";
 
 export interface PokeApiWhere {
     id?: number;

@@ -1,12 +1,19 @@
 export interface Context {}
 
-export interface ApiResource {
+export interface ApiResource<T> {
     url: string;
 }
 
-export interface NamedApiResource extends ApiResource {
+export interface NamedApiResource<T> extends ApiResource<T> {
     name: string;
 }
+
+export interface Node {
+    id: number;
+    name: string;
+}
+
+// Open Trivia DB API
 
 export interface Question {
     category: string;
@@ -18,15 +25,18 @@ export interface Question {
     incorrectAnswers: string[];
 }
 
+// PokeAPI
+
 export interface Region {
     id: number;
     name: string;
     names: Name[];
+    locations: NamedApiResource<Location>[];
 }
 
 export interface Name {
     name: string;
-    language: NamedApiResource;
+    language: NamedApiResource<Language>;
 }
 
 export interface Language {
@@ -34,4 +44,19 @@ export interface Language {
     name: string;
     names: Name[];
     iso3166: string;
+}
+
+export interface Location {
+    id: number;
+    name: string;
+    names: Name[];
+    region: NamedApiResource<Region>;
+    areas: NamedApiResource<LocationArea>[];
+}
+
+export interface LocationArea {
+    id: number;
+    name: string;
+    names: Name[];
+    location: NamedApiResource<Location>;
 }

@@ -1,6 +1,6 @@
 import { QueryResolvers } from "../api/ResolverTypes";
 import { Question, Region } from "../api/SchemaTypes";
-import { RegionResponse, RegionsResponse } from "../data/PokeApiResponse";
+import { NamedResourceListResponse, RegionResponse } from "../data/PokeApiResponse";
 import { fetchOpenTriviaDbApi } from "../utils/OpenTriviaDbApiHelper";
 import { fetchPokeApi } from "../utils/PokeApiHelper";
 
@@ -19,11 +19,11 @@ export const Query: QueryResolvers.Type = {
         };
     },
     region: async (_, { id }): Promise<Region> => {
-        const { name, names } = await fetchPokeApi<RegionResponse>("region", { id });
-        return { id, name, names };
+        const { name, names, locations } = await fetchPokeApi<RegionResponse>("region", { id });
+        return { id, name, names, locations };
     },
     regions: async (): Promise<Region[]> => {
-        const { results } = await fetchPokeApi<RegionsResponse>("region");
+        const { results } = await fetchPokeApi<NamedResourceListResponse<RegionResponse[]>>("region");
         return Promise.all(results.map(async ({ name }) => fetchPokeApi<RegionResponse>("region", { name })));
     },
 };
