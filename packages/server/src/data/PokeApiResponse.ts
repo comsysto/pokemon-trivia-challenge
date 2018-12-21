@@ -41,4 +41,45 @@ export interface LocationResponse extends Node {
 
 export interface LocationAreaResponse extends Node {
     location: NamedApiResourceResponse<LocationResponse>;
+    pokemon_encounters: PokemonEncounterResponse[];
+}
+
+export interface PokemonEncounterResponse {
+    pokemon: NamedApiResourceResponse<PokemonResponse>;
+    version_details: VersionEncounterDetailResponse[];
+}
+
+export interface PokemonResponse {
+    id: number;
+    name: string;
+    sprites: PokemonSpritesResponse;
+    species: NamedApiResourceResponse<PokemonSpeciesResponse>;
+}
+
+export interface PokemonSpritesResponse {
+    front_default: string;
+}
+
+export interface PokemonSpeciesResponse extends Node {
+    capture_rate: number;
+    flavor_text_entries: FlavorTextResponse[];
+}
+
+export interface FlavorTextResponse {
+    flavor_text: string;
+    language: NamedApiResourceResponse<LanguageResponse>;
+    version: NamedApiResourceResponse<VersionResponse>;
+}
+
+export interface VersionResponse extends Node {
+}
+
+export interface VersionEncounterDetailResponse {
+    version: NamedApiResourceResponse<VersionResponse>;
+    max_chance: number;
+    encounter_details: EncounterResponse[];
+}
+
+export interface EncounterResponse {
+    chance: number;
 }

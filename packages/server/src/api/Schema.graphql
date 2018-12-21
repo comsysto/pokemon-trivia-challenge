@@ -79,4 +79,51 @@ type LocationArea {
     name: String!
     names: [Name!]!
     location: Location!
+    pokemonEncounters: [PokemonEncounter!]!
+}
+
+type PokemonEncounter {
+    pokemon: Pokemon!
+    versionDetails: [VersionEncounterDetail!]!
+}
+
+type VersionEncounterDetail {
+    version: Version!
+    maxChance: Int!
+    encounterDetails: [Encounter!]!
+}
+
+type Encounter {
+    chance: Int!
+}
+
+type Version {
+    id: Int!
+    name: String!
+    names: [Name!]!
+}
+
+type Pokemon {
+    id: Int!
+    name: String!
+    sprites: PokemonSprites!
+    species: PokemonSpecies!
+}
+
+type PokemonSprites {
+    frontDefault: String!
+}
+
+type PokemonSpecies {
+    id: Int!
+    name: String!
+    names: [Name!]!
+    captureRate: Int!
+    flavorTextEntries: [FlavorText!]!
+}
+
+type FlavorText {
+    flavorText: String!
+    language: Language!
+    version: Version!
 }

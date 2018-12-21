@@ -8,11 +8,6 @@ export interface NamedApiResource<T> extends ApiResource<T> {
     name: string;
 }
 
-export interface Node {
-    id: number;
-    name: string;
-}
-
 // Open Trivia DB API
 
 export interface Question {
@@ -59,4 +54,51 @@ export interface LocationArea {
     name: string;
     names: Name[];
     location: NamedApiResource<Location>;
+    pokemonEncounters: PokemonEncounter[];
+}
+
+export interface PokemonEncounter {
+    pokemon: NamedApiResource<Pokemon>;
+    versionDetails: VersionEncounterDetail[];
+}
+
+export interface Pokemon {
+    id: number;
+    name: string;
+    sprites: PokemonSprites;
+    species: NamedApiResource<PokemonSpecies>;
+}
+
+export interface PokemonSprites {
+    frontDefault: string;
+}
+
+export interface PokemonSpecies {
+    id: number;
+    name: string;
+    names: Name[];
+    captureRate: number;
+    flavorTextEntries: FlavorText[];
+}
+
+export interface FlavorText {
+    flavorText: string;
+    language: NamedApiResource<Language>;
+    version: NamedApiResource<Version>;
+}
+
+export interface Version {
+    id: number;
+    name: string;
+    names: Name[];
+}
+
+export interface VersionEncounterDetail {
+    version: NamedApiResource<Version>;
+    maxChance: number;
+    encounterDetails: Encounter[];
+}
+
+export interface Encounter {
+    chance: number;
 }
