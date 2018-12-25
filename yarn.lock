@@ -1488,6 +1488,13 @@
   dependencies:
     yargs "^11.0.0"
 
+"@ridi/object-case-converter@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@ridi/object-case-converter/-/object-case-converter-2.0.4.tgz#33989219c3ded60a51f750d644946d77e56c89bf"
+  integrity sha512-ByWGTL/OLI6YP4W7WLSxZdyQNS74TMWEBxmu6LVbDvbp3+ih930UByMXEfzz0lDTSxHi7LUtP8w9DOCFbraD4g==
+  dependencies:
+    lodash "^4.17.10"
+
 "@svgr/core@^2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@svgr/core/-/core-2.4.1.tgz#03a407c28c4a1d84305ae95021e8eabfda8fa731"
