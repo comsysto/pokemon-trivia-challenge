@@ -28,7 +28,8 @@
         "prefer-type-cast": false,
         "no-backbone-get-set-outside-model": false,
         "no-object-literal-type-assertion": false,
-        "variable-name": false
+        "variable-name": false,
+        "no-suspicious-comment": false
     },
     "linterOptions": {
         "exclude": [

@@ -7,6 +7,7 @@ import { fetchPokeApi } from "../utils/PokeApiHelper";
 export const Query: QueryResolvers.Type = {
     ...QueryResolvers.defaultResolvers,
     triviaQuestion: async (_, args): Promise<Question> => {
+        // TODO: This assumes no errors.
         const { results } = await fetchOpenTriviaDbApi(args);
         const result = results[0];
         return {
@@ -19,16 +20,16 @@ export const Query: QueryResolvers.Type = {
         };
     },
     location: async (_, { id }): Promise<Location> => {
-        const { name, names, region, areas } = await fetchPokeApi<LocationResponse>("location", { id });
-        return { id, name, names, region, areas };
+        const locationResponse = await fetchPokeApi<LocationResponse>("location", { id });
+        return { id, ...locationResponse };
     },
     locations: async (): Promise<Location[]> => {
         const { results } = await fetchPokeApi<NamedResourceListResponse<LocationResponse[]>>("location");
         return Promise.all(results.map(async ({ name }) => fetchPokeApi<LocationResponse>("location", { name })));
     },
     region: async (_, { id }): Promise<Region> => {
-        const { name, names, locations } = await fetchPokeApi<RegionResponse>("region", { id });
-        return { id, name, names, locations };
+        const regionResponse = await fetchPokeApi<RegionResponse>("region", { id });
+        return { id, ...regionResponse };
     },
     regions: async (): Promise<Region[]> => {
         const { results } = await fetchPokeApi<NamedResourceListResponse<RegionResponse[]>>("region");
