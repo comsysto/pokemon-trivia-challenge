@@ -3,6 +3,7 @@ import { LocationResolvers } from "../api/ResolverTypes";
 import { LocationArea } from "../api/SchemaTypes";
 import { LocationAreaResponse, RegionResponse } from "../data/PokeApiResponse";
 import { fetchPokeApi } from "../utils/PokeApiHelper";
+import { filterNamesByLanguages } from "./Common";
 
 export const Location: LocationResolvers.Type = {
     ...LocationResolvers.defaultResolvers,
@@ -17,4 +18,5 @@ export const Location: LocationResolvers.Type = {
             })
         );
     },
+    names: async ({ names }, { languages }) => filterNamesByLanguages(names, languages),
 };

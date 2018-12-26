@@ -40,6 +40,21 @@ type Question {
 
 # PokeAPI
 
+enum LanguageEnum {
+    JA_HRKT
+    ROOMAJI
+    KO
+    ZH_HANT
+    FR
+    DE
+    ES
+    IT
+    EN
+    CS
+    JA
+    ZH_HANS
+}
+
 type Name {
     name: String!
     language: Language!
@@ -48,21 +63,21 @@ type Name {
 type Language {
     id: ID!
     name: String!
-    names: [Name!]!
+    names(languages: [LanguageEnum!]!): [Name!]!
     iso3166: String!
 }
 
 type Region {
     id: ID!
     name: String!
-    names: [Name!]!
+    names(languages: [LanguageEnum!]!): [Name!]!
     locations: [Location!]!
 }
 
 type Location {
     id: ID!
     name: String!
-    names: [Name!]!
+    names(languages: [LanguageEnum!]!): [Name!]!
     region: Region!
     areas: [LocationArea!]!
 }
@@ -70,7 +85,7 @@ type Location {
 type LocationArea {
     id: ID!
     name: String!
-    names: [Name!]!
+    names(languages: [LanguageEnum!]!): [Name!]!
     location: Location!
     pokemonEncounters: [PokemonEncounter!]!
 }
@@ -93,7 +108,7 @@ type Encounter {
 type Version {
     id: ID!
     name: String!
-    names: [Name!]!
+    names(languages: [LanguageEnum!]!): [Name!]!
 }
 
 type Pokemon {
@@ -110,7 +125,7 @@ type PokemonSprites {
 type PokemonSpecies {
     id: ID!
     name: String!
-    names: [Name!]!
+    names(languages: [LanguageEnum!]!): [Name!]!
     captureRate: Int!
     flavorTextEntries: [FlavorText!]!
 }
