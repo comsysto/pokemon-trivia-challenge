@@ -1385,12 +1385,6 @@
     parse-glob "3.0.4"
     promise-retry "1.1.1"
 
-"@pongsatt/graphql-schema-typescript@^1.0.25":
-  version "1.0.25"
-  resolved "https://registry.yarnpkg.com/@pongsatt/graphql-schema-typescript/-/graphql-schema-typescript-1.0.25.tgz#c9952163edfc9ae99b91b56f28fdba9c65826a18"
-  dependencies:
-    yargs "^11.0.0"
-
 "@ridi/object-case-converter@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@ridi/object-case-converter/-/object-case-converter-2.0.4.tgz#33989219c3ded60a51f750d644946d77e56c89bf"

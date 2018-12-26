@@ -24,7 +24,6 @@
         "url": "https://github.com/ChristianIvicevic/graphql-pokemon/issues"
     },
     "dependencies": {
-        "@pongsatt/graphql-schema-typescript": "^1.0.25",
         "@ridi/object-case-converter": "^2.0.4",
         "@types/jest": "^23.3.10",
         "axios": "^0.18.0",
