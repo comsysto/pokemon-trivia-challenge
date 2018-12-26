@@ -1,3 +1,5 @@
+type GraphQLID = string;
+
 export interface ApiResourceResponse<T> {
     url: string;
 }
@@ -15,9 +17,12 @@ export interface ResourceListResponse<ResourceType> {
 
 export interface NamedResourceListResponse<T> extends ResourceListResponse<NamedApiResourceResponse<T>> {}
 
-export interface Node {
-    id: number;
+export interface BaseNode {
+    id: GraphQLID;
     name: string;
+}
+
+export interface Node extends BaseNode {
     names: NameResponse[];
 }
 
@@ -49,9 +54,7 @@ export interface PokemonEncounterResponse {
     version_details: VersionEncounterDetailResponse[];
 }
 
-export interface PokemonResponse {
-    id: number;
-    name: string;
+export interface PokemonResponse extends BaseNode {
     sprites: PokemonSpritesResponse;
     species: NamedApiResourceResponse<PokemonSpeciesResponse>;
 }

@@ -10,13 +10,13 @@ type Query {
     triviaQuestion(difficulty: QuestionDifficulty, type: QuestionType): Question!
 
     ######################### PokeAPI
-    location(id: Int!): Location!
+    location(id: ID!): Location!
     """
     A list of locations that can be visited within games.
     """
     locations: [Location!]!
 
-    region(id: Int!): Region!
+    region(id: ID!): Region!
     """
     A list of regions (organized areas) of the Pokémon world.
     """
@@ -53,21 +53,21 @@ type Name {
 }
 
 type Language {
-    id: Int!
+    id: ID!
     name: String!
     names: [Name!]!
     iso3166: String!
 }
 
 type Region {
-    id: Int!
+    id: ID!
     name: String!
     names: [Name!]!
     locations: [Location!]!
 }
 
 type Location {
-    id: Int!
+    id: ID!
     name: String!
     names: [Name!]!
     region: Region!
@@ -75,7 +75,7 @@ type Location {
 }
 
 type LocationArea {
-    id: Int!
+    id: ID!
     name: String!
     names: [Name!]!
     location: Location!
@@ -98,13 +98,13 @@ type Encounter {
 }
 
 type Version {
-    id: Int!
+    id: ID!
     name: String!
     names: [Name!]!
 }
 
 type Pokemon {
-    id: Int!
+    id: ID!
     name: String!
     sprites: PokemonSprites!
     species: PokemonSpecies!
@@ -115,7 +115,7 @@ type PokemonSprites {
 }
 
 type PokemonSpecies {
-    id: Int!
+    id: ID!
     name: String!
     names: [Name!]!
     captureRate: Int!

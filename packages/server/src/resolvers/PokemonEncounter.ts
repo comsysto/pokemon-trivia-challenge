@@ -7,7 +7,7 @@ import { fetchPokeApi } from "../utils/PokeApiHelper";
 export const PokemonEncounter: PokemonEncounterResolvers.Type = {
     ...PokemonEncounterResolvers.defaultResolvers,
     pokemon: async ({ pokemon: { name } }) => {
-        const pokemonResponse = await fetchPokeApi<PokemonResponse>("pokemon", { name });
+        const pokemonResponse = await fetchPokeApi<PokemonResponse>("pokemon", name);
         return camelize<Pokemon>(pokemonResponse, { recursive: true });
     },
 };

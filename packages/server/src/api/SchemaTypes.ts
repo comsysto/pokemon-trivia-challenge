@@ -1,3 +1,5 @@
+type GraphQLID = string;
+
 export interface Context {}
 
 export interface ApiResource<T> {
@@ -23,7 +25,7 @@ export interface Question {
 // PokeAPI
 
 export interface Region {
-    id: number;
+    id: GraphQLID;
     name: string;
     names: Name[];
     locations: NamedApiResource<Location>[];
@@ -35,14 +37,14 @@ export interface Name {
 }
 
 export interface Language {
-    id: number;
+    id: GraphQLID;
     name: string;
     names: Name[];
     iso3166: string;
 }
 
 export interface Location {
-    id: number;
+    id: GraphQLID;
     name: string;
     names: Name[];
     region: NamedApiResource<Region>;
@@ -50,7 +52,7 @@ export interface Location {
 }
 
 export interface LocationArea {
-    id: number;
+    id: GraphQLID;
     name: string;
     names: Name[];
     location: NamedApiResource<Location>;
@@ -63,7 +65,7 @@ export interface PokemonEncounter {
 }
 
 export interface Pokemon {
-    id: number;
+    id: GraphQLID;
     name: string;
     sprites: PokemonSprites;
     species: NamedApiResource<PokemonSpecies>;
@@ -74,7 +76,7 @@ export interface PokemonSprites {
 }
 
 export interface PokemonSpecies {
-    id: number;
+    id: GraphQLID;
     name: string;
     names: Name[];
     captureRate: number;
@@ -88,7 +90,7 @@ export interface FlavorText {
 }
 
 export interface Version {
-    id: number;
+    id: GraphQLID;
     name: string;
     names: Name[];
 }

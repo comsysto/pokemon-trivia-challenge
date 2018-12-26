@@ -17,19 +17,19 @@ export const Query: QueryResolvers.Type = {
         }
     },
     location: async (_, { id }): Promise<Location> => {
-        const locationResponse = await fetchPokeApi<LocationResponse>("location", { id });
+        const locationResponse = await fetchPokeApi<LocationResponse>("location", id);
         return { id, ...locationResponse };
     },
     locations: async (): Promise<Location[]> => {
         const { results } = await fetchPokeApi<NamedResourceListResponse<LocationResponse[]>>("location");
-        return Promise.all(results.map(async ({ name }) => fetchPokeApi<LocationResponse>("location", { name })));
+        return Promise.all(results.map(async ({ name }) => fetchPokeApi<LocationResponse>("location", name)));
     },
     region: async (_, { id }): Promise<Region> => {
-        const regionResponse = await fetchPokeApi<RegionResponse>("region", { id });
+        const regionResponse = await fetchPokeApi<RegionResponse>("region", id);
         return { id, ...regionResponse };
     },
     regions: async (): Promise<Region[]> => {
         const { results } = await fetchPokeApi<NamedResourceListResponse<RegionResponse[]>>("region");
-        return Promise.all(results.map(async ({ name }) => fetchPokeApi<RegionResponse>("region", { name })));
+        return Promise.all(results.map(async ({ name }) => fetchPokeApi<RegionResponse>("region", name)));
     },
 };

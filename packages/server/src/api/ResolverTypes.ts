@@ -31,11 +31,11 @@ export namespace QueryResolvers {
     }
 
     export interface ArgsLocation {
-        id: number;
+        id: string;
     }
 
     export interface ArgsRegion {
-        id: number;
+        id: string;
     }
 
     export type TriviaQuestionResolver = (
@@ -192,7 +192,7 @@ export namespace LocationResolvers {
         args: {},
         ctx: Context,
         info: GraphQLResolveInfo
-    ) => number | Promise<number>;
+    ) => string | Promise<string>;
 
     export type NameResolver = (
         parent: Location,
@@ -223,7 +223,7 @@ export namespace LocationResolvers {
     ) => LocationArea[] | Promise<LocationArea[]>;
 
     export interface Type {
-        id: (parent: Location, args: {}, ctx: Context, info: GraphQLResolveInfo) => number | Promise<number>;
+        id: (parent: Location, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
         name: (parent: Location, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
@@ -280,7 +280,7 @@ export namespace LanguageResolvers {
         args: {},
         ctx: Context,
         info: GraphQLResolveInfo
-    ) => number | Promise<number>;
+    ) => string | Promise<string>;
 
     export type NameResolver = (
         parent: Language,
@@ -304,7 +304,7 @@ export namespace LanguageResolvers {
     ) => string | Promise<string>;
 
     export interface Type {
-        id: (parent: Language, args: {}, ctx: Context, info: GraphQLResolveInfo) => number | Promise<number>;
+        id: (parent: Language, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
         name: (parent: Language, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
@@ -327,7 +327,7 @@ export namespace RegionResolvers {
         args: {},
         ctx: Context,
         info: GraphQLResolveInfo
-    ) => number | Promise<number>;
+    ) => string | Promise<string>;
 
     export type NameResolver = (
         parent: Region,
@@ -351,7 +351,7 @@ export namespace RegionResolvers {
     ) => Location[] | Promise<Location[]>;
 
     export interface Type {
-        id: (parent: Region, args: {}, ctx: Context, info: GraphQLResolveInfo) => number | Promise<number>;
+        id: (parent: Region, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
         name: (parent: Region, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
@@ -380,7 +380,7 @@ export namespace LocationAreaResolvers {
         args: {},
         ctx: Context,
         info: GraphQLResolveInfo
-    ) => number | Promise<number>;
+    ) => string | Promise<string>;
 
     export type NameResolver = (
         parent: LocationArea,
@@ -411,7 +411,7 @@ export namespace LocationAreaResolvers {
     ) => PokemonEncounter[] | Promise<PokemonEncounter[]>;
 
     export interface Type {
-        id: (parent: LocationArea, args: {}, ctx: Context, info: GraphQLResolveInfo) => number | Promise<number>;
+        id: (parent: LocationArea, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
         name: (parent: LocationArea, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
@@ -483,7 +483,7 @@ export namespace PokemonResolvers {
         args: {},
         ctx: Context,
         info: GraphQLResolveInfo
-    ) => number | Promise<number>;
+    ) => string | Promise<string>;
 
     export type NameResolver = (
         parent: Pokemon,
@@ -507,7 +507,7 @@ export namespace PokemonResolvers {
     ) => PokemonSpecies | Promise<PokemonSpecies>;
 
     export interface Type {
-        id: (parent: Pokemon, args: {}, ctx: Context, info: GraphQLResolveInfo) => number | Promise<number>;
+        id: (parent: Pokemon, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
         name: (parent: Pokemon, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
@@ -563,7 +563,7 @@ export namespace PokemonSpeciesResolvers {
         args: {},
         ctx: Context,
         info: GraphQLResolveInfo
-    ) => number | Promise<number>;
+    ) => string | Promise<string>;
 
     export type NameResolver = (
         parent: PokemonSpecies,
@@ -594,7 +594,7 @@ export namespace PokemonSpeciesResolvers {
     ) => FlavorText[] | Promise<FlavorText[]>;
 
     export interface Type {
-        id: (parent: PokemonSpecies, args: {}, ctx: Context, info: GraphQLResolveInfo) => number | Promise<number>;
+        id: (parent: PokemonSpecies, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
         name: (parent: PokemonSpecies, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
@@ -670,7 +670,7 @@ export namespace VersionResolvers {
         args: {},
         ctx: Context,
         info: GraphQLResolveInfo
-    ) => number | Promise<number>;
+    ) => string | Promise<string>;
 
     export type NameResolver = (
         parent: Version,
@@ -687,7 +687,7 @@ export namespace VersionResolvers {
     ) => Name[] | Promise<Name[]>;
 
     export interface Type {
-        id: (parent: Version, args: {}, ctx: Context, info: GraphQLResolveInfo) => number | Promise<number>;
+        id: (parent: Version, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
         name: (parent: Version, args: {}, ctx: Context, info: GraphQLResolveInfo) => string | Promise<string>;
 
