@@ -1,13 +1,9 @@
 import { FlavorTextResolvers } from "../api/ResolverTypes";
 import { LanguageResponse, VersionResponse } from "../data/PokeApiResponse";
-import { fetchPokeApi } from "../utils/PokeApiHelper";
+import { fetchPokeApiByNamedUrl } from "../utils/PokeApiHelper";
 
 export const FlavorText: FlavorTextResolvers.Type = {
     ...FlavorTextResolvers.defaultResolvers,
-    language: async ({ language: { name } }) => {
-        return fetchPokeApi<LanguageResponse>("language", name);
-    },
-    version: async ({ version: { name } }) => {
-        return fetchPokeApi<VersionResponse>("version", name);
-    },
+    language: async ({ language: { url } }) => fetchPokeApiByNamedUrl<LanguageResponse>(url),
+    version: async ({ version: { url } }) => fetchPokeApiByNamedUrl<VersionResponse>(url),
 };

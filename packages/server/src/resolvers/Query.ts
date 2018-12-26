@@ -3,7 +3,7 @@ import { QueryResolvers } from "../api/ResolverTypes";
 import { Location, Question, Region } from "../api/SchemaTypes";
 import { LocationResponse, NamedResourceListResponse, RegionResponse } from "../data/PokeApiResponse";
 import { fetchOpenTriviaDbApi } from "../utils/OpenTriviaDbApiHelper";
-import { fetchPokeApi } from "../utils/PokeApiHelper";
+import { fetchPokeApiByNamedUrl, fetchPokeApiByQuery } from "../utils/PokeApiHelper";
 
 export const Query: QueryResolvers.Type = {
     ...QueryResolvers.defaultResolvers,
@@ -17,19 +17,19 @@ export const Query: QueryResolvers.Type = {
         }
     },
     location: async (_, { id }): Promise<Location> => {
-        const locationResponse = await fetchPokeApi<LocationResponse>("location", id);
+        const locationResponse = await fetchPokeApiByQuery<LocationResponse>("location", id);
         return { id, ...locationResponse };
     },
     locations: async (): Promise<Location[]> => {
-        const { results } = await fetchPokeApi<NamedResourceListResponse<LocationResponse[]>>("location");
-        return Promise.all(results.map(async ({ name }) => fetchPokeApi<LocationResponse>("location", name)));
+        const { results } = await fetchPokeApiByQuery<NamedResourceListResponse<LocationResponse[]>>("location");
+        return Promise.all(results.map(async ({ url }) => fetchPokeApiByNamedUrl<LocationResponse>(url)));
     },
     region: async (_, { id }): Promise<Region> => {
-        const regionResponse = await fetchPokeApi<RegionResponse>("region", id);
+        const regionResponse = await fetchPokeApiByQuery<RegionResponse>("region", id);
         return { id, ...regionResponse };
     },
     regions: async (): Promise<Region[]> => {
-        const { results } = await fetchPokeApi<NamedResourceListResponse<RegionResponse[]>>("region");
-        return Promise.all(results.map(async ({ name }) => fetchPokeApi<RegionResponse>("region", name)));
+        const { results } = await fetchPokeApiByQuery<NamedResourceListResponse<RegionResponse[]>>("region");
+        return Promise.all(results.map(async ({ url }) => fetchPokeApiByNamedUrl<RegionResponse>(url)));
     },
 };
