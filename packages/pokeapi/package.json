@@ -1,0 +1,24 @@
+{
+    "name": "pokeapi",
+    "version": "1.0.0",
+    "description": "Custom Instance of the PokeAPI",
+    "author": "Christian Ivicevic <christian.ivicevic@comsysto.com>",
+    "homepage": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge#readme",
+    "license": "MIT",
+    "main": "build/Server.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ChristianIvicevic/pokemon-trivia-challenge.git"
+    },
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "start": "node build/Server.js",
+        "dev": "ts-node src/Server.ts",
+        "test": "echo \"Error: run tests from root\" && exit 1",
+        "lint": "tslint -c ../tslint.json -p . --format stylish"
+    },
+    "bugs": {
+        "url": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge/issues"
+    }
+}
