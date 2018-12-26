@@ -5,7 +5,7 @@
     "author": "Christian Ivicevic <christian.ivicevic@comsysto.com>",
     "homepage": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge#readme",
     "license": "MIT",
-    "main": "build/server.js",
+    "main": "build/Server.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ChristianIvicevic/pokemon-trivia-challenge.git"
@@ -13,8 +13,8 @@
     "private": true,
     "scripts": {
         "build": "tsc",
-        "start": "node build/server.js",
-        "dev": "ts-node src/server.ts",
+        "start": "node build/Server.js",
+        "dev": "ts-node src/Server.ts",
         "test": "jest",
         "lint": "tslint -c ../tslint.json -p . --format stylish",
         "graphqlgen": "graphqlgen"
