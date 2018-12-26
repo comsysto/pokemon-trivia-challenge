@@ -1,5 +1,5 @@
 {
-    "name": "graphql-pokemon",
+    "name": "pokemon-trivia-challenge",
     "private": true,
     "devDependencies": {
         "lerna": "^3.6.0"

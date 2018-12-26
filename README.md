@@ -1,1 +1,1 @@
-# graphql-pokemon
+# pokemon-trivia-challenge
