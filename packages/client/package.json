@@ -1,6 +1,17 @@
 {
     "name": "client",
     "version": "1.0.0",
+    "description": "React Frontend for the Pokemon Trivia Challenge",
+    "author": "Christian Ivicevic <christian.ivicevic@comsysto.com>",
+    "homepage": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge#readme",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ChristianIvicevic/pokemon-trivia-challenge.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge/issues"
+    },
     "private": true,
     "dependencies": {
         "@blueprintjs/core": "^3.10.0",

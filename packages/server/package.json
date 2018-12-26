@@ -1,6 +1,7 @@
 {
     "name": "server",
     "version": "1.0.0",
+    "description": "GraphQL Backend for the Pokemon Trivia Challenge",
     "author": "Christian Ivicevic <christian.ivicevic@comsysto.com>",
     "homepage": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge#readme",
     "license": "MIT",
@@ -9,6 +10,7 @@
         "type": "git",
         "url": "git+https://github.com/ChristianIvicevic/pokemon-trivia-challenge.git"
     },
+    "private": true,
     "scripts": {
         "build": "tsc",
         "start": "node build/server.js",
