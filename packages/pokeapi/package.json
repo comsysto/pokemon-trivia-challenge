@@ -20,5 +20,15 @@
     },
     "bugs": {
         "url": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge/issues"
+    },
+    "dependencies": {
+        "@types/express": "^4.16.0",
+        "api-data": "https://github.com/PokeAPI/api-data.git",
+        "express": "^4.16.4",
+        "ts-node": "^7.0.1",
+        "tslint": "^5.12.0",
+        "tslint-config-prettier": "^1.17.0",
+        "tslint-plugin-prettier": "^2.0.1",
+        "typescript": "^3.2.2"
     }
 }
