@@ -2,14 +2,6 @@ type GraphQLID = string;
 
 export interface Context {}
 
-export interface ApiResource<T> {
-    url: string;
-}
-
-export interface NamedApiResource<T> extends ApiResource<T> {
-    name: string;
-}
-
 // Open Trivia DB API
 
 export interface Question {
@@ -23,6 +15,14 @@ export interface Question {
 }
 
 // PokeAPI
+
+export interface ApiResource<T> {
+    url: string;
+}
+
+export interface NamedApiResource<T> extends ApiResource<T> {
+    name: string;
+}
 
 export interface Region {
     id: GraphQLID;

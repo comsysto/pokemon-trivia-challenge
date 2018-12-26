@@ -1,29 +1,22 @@
+# pokemon-trivia-challenge Schema
+
 schema {
-    query: Query,
+    query: Query
 }
 
 type Query {
-    ######################### Open Trivia DB API
-    """
-    Fetches a question from the Open Trivia DB API. You can optionally specify a difficulty and question type.
-    """
+    # Open Trivia DB API
     triviaQuestion(difficulty: QuestionDifficulty, type: QuestionType): Question!
 
-    ######################### PokeAPI
+    # PokeAPI
     location(id: ID!): Location!
-    """
-    A list of locations that can be visited within games.
-    """
     locations: [Location!]!
 
     region(id: ID!): Region!
-    """
-    A list of regions (organized areas) of the Pokémon world.
-    """
     regions: [Region!]!
 }
 
-######################### Open Trivia DB API
+# Open Trivia DB API
 
 enum QuestionDifficulty {
     EASY
@@ -45,7 +38,7 @@ type Question {
     incorrectAnswers: [String!]!
 }
 
-######################### PokeAPI
+# PokeAPI
 
 type Name {
     name: String!
