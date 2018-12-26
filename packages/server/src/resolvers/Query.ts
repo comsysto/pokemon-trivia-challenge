@@ -1,3 +1,4 @@
+import { camelize } from "@ridi/object-case-converter";
 import { QueryResolvers } from "../api/ResolverTypes";
 import { Location, Question, Region } from "../api/SchemaTypes";
 import { LocationResponse, NamedResourceListResponse, RegionResponse } from "../data/PokeApiResponse";
@@ -7,17 +8,13 @@ import { fetchPokeApi } from "../utils/PokeApiHelper";
 export const Query: QueryResolvers.Type = {
     ...QueryResolvers.defaultResolvers,
     triviaQuestion: async (_, args): Promise<Question> => {
-        // TODO: This assumes no errors.
-        const { results } = await fetchOpenTriviaDbApi(args);
-        const result = results[0];
-        return {
-            category: result.category,
-            correctAnswer: result.correct_answer,
-            difficulty: result.difficulty,
-            incorrectAnswers: result.incorrect_answers,
-            question: result.question,
-            type: result.type,
-        };
+        const { response_code: responseCode, results } = await fetchOpenTriviaDbApi(args);
+        if (responseCode === 200) {
+            const result = results[0];
+            return camelize<Question>(result, { recursive: true });
+        } else {
+            throw new Error(`OpenTriviaDBAPI Response Code: ${responseCode}`);
+        }
     },
     location: async (_, { id }): Promise<Location> => {
         const locationResponse = await fetchPokeApi<LocationResponse>("location", { id });
