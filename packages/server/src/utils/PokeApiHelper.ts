@@ -7,7 +7,14 @@ const officialBaseUrl = "https://pokeapi.co";
 const localBaseUrl = "http://localhost:7894";
 const apiUrl = "/api/v2/";
 
-export type PokeApiEndpoint = "region" | "language" | "location" | "location-area" | "pokemon" | "pokemon-species" | "version";
+export type PokeApiEndpoint =
+    | "region"
+    | "language"
+    | "location"
+    | "location-area"
+    | "pokemon"
+    | "pokemon-species"
+    | "version";
 
 const redisClient = createHandyClient({ port: 6379 });
 
