@@ -1,15 +1,15 @@
 import axios from "axios";
+import { createHandyClient } from "handy-redis";
 
-const isLocal = false;
+const isLocal = true;
 
 const officialBaseUrl = "https://pokeapi.co";
-const localBaseUrl = "https://localhost:7894";
+const localBaseUrl = "http://localhost:7894";
 const apiUrl = "/api/v2/";
 
-type PokeApiEndpoint = "region" | "language" | "location" | "location-area" | "pokemon" | "pokemon-species" | "version";
+export type PokeApiEndpoint = "region" | "language" | "location" | "location-area" | "pokemon" | "pokemon-species" | "version";
 
-// tslint:disable-next-line:no-any
-const cachedResponses: Record<string, any> = {};
+const redisClient = createHandyClient({ port: 6379 });
 
 export async function fetchPokeApiByQuery<ResponseType>(endpoint: PokeApiEndpoint, argument?: string) {
     const url = `${isLocal ? "" : officialBaseUrl}${apiUrl}${endpoint}/${argument || ""}`;
@@ -18,13 +18,15 @@ export async function fetchPokeApiByQuery<ResponseType>(endpoint: PokeApiEndpoin
 
 export async function fetchPokeApiByNamedUrl<ResponseType>(url: string) {
     const apiEndpoint = `${url.startsWith(officialBaseUrl) ? "" : localBaseUrl}${url}`;
-    if (cachedResponses[apiEndpoint] === undefined) {
+    const cachedData = await redisClient.get(apiEndpoint);
+
+    if (cachedData === null) {
         console.log(`[From Server] GET ${apiEndpoint}`);
         const { data } = await axios.get<ResponseType>(apiEndpoint);
-        cachedResponses[apiEndpoint] = data;
+        await redisClient.set(apiEndpoint, JSON.stringify(data));
         return data;
     } else {
-        console.log(`[From Cache] GET ${apiEndpoint}`);
-        return cachedResponses[apiEndpoint] as ResponseType;
+        console.log(`[From Redis] GET ${apiEndpoint}`);
+        return JSON.parse(cachedData) as ResponseType;
     }
 }
