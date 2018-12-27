@@ -13,7 +13,9 @@
     },
     "scripts": {
         "bootstrap": "lerna bootstrap",
-        "clean": "lerna clean"
+        "clean": "lerna clean",
+        "docker-up": "docker-compose up -d",
+        "docker-down": "docker-compose down"
     },
     "workspaces": [
         "packages/*"

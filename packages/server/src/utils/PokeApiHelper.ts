@@ -16,7 +16,7 @@ export type PokeApiEndpoint =
     | "pokemon-species"
     | "version";
 
-const redisClient = createHandyClient({ port: 6379 });
+const redisClient = createHandyClient({ port: 6541 });
 
 export async function fetchPokeApiByQuery<ResponseType>(endpoint: PokeApiEndpoint, argument?: string) {
     const url = `${isLocal ? "" : officialBaseUrl}${apiUrl}${endpoint}/${argument || ""}`;
