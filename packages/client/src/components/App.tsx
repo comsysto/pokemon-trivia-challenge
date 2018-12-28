@@ -17,13 +17,15 @@ export class App extends Component {
     public render() {
         return (
             <div className={`bp3-dark ${styles.container}`}>
-                <Appbar />
                 <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/" component={GameModeView} />
-                        <Route path="/exploration" component={ExplorationView} />
-                        <Route path="/quiz" component={QuizView} />
-                    </Switch>
+                    <>
+                        <Appbar />
+                        <Switch>
+                            <Route exact path="/" component={GameModeView} />
+                            <Route path="/exploration" component={ExplorationView} />
+                            <Route path="/quiz" component={QuizView} />
+                        </Switch>
+                    </>
                 </BrowserRouter>
             </div>
         );

@@ -9,6 +9,7 @@ const gameModeCards: IGameModeProps[] = [
         order to fill up your Pokédex. Correctly answering difficult questions will vastly increase your chances of
         actually catching a Pokémon.`,
         actionText: "Explore the World",
+        url: "/exploration",
     },
     {
         title: "Trial of Ascendency",
@@ -16,6 +17,8 @@ const gameModeCards: IGameModeProps[] = [
         trial of difficult questions, you will be able to gain experience points. You can spend those to acquire certain
         Pokémon that cannot be caught by normal means.`,
         actionText: "Enter Trial of Ascendency",
+        url: "/trial",
+        isDisabled: true,
     },
 ];
 
