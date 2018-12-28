@@ -28,12 +28,10 @@ export async function fetchPokeApiByNamedUrl<ResponseType>(url: string) {
     const cachedData = await redisClient.get(apiEndpoint);
 
     if (cachedData === null) {
-        console.log(`[From Server] GET ${apiEndpoint}`);
         const { data } = await axios.get<ResponseType>(apiEndpoint);
         await redisClient.set(apiEndpoint, JSON.stringify(data));
         return data;
     } else {
-        console.log(`[From Redis] GET ${apiEndpoint}`);
         return JSON.parse(cachedData) as ResponseType;
     }
 }

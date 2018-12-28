@@ -28,11 +28,13 @@
     "dependencies": {
         "@ridi/object-case-converter": "^2.0.4",
         "@types/jest": "^23.3.10",
+        "@types/progress": "^2.0.3",
         "axios": "^0.18.0",
         "graphql-yoga": "^1.16.7",
         "graphqlgen": "^0.4.0",
         "handy-redis": "^1.5.1",
         "jest": "^23.6.0",
+        "progress": "^2.0.3",
         "ts-jest": "^23.10.5",
         "ts-node": "^7.0.1",
         "tslint": "^5.11.0",
