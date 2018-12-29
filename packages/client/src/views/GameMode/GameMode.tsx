@@ -26,7 +26,7 @@ export function GameModeView() {
     return (
         <div className={styles.container}>
             {gameModeCards.map((props) => (
-                <GameMode {...props} />
+                <GameMode {...props} key={props.url} />
             ))}
         </div>
     );

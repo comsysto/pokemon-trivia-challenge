@@ -1,20 +1,6 @@
 import { IPanelProps, ITreeNode, Tree } from "@blueprintjs/core";
 import React, { Component } from "react";
-
-// Fake Items
-// tslint:disable:no-increment-decrement
-let id = 0;
-
-const regions = ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola"];
-const regionItems: ITreeNode[] = regions.map(
-    (region): ITreeNode => ({ id: id++, label: region, hasCaret: false, icon: "globe" })
-);
-
-const zones = ["Route 1", "Route 2", "Route 3"];
-const zoneItems: ITreeNode[] = zones.map(
-    (zone): ITreeNode => ({ id: id++, label: zone, hasCaret: false, icon: "map" })
-);
-// tslint:enable:no-increment-decrement
+import { RegionsQueryResponse } from "../../../../queries/RegionsQuery";
 
 export enum ZoneType {
     Region,
@@ -23,6 +9,8 @@ export enum ZoneType {
 
 export interface IZonePanelProps {
     zoneType: ZoneType;
+    regionsQueryResponse: RegionsQueryResponse;
+    regionId?: string;
 }
 
 export interface IZonePanelState {
@@ -35,9 +23,18 @@ export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePan
     };
 
     public componentDidMount() {
-        this.setState({
-            treeNodes: this.props.zoneType === ZoneType.Region ? regionItems : zoneItems,
-        });
+        if (this.props.zoneType === ZoneType.Region) {
+            const regionItems = this.props.regionsQueryResponse.regions.map(
+                ({ id, names }): ITreeNode => ({ id, label: names[0].name, hasCaret: false, icon: "globe" })
+            );
+            this.setState({ treeNodes: regionItems });
+        } else {
+            const region = this.props.regionsQueryResponse.regions.filter(({ id }) => id === this.props.regionId)[0];
+            const zoneItems = region.locations
+                .sort((a, b) => a.names[0].name.localeCompare(b.names[0].name))
+                .map(({ id, names }): ITreeNode => ({ id, label: names[0].name, hasCaret: false, icon: "map" }));
+            this.setState({ treeNodes: zoneItems });
+        }
     }
 
     public componentWillUnmount() {
@@ -48,12 +45,14 @@ export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePan
         return <Tree contents={this.state.treeNodes} onNodeClick={this.onNodeClick} />;
     }
 
-    private readonly onNodeClick = (nodeData: ITreeNode, _: number[], __: React.MouseEvent<HTMLElement>) => {
+    private readonly onNodeClick = (nodeData: ITreeNode) => {
         if (this.props.zoneType === ZoneType.Region) {
             this.props.openPanel({
                 component: ZonePanel,
                 props: {
                     zoneType: ZoneType.Zone,
+                    regionsQueryResponse: this.props.regionsQueryResponse,
+                    regionId: nodeData.id as string,
                 },
                 title: "Zone",
             });

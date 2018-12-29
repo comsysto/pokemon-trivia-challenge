@@ -2,7 +2,7 @@
 @import "src/scss/Variables";
 
 .sidebar {
-    height: 100vh;
+    height: calc(100vh - #{$pt-navbar-height});
     width: $locationPanel-width;
 }
 

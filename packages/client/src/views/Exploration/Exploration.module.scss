@@ -6,5 +6,5 @@
 }
 
 .column {
-    height: calc(100vh - $pt-navbar-height);
+    height: calc(100vh - #{$pt-navbar-height});
 }

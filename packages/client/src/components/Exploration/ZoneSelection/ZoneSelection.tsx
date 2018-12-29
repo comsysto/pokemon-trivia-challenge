@@ -1,45 +1,37 @@
 import { Card, IPanel, PanelStack } from "@blueprintjs/core";
 import React, { Component } from "react";
+import { RegionsQuery } from "../../../queries/RegionsQuery";
 import { IZonePanelProps, ZonePanel, ZoneType } from "./ZonePanel";
 import styles from "./ZoneSelection.module.scss";
 
-export interface IZoneSelectionProps {}
-export interface IZoneSelectionState {
-    readonly currentPanelStack: IPanel[];
-}
-
-export class ZoneSelection extends Component<IZoneSelectionProps, IZoneSelectionState> {
-    public initialPanel: IPanel<IZonePanelProps> = {
-        component: ZonePanel,
-        props: {
-            zoneType: ZoneType.Region,
-        },
-        title: "Region",
-    };
-
-    public readonly state: IZoneSelectionState = {
-        // Here be dragons...
-        currentPanelStack: [(this.initialPanel as unknown) as IPanel],
-    };
-
+export class ZoneSelection extends Component {
     public render() {
         return (
             <Card className={styles.sidebar}>
-                <PanelStack
-                    initialPanel={this.state.currentPanelStack[0]}
-                    onOpen={this.addToPanelStack}
-                    onClose={this.removeFromPanelStack}
-                    className={styles.panelStack}
-                />
+                <RegionsQuery>
+                    {({ loading, error, data }) => {
+                        if (loading || error) {
+                            return <></>;
+                        }
+
+                        return (
+                            <PanelStack
+                                initialPanel={
+                                    (({
+                                        component: ZonePanel,
+                                        title: "Region",
+                                        props: {
+                                            zoneType: ZoneType.Region,
+                                            regionsQueryResponse: data,
+                                        },
+                                    } as IPanel<IZonePanelProps>) as unknown) as IPanel
+                                }
+                                className={styles.panelStack}
+                            />
+                        );
+                    }}
+                </RegionsQuery>
             </Card>
         );
     }
-
-    private readonly addToPanelStack = (newPanel: IPanel) => {
-        this.setState((state) => ({ currentPanelStack: [newPanel, ...state.currentPanelStack] }));
-    };
-
-    private readonly removeFromPanelStack = (_: IPanel) => {
-        this.setState((state) => ({ currentPanelStack: state.currentPanelStack.slice(1) }));
-    };
 }
