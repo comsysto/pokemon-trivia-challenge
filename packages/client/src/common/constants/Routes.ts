@@ -1,2 +1,2 @@
 export const HomeRoute = "/";
-export const ExplorationRoute = "/exploration";
+export const ExploreRoute = "/explore";

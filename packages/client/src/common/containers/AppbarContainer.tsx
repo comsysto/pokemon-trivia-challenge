@@ -24,7 +24,7 @@ function AppbarContainerBase(props: RouteComponentProps) {
             text: "Explore",
             icon: "map",
             minimal: true,
-            onClick: () => history.push(Constants.ExplorationRoute),
+            onClick: () => history.push(Constants.ExploreRoute),
         },
         {
             text: "Trial",

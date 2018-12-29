@@ -12,7 +12,7 @@ export function HomeView() {
             order to fill up your Pokédex. Correctly answering difficult questions will vastly increase your chances of
             actually catching a Pokémon.`,
             buttonText: "Explore the World",
-            url: Constants.ExplorationRoute,
+            url: Constants.ExploreRoute,
         },
         {
             title: "Trial of Ascendency",

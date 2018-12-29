@@ -10,7 +10,7 @@ export const appRoutes: RouteProps[] = [
         exact: true,
     },
     {
-        path: `${Constants.ExplorationRoute}/:regionName?/:zoneName?`,
+        path: `${Constants.ExploreRoute}/:regionName?/:zoneName?`,
         component: ExplorationView,
     },
 ];
