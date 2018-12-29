@@ -1,8 +1,8 @@
 import React from "react";
 import shortid from "shortid";
 import * as Constants from "../../common/constants";
+import { GameModeContainer, IGameModeContainerProps } from "../containers/GameModeContainer";
 import Styles from "../styles/HomeContainer.module.scss";
-import { GameModeContainer, IGameModeContainerProps } from "./GameModeContainer";
 
 export function HomeView() {
     const gameModes: IGameModeContainerProps[] = [

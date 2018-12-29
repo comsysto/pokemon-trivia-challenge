@@ -1,6 +1,6 @@
 import { RouteProps } from "react-router";
 import * as Constants from "./common/constants";
-import { HomeView } from "./home/containers/HomeView";
+import { HomeView } from "./home/views/HomeView";
 import { ExplorationView } from "./views/Exploration";
 
 export const appRoutes: RouteProps[] = [
