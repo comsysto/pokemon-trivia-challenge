@@ -1,9 +1,11 @@
-import { FocusStyleManager } from "@blueprintjs/core";
+import { Classes, FocusStyleManager } from "@blueprintjs/core";
+import classNames from "classnames";
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import shortid from "shortid";
+import { AppbarContainer } from "../app/common/Appbar/containers/AppbarContainer";
 import { appRoutes } from "../Routes";
-import styles from "./App.module.scss";
-import { Appbar } from "./Appbar";
+import Styles from "./App.module.scss";
 
 export class App extends Component {
     public componentWillMount() {
@@ -14,18 +16,16 @@ export class App extends Component {
 
     public render() {
         return (
-            <div className={`bp3-dark ${styles.container}`}>
-                <BrowserRouter>
-                    <>
-                        <Appbar />
-                        <Switch>
-                            {appRoutes.map((routeProps) => (
-                                <Route {...routeProps} key={routeProps.path as string} />
-                            ))}
-                        </Switch>
-                    </>
-                </BrowserRouter>
-            </div>
+            <BrowserRouter>
+                <div className={classNames(Classes.DARK, Styles.appContainer)}>
+                    <AppbarContainer />
+                    <Switch>
+                        {appRoutes.map((routeProps) => (
+                            <Route {...routeProps} key={shortid.generate()} />
+                        ))}
+                    </Switch>
+                </div>
+            </BrowserRouter>
         );
     }
 }
