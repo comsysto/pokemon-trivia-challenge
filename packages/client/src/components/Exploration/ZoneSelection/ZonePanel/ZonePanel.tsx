@@ -2,6 +2,7 @@ import { IPanelProps, ITreeNode, Tree } from "@blueprintjs/core";
 import React, { Component } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { RegionsQueryResponse } from "../../../../queries/RegionsQuery";
+import { ExplorationRouteParams } from "../../../../Routes";
 
 export enum ZoneType {
     Region,
@@ -9,10 +10,6 @@ export enum ZoneType {
 }
 
 type TreeNodeType = ITreeNode<{ id: string; name: string }>;
-type RouteParams = {
-    regionName?: string;
-    zoneName?: string;
-};
 
 export interface IZonePanelProps {
     zoneType: ZoneType;
@@ -24,7 +21,7 @@ export interface IZonePanelState {
 }
 
 class PureZonePanel extends Component<
-    IPanelProps & IZonePanelProps & RouteComponentProps<RouteParams>,
+    IPanelProps & IZonePanelProps & RouteComponentProps<ExplorationRouteParams>,
     IZonePanelState
 > {
     public readonly state: IZonePanelState = {

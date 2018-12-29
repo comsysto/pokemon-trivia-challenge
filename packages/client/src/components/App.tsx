@@ -1,9 +1,7 @@
 import { FocusStyleManager } from "@blueprintjs/core";
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { ExplorationView } from "../views/Exploration";
-import { GameModeView } from "../views/GameMode";
-import { QuizView } from "../views/Quiz";
+import { appRoutes } from "../Routes";
 import styles from "./App.module.scss";
 import { Appbar } from "./Appbar";
 
@@ -21,9 +19,9 @@ export class App extends Component {
                     <>
                         <Appbar />
                         <Switch>
-                            <Route exact path="/" component={GameModeView} />
-                            <Route path="/exploration/:regionName?/:zoneName?" component={ExplorationView} />
-                            <Route path="/quiz" component={QuizView} />
+                            {appRoutes.map((routeProps) => (
+                                <Route {...routeProps} key={routeProps.path as string} />
+                            ))}
                         </Switch>
                     </>
                 </BrowserRouter>
