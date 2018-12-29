@@ -1,11 +1,17 @@
 import React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { ExplorationRouteParams } from "../../../Routes";
 import { ActionButton } from "./ActionButton";
 import { Collection } from "./Collection";
 import { Header } from "./Header";
 import { Progress } from "./Progress";
 import styles from "./ZoneDetails.module.scss";
 
-export function ZoneDetails() {
+export interface IZoneDetailsProps {
+    zoneName: string;
+}
+
+function PureZoneDetails(props: IZoneDetailsProps & RouteComponentProps<ExplorationRouteParams>) {
     return (
         <div className={styles.container}>
             <div className={styles.row}>
@@ -30,3 +36,6 @@ export function ZoneDetails() {
         </div>
     );
 }
+
+const ZoneDetails = withRouter(PureZoneDetails);
+export { ZoneDetails };

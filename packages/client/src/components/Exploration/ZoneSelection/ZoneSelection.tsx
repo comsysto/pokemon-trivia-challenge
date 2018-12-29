@@ -1,52 +1,64 @@
 import { Card, IPanel, NonIdealState, PanelStack, Spinner } from "@blueprintjs/core";
+import { ApolloError } from "apollo-client";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { RegionsQuery } from "../../../queries/RegionsQuery";
+import { RegionsQuery, RegionsQueryResponse } from "../../../queries/RegionsQuery";
 import { IZonePanelProps, ZonePanel, ZoneType } from "./ZonePanel";
 import styles from "./ZoneSelection.module.scss";
 
-function PureZoneSelection(props: RouteComponentProps) {
-    const onPanelClose = () => {
-        props.history.push("/exploration");
+function LoadingSpinner() {
+    return <NonIdealState icon={<Spinner />} />;
+}
+
+function ServerErrorIndicator(props: ApolloError) {
+    return <NonIdealState icon="error" description={`The GraphQL server encountered an error: ${props.message}`} />;
+}
+
+function UnexpectedErrorIndicator() {
+    return <NonIdealState icon="error" description="The GraphQL server returned no result." />;
+}
+
+function ZonePanelStack(props: RegionsQueryResponse & RouteComponentProps) {
+    const { history, regions } = props;
+
+    const onPanelClose = () => history.push("/exploration");
+
+    const initialPanel: IPanel<IZonePanelProps> = {
+        component: ZonePanel,
+        title: "Region",
+        props: {
+            zoneType: ZoneType.Region,
+            regionsQueryResponse: { regions },
+        },
     };
 
+    return (
+        <PanelStack
+            initialPanel={(initialPanel as unknown) as IPanel}
+            className={styles.panelStack}
+            onClose={onPanelClose}
+        />
+    );
+}
+
+function PureZoneSelection(props: RouteComponentProps) {
     return (
         <Card className={styles.sidebar}>
             <RegionsQuery>
                 {({ loading, error, data }) => {
                     if (loading) {
-                        return <NonIdealState icon={<Spinner />} />;
+                        return <LoadingSpinner />;
                     }
 
                     if (error) {
-                        return (
-                            <NonIdealState
-                                icon="error"
-                                description={`The GraphQL server encountered an error: ${error.message}`}
-                            />
-                        );
+                        return <ServerErrorIndicator {...error} />;
                     }
 
                     if (data === undefined) {
-                        return <NonIdealState icon="error" description="The GraphQL server returned no result." />;
+                        return <UnexpectedErrorIndicator />;
                     }
 
-                    const initialPanel: IPanel<IZonePanelProps> = {
-                        component: ZonePanel,
-                        title: "Region",
-                        props: {
-                            zoneType: ZoneType.Region,
-                            regionsQueryResponse: data,
-                        },
-                    };
-
-                    return (
-                        <PanelStack
-                            initialPanel={(initialPanel as unknown) as IPanel}
-                            className={styles.panelStack}
-                            onClose={onPanelClose}
-                        />
-                    );
+                    return <ZonePanelStack {...props} {...data} />;
                 }}
             </RegionsQuery>
         </Card>

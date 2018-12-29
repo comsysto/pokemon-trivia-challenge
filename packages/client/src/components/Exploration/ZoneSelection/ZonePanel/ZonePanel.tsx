@@ -4,12 +4,12 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { RegionsQueryResponse } from "../../../../queries/RegionsQuery";
 import { ExplorationRouteParams } from "../../../../Routes";
 
+type TreeNodeItem = ITreeNode<{ name: string }>;
+
 export enum ZoneType {
     Region,
     Zone,
 }
-
-type TreeNodeType = ITreeNode<{ id: string; name: string }>;
 
 export interface IZonePanelProps {
     zoneType: ZoneType;
@@ -17,7 +17,7 @@ export interface IZonePanelProps {
 }
 
 export interface IZonePanelState {
-    readonly treeNodes: TreeNodeType[];
+    readonly treeNodes: TreeNodeItem[];
 }
 
 class PureZonePanel extends Component<
@@ -29,50 +29,10 @@ class PureZonePanel extends Component<
     };
 
     public componentDidMount() {
-        const { regionName, zoneName } = this.props.match.params;
-
         if (this.props.zoneType === ZoneType.Region) {
-            const regionItems = this.props.regionsQueryResponse.regions.map(
-                ({ id, name, names }): TreeNodeType => ({
-                    id,
-                    label: names[0].name,
-                    hasCaret: false,
-                    icon: "globe",
-                    nodeData: {
-                        id,
-                        name,
-                    },
-                })
-            );
-            this.setState({ treeNodes: regionItems });
-
-            if (regionName !== undefined) {
-                this.openZonePanel();
-            }
-        } else {
-            const region = this.props.regionsQueryResponse.regions.filter(({ name }) => name === regionName)[0];
-            const zoneItems = region.locations
-                .sort((a, b) => a.names[0].name.localeCompare(b.names[0].name))
-                .map(
-                    ({ id, name, names }): TreeNodeType => ({
-                        id,
-                        label: names[0].name,
-                        hasCaret: false,
-                        icon: "map",
-                        nodeData: {
-                            id,
-                            name,
-                        },
-                    })
-                );
-            if (zoneName !== undefined) {
-                // tslint:disable-next-line:no-non-null-assertion
-                const zone = zoneItems.find((node) => node.nodeData!.name === zoneName);
-                if (zone !== undefined) {
-                    zone.isSelected = true;
-                }
-            }
-            this.setState({ treeNodes: zoneItems });
+            this.onRegionMount();
+        } else if (this.props.zoneType === ZoneType.Zone) {
+            this.onZoneMount();
         }
     }
 
@@ -84,16 +44,18 @@ class PureZonePanel extends Component<
         return <Tree contents={this.state.treeNodes} onNodeClick={this.onNodeClick} />;
     }
 
-    private readonly onNodeClick = (node: TreeNodeType) => {
+    private readonly onNodeClick = (node: TreeNodeItem) => {
+        const { history, zoneType } = this.props;
+
         this.deselectAllItems();
         node.isSelected = true;
         this.setState((state) => state);
 
-        if (this.props.zoneType === ZoneType.Region && node.nodeData) {
-            this.props.history.push(`/exploration/${node.nodeData.name}`);
+        if (zoneType === ZoneType.Region && node.nodeData) {
+            history.push(`/exploration/${node.nodeData.name}`);
             this.openZonePanel();
-        } else if (this.props.zoneType === ZoneType.Zone && node.nodeData) {
-            this.props.history.push(`/exploration/${this.props.match.params.regionName}/${node.nodeData.name}`);
+        } else if (zoneType === ZoneType.Zone && node.nodeData) {
+            history.push(`/exploration/${this.props.match.params.regionName}/${node.nodeData.name}`);
         }
     };
 
@@ -101,7 +63,7 @@ class PureZonePanel extends Component<
         this.forEachNode(this.state.treeNodes, (node) => (node.isSelected = false));
     }
 
-    private forEachNode(nodes: TreeNodeType[], callback: (node: TreeNodeType) => void) {
+    private forEachNode(nodes: TreeNodeItem[], callback: (node: TreeNodeItem) => void) {
         if (nodes === null) {
             return;
         }
@@ -111,6 +73,72 @@ class PureZonePanel extends Component<
             if (node.childNodes !== undefined) {
                 this.forEachNode(node.childNodes, callback);
             }
+        }
+    }
+
+    private onRegionMount() {
+        const { regionName } = this.props.match.params;
+        const {
+            history,
+            regionsQueryResponse: { regions },
+        } = this.props;
+
+        const regionItems = regions.map(
+            ({ id, name, names }): TreeNodeItem => ({
+                id,
+                label: names[0].name,
+                hasCaret: false,
+                icon: "globe",
+                nodeData: {
+                    name,
+                },
+            })
+        );
+        this.setState({ treeNodes: regionItems });
+
+        if (regionName !== undefined) {
+            if (regions.find((region) => region.name === regionName) === undefined) {
+                history.push("/exploration");
+            } else {
+                this.openZonePanel();
+            }
+        }
+    }
+
+    private onZoneMount() {
+        const { regionName, zoneName } = this.props.match.params;
+        const {
+            history,
+            regionsQueryResponse: { regions },
+        } = this.props;
+
+        const region = regions.find(({ name }) => name === regionName);
+        if (region === undefined) {
+            history.push("/exploration");
+        } else {
+            const zoneItems = region.locations
+                .sort((a, b) => a.names[0].name.localeCompare(b.names[0].name))
+                .map(
+                    ({ id, name, names }): TreeNodeItem => ({
+                        id,
+                        label: names[0].name,
+                        hasCaret: false,
+                        icon: "map",
+                        nodeData: {
+                            name,
+                        },
+                    })
+                );
+            if (zoneName !== undefined) {
+                // tslint:disable-next-line:no-non-null-assertion
+                const zone = zoneItems.find((node) => node.nodeData!.name === zoneName);
+                if (zone === undefined) {
+                    history.push(`/exploration/${regionName}`);
+                } else {
+                    zone.isSelected = true;
+                }
+            }
+            this.setState({ treeNodes: zoneItems });
         }
     }
 

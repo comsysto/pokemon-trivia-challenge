@@ -7,13 +7,19 @@ import { ExplorationRouteParams } from "../../Routes";
 import styles from "./Exploration.module.scss";
 
 function PureExplorationView(props: RouteComponentProps<ExplorationRouteParams>) {
+    const {
+        match: {
+            params: { zoneName },
+        },
+    } = props;
+
     return (
         <div className={styles.row}>
             <div className={styles.column}>
                 <ZoneSelection />
             </div>
             <div className={styles.column}>
-                {props.match.params.zoneName === undefined ? <Empty /> : <ZoneDetails />}
+                {zoneName === undefined ? <Empty /> : <ZoneDetails zoneName={zoneName} />}
             </div>
         </div>
     );
