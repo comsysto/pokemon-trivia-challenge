@@ -6,13 +6,19 @@
     height: calc(100vh - #{$pt-navbar-height});
     width: calc(100vw - #{$locationPanel-width});
 
-    margin: 16px;
+    padding: 16px;
 }
 
 .row {
     margin: 32px;
     display: flex;
     flex-direction: row;
+}
+
+.innerRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .spacer {

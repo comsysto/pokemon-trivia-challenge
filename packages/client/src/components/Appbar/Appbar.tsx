@@ -20,13 +20,11 @@ function PureAppbar(props: RouteComponentProps) {
                 <Button icon="map" minimal text="Exploration" onClick={onExploration} />
                 <Button icon="lightbulb" minimal text="Trial" disabled />
             </Navbar.Group>
-            <Navbar.Group align={Alignment.RIGHT}>
-                {/* <Button icon="user" minimal text="Christian" />
-                <BlueprintNavbar.Divider /> */}
+            {/* <Navbar.Group align={Alignment.RIGHT}>
                 <Button icon="log-out" minimal text="Log Out" disabled />
                 <Button icon="log-in" minimal text="Log In" disabled />
                 <Button icon="new-person" minimal text="Sign Up" disabled />
-            </Navbar.Group>
+            </Navbar.Group> */}
         </Navbar>
     );
 }

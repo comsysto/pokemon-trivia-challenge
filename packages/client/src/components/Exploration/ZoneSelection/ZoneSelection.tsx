@@ -18,7 +18,7 @@ function UnexpectedErrorIndicator() {
     return <NonIdealState icon="error" description="The GraphQL server returned no result." />;
 }
 
-function ZonePanelStack(props: RegionsQueryResponse & RouteComponentProps) {
+function PureZonePanelStack(props: RegionsQueryResponse & RouteComponentProps) {
     const { history, regions } = props;
 
     const onPanelClose = () => history.push("/exploration");
@@ -41,6 +41,8 @@ function ZonePanelStack(props: RegionsQueryResponse & RouteComponentProps) {
     );
 }
 
+const ZonePanelStack = withRouter(PureZonePanelStack);
+
 function PureZoneSelection(props: RouteComponentProps) {
     return (
         <Card className={styles.sidebar}>
@@ -58,7 +60,7 @@ function PureZoneSelection(props: RouteComponentProps) {
                         return <UnexpectedErrorIndicator />;
                     }
 
-                    return <ZonePanelStack {...props} {...data} />;
+                    return <ZonePanelStack {...data} />;
                 }}
             </RegionsQuery>
         </Card>

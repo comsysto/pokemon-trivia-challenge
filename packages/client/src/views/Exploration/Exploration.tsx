@@ -19,7 +19,7 @@ function PureExplorationView(props: RouteComponentProps<ExplorationRouteParams>)
                 <ZoneSelection />
             </div>
             <div className={styles.column}>
-                {zoneName === undefined ? <Empty /> : <ZoneDetails zoneName={zoneName} />}
+                {zoneName === undefined ? <Empty /> : <ZoneDetails />}
             </div>
         </div>
     );
