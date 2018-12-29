@@ -22,7 +22,7 @@ export class App extends Component {
                         <Appbar />
                         <Switch>
                             <Route exact path="/" component={GameModeView} />
-                            <Route path="/exploration" component={ExplorationView} />
+                            <Route path="/exploration/:regionName?/:zoneName?" component={ExplorationView} />
                             <Route path="/quiz" component={QuizView} />
                         </Switch>
                     </>

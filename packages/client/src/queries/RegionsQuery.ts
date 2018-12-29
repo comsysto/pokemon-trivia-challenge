@@ -5,11 +5,13 @@ const query = gql`
     query {
         regions {
             id
+            name
             names(languages: [EN]) {
                 name
             }
             locations {
                 id
+                name
                 names(languages: [EN]) {
                     name
                 }
@@ -21,11 +23,13 @@ const query = gql`
 export type RegionsQueryResponse = {
     regions: {
         id: string;
+        name: string;
         names: {
             name: string;
         }[];
         locations: {
             id: string;
+            name: string;
             names: {
                 name: string;
             }[];

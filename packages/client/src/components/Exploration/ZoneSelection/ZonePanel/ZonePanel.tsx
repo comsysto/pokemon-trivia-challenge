@@ -1,5 +1,6 @@
 import { IPanelProps, ITreeNode, Tree } from "@blueprintjs/core";
 import React, { Component } from "react";
+import { RouteComponentProps, withRouter } from "react-router";
 import { RegionsQueryResponse } from "../../../../queries/RegionsQuery";
 
 export enum ZoneType {
@@ -7,32 +8,73 @@ export enum ZoneType {
     Zone,
 }
 
+type TreeNodeType = ITreeNode<{ id: string; name: string }>;
+type RouteParams = {
+    regionName?: string;
+    zoneName?: string;
+};
+
 export interface IZonePanelProps {
     zoneType: ZoneType;
     regionsQueryResponse: RegionsQueryResponse;
-    regionId?: string;
 }
 
 export interface IZonePanelState {
-    readonly treeNodes: ITreeNode[];
+    readonly treeNodes: TreeNodeType[];
 }
 
-export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePanelState> {
+class PureZonePanel extends Component<
+    IPanelProps & IZonePanelProps & RouteComponentProps<RouteParams>,
+    IZonePanelState
+> {
     public readonly state: IZonePanelState = {
         treeNodes: [],
     };
 
     public componentDidMount() {
+        const { regionName, zoneName } = this.props.match.params;
+
         if (this.props.zoneType === ZoneType.Region) {
             const regionItems = this.props.regionsQueryResponse.regions.map(
-                ({ id, names }): ITreeNode => ({ id, label: names[0].name, hasCaret: false, icon: "globe" })
+                ({ id, name, names }): TreeNodeType => ({
+                    id,
+                    label: names[0].name,
+                    hasCaret: false,
+                    icon: "globe",
+                    nodeData: {
+                        id,
+                        name,
+                    },
+                })
             );
             this.setState({ treeNodes: regionItems });
+
+            if (regionName !== undefined) {
+                this.openZonePanel();
+            }
         } else {
-            const region = this.props.regionsQueryResponse.regions.filter(({ id }) => id === this.props.regionId)[0];
+            const region = this.props.regionsQueryResponse.regions.filter(({ name }) => name === regionName)[0];
             const zoneItems = region.locations
                 .sort((a, b) => a.names[0].name.localeCompare(b.names[0].name))
-                .map(({ id, names }): ITreeNode => ({ id, label: names[0].name, hasCaret: false, icon: "map" }));
+                .map(
+                    ({ id, name, names }): TreeNodeType => ({
+                        id,
+                        label: names[0].name,
+                        hasCaret: false,
+                        icon: "map",
+                        nodeData: {
+                            id,
+                            name,
+                        },
+                    })
+                );
+            if (zoneName !== undefined) {
+                // tslint:disable-next-line:no-non-null-assertion
+                const zone = zoneItems.find((node) => node.nodeData!.name === zoneName);
+                if (zone !== undefined) {
+                    zone.isSelected = true;
+                }
+            }
             this.setState({ treeNodes: zoneItems });
         }
     }
@@ -45,21 +87,16 @@ export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePan
         return <Tree contents={this.state.treeNodes} onNodeClick={this.onNodeClick} />;
     }
 
-    private readonly onNodeClick = (nodeData: ITreeNode) => {
-        if (this.props.zoneType === ZoneType.Region) {
-            this.props.openPanel({
-                component: ZonePanel,
-                props: {
-                    zoneType: ZoneType.Zone,
-                    regionsQueryResponse: this.props.regionsQueryResponse,
-                    regionId: nodeData.id as string,
-                },
-                title: "Zone",
-            });
-        } else {
-            this.deselectAllItems();
-            nodeData.isSelected = true;
-            this.setState((state) => state);
+    private readonly onNodeClick = (node: TreeNodeType) => {
+        this.deselectAllItems();
+        node.isSelected = true;
+        this.setState((state) => state);
+
+        if (this.props.zoneType === ZoneType.Region && node.nodeData) {
+            this.props.history.push(`/exploration/${node.nodeData.name}`);
+            this.openZonePanel();
+        } else if (this.props.zoneType === ZoneType.Zone && node.nodeData) {
+            this.props.history.push(`/exploration/${this.props.match.params.regionName}/${node.nodeData.name}`);
         }
     };
 
@@ -67,7 +104,7 @@ export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePan
         this.forEachNode(this.state.treeNodes, (node) => (node.isSelected = false));
     }
 
-    private forEachNode(nodes: ITreeNode[], callback: (node: ITreeNode) => void) {
+    private forEachNode(nodes: TreeNodeType[], callback: (node: TreeNodeType) => void) {
         if (nodes === null) {
             return;
         }
@@ -79,4 +116,18 @@ export class ZonePanel extends Component<IPanelProps & IZonePanelProps, IZonePan
             }
         }
     }
+
+    private openZonePanel() {
+        this.props.openPanel({
+            component: ZonePanel,
+            props: {
+                zoneType: ZoneType.Zone,
+                regionsQueryResponse: this.props.regionsQueryResponse,
+            } as IZonePanelProps,
+            title: "Zone",
+        });
+    }
 }
+
+const ZonePanel = withRouter(PureZonePanel);
+export { ZonePanel };
