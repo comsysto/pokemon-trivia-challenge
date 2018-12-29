@@ -1,21 +1,17 @@
 import { RouteProps } from "react-router";
+import * as Constants from "./common/constants";
+import { HomeView } from "./home/containers/HomeView";
 import { ExplorationView } from "./views/Exploration";
-import { GameModeView } from "./views/GameMode";
-import { QuizView } from "./views/Quiz";
 
 export const appRoutes: RouteProps[] = [
     {
-        path: "/",
-        component: GameModeView,
+        path: Constants.HomeRoute,
+        component: HomeView,
         exact: true,
     },
     {
-        path: "/exploration/:regionName?/:zoneName?",
+        path: `${Constants.ExplorationRoute}/:regionName?/:zoneName?`,
         component: ExplorationView,
-    },
-    {
-        path: "/quiz",
-        component: QuizView,
     },
 ];
 

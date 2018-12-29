@@ -1,19 +1,20 @@
 import { Alignment, Button, IButtonProps, Navbar } from "@blueprintjs/core";
 import React from "react";
 import shortid from "shortid";
+import * as Constants from "../constants";
 
-export interface IAppbarComponentProps {
+export interface IAppbarProps {
     leftButtons: IButtonProps[];
     rightButtons: IButtonProps[];
 }
 
-export function AppbarComponent(props: IAppbarComponentProps) {
+export function Appbar(props: IAppbarProps) {
     const { leftButtons, rightButtons } = props;
 
     return (
         <Navbar fixedToTop>
             <Navbar.Group align={Alignment.LEFT}>
-                <Navbar.Heading>Pokémon Trivia Challenge</Navbar.Heading>
+                <Navbar.Heading>{Constants.AppTitle}</Navbar.Heading>
                 <Navbar.Divider />
                 {leftButtons.map((buttonProps) => (
                     <Button key={shortid.generate()} {...buttonProps} />

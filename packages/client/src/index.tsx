@@ -8,7 +8,7 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 import "./index.scss";
 
-import { App } from "./components/App";
+import { AppContainer } from "./app/containers/AppContainer";
 import * as serviceWorker from "./serviceWorker";
 
 import { InMemoryCache } from "apollo-cache-inmemory";
@@ -27,7 +27,7 @@ const apolloClient = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider client={apolloClient}>
-        <App />
+        <AppContainer />
     </ApolloProvider>,
     document.getElementById("root")
 );
