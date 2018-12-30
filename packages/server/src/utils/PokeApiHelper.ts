@@ -18,18 +18,30 @@ export type PokeApiEndpoint =
 
 const redisClient = createHandyClient({ port: 6541 });
 
-export async function fetchPokeApiByQuery<ResponseType>(endpoint: PokeApiEndpoint, argument?: string) {
+export async function fetchPokeApiByQuery<ResponseType extends { name: string }>(
+    endpoint: PokeApiEndpoint,
+    argument?: string
+) {
     const url = `${isLocal ? "" : officialBaseUrl}${apiUrl}${endpoint}/${argument || ""}`;
     return fetchPokeApiByNamedUrl<ResponseType>(url);
 }
 
-export async function fetchPokeApiByNamedUrl<ResponseType>(url: string) {
+export async function fetchPokeApiByNamedUrl<ResponseType extends { name: string }>(url: string) {
     const apiEndpoint = `${url.startsWith(officialBaseUrl) ? "" : localBaseUrl}${url}`;
     const cachedData = await redisClient.get(apiEndpoint);
 
     if (cachedData === null) {
         const { data } = await axios.get<ResponseType>(apiEndpoint);
-        await redisClient.set(apiEndpoint, JSON.stringify(data));
+
+        // Allow access by name as well
+        const namedApiEndpointAlias = `${[...apiEndpoint.split("/").slice(0, -2), data.name].join("/")}/`;
+        const stringifiedData = JSON.stringify(data);
+
+        await Promise.all([
+            redisClient.set(apiEndpoint, stringifiedData),
+            redisClient.set(namedApiEndpointAlias, stringifiedData)
+        ]);
+
         return data;
     } else {
         return JSON.parse(cachedData) as ResponseType;
