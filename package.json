@@ -12,10 +12,12 @@
         "typescript-plugin-css-modules": "^1.0.4"
     },
     "scripts": {
-        "bootstrap": "lerna bootstrap",
         "clean": "lerna clean",
-        "docker-up": "docker-compose up -d",
-        "docker-down": "docker-compose down"
+        "start:redis": "docker-compose up -d",
+        "start:pokeapi": "cd packages/pokeapi && yarn dev",
+        "start:server": "cd packages/server && yarn dev",
+        "start:client": "cd packages/client && yarn start",
+        "stop:redis": "docker-compose down"
     },
     "workspaces": [
         "packages/*"
