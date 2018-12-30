@@ -1,16 +1,59 @@
-import React from "react";
+import React, { Component } from "react";
+import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
+import { LOCATION_QUERY, LocationQueryResponse, LocationQueryVariables } from "../../../api/graphql/LocationQuery";
 import { ExploreRouteParams } from "../../../Routes";
+import { ZoneDetails } from "../components/ZoneDetails";
 
-function ZoneDetailsContainerBase(props: RouteComponentProps<ExploreRouteParams>) {
-    const {
-        history,
-        match: {
-            params: { zoneName },
-        },
-    } = props;
-
-    return <></>;
+interface IZoneDetailsContainerState {
+    isLoading: boolean;
+    hasError: boolean;
+    isEmpty: boolean;
 }
 
-export const ZoneDetailsContainer = withRouter(ZoneDetailsContainerBase);
+class ZoneDetailsContainerBase extends Component<
+    WithApolloClient<RouteComponentProps<ExploreRouteParams>>,
+    IZoneDetailsContainerState
+> {
+    public readonly state: IZoneDetailsContainerState = {
+        isLoading: false,
+        hasError: false,
+        isEmpty: false,
+    };
+
+    public componentDidMount() {
+        const {
+            client,
+            match: {
+                params: { zoneName },
+            },
+        } = this.props;
+
+        if (zoneName !== undefined) {
+            client
+                .query<LocationQueryResponse, LocationQueryVariables>({
+                    query: LOCATION_QUERY,
+                    variables: { name: zoneName },
+                })
+                .then(({ loading, errors, data }) => {
+                    let { isLoading, hasError } = this.state;
+                    isLoading = loading;
+                    hasError = errors !== undefined;
+
+                    if (data !== undefined) {
+                        // TODO: Fetch zone data.
+                    }
+
+                    this.setState({ isLoading, hasError, isEmpty: false });
+                });
+        } else {
+            this.setState({ isLoading: false, isEmpty: true });
+        }
+    }
+
+    public render() {
+        return <ZoneDetails {...this.state} />;
+    }
+}
+
+export const ZoneDetailsContainer = withRouter(withApollo(ZoneDetailsContainerBase));

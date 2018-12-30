@@ -1,0 +1,34 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+@import "src/scss/Variables";
+
+.container {
+    overflow-y: auto;
+    height: calc(100vh - #{$pt-navbar-height});
+    width: calc(100vw - #{$locationPanel-width});
+
+    padding: 16px;
+}
+
+.row {
+    margin: 32px;
+    display: flex;
+    flex-direction: row;
+}
+
+.innerRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.smallSpacer {
+    width: 16px;
+}
+
+.flexSpacer {
+    flex: 1;
+}
+
+.progress {
+    width: 250px;
+}
