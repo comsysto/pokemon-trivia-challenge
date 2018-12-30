@@ -26,7 +26,7 @@ export function HomeView() {
     ];
 
     return (
-        <div className={Styles.container}>
+        <div className={Styles.viewContainer}>
             {gameModes.map((gameModeProps) => (
                 <GameModeContainer key={shortid.generate()} {...gameModeProps} />
             ))}
