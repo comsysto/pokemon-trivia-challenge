@@ -1,6 +1,6 @@
 import React from "react";
 import shortid from "shortid";
-import * as Constants from "../../../common/constants";
+import * as Constants from "../../../app/constants";
 import { GameModeContainer, IGameModeContainerProps } from "../containers/GameModeContainer";
 import Styles from "../styles/HomeView.module.scss";
 

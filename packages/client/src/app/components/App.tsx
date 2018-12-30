@@ -3,7 +3,7 @@ import classNames from "classnames";
 import React from "react";
 import { BrowserRouter, Route, RouteProps, Switch } from "react-router-dom";
 import shortid from "shortid";
-import { AppbarContainer } from "../../common/containers/AppbarContainer";
+import { AppbarContainer } from "../containers/AppbarContainer";
 import Styles from "../styles/App.module.scss";
 
 export interface IAppProps {

@@ -1,5 +1,5 @@
 import { RouteProps } from "react-router";
-import * as Constants from "./common/constants";
+import * as Constants from "./app/constants";
 import { ExploreView } from "./routes/explore/views/ExploreView";
 import { HomeView } from "./routes/home/views/HomeView";
 

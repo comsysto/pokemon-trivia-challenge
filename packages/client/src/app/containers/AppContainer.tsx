@@ -1,8 +1,8 @@
 import { FocusStyleManager } from "@blueprintjs/core";
 import React, { Component } from "react";
-import * as Constants from "../../common/constants";
 import { appRoutes } from "../../Routes";
 import { App } from "../components/App";
+import * as Constants from "../constants";
 
 export class AppContainer extends Component {
     public componentWillMount() {
