@@ -15,7 +15,7 @@ export const appRoutes: RouteProps[] = [
     },
 ];
 
-export type ExplorationRouteParams = {
+export type ExploreRouteParams = {
     regionName?: string;
     zoneName?: string;
 };

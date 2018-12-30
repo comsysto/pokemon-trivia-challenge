@@ -3,14 +3,14 @@ import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import * as Constants from "../../../app/constants";
 import { IZoneSelectionProps, ZoneSelection } from "../components/ZoneSelection";
-import { ZonePanelContainer } from "./ZonePanelContainer";
+import { RegionPanelContainer } from "./RegionPanelContainer";
 
 function ZoneSelectionContainerBase(props: RouteComponentProps) {
     const { history } = props;
 
     const initialPanel: IPanel = {
         title: "Region",
-        component: ZonePanelContainer,
+        component: RegionPanelContainer,
     };
 
     const onClose = () => history.push(Constants.ExploreRoute);
