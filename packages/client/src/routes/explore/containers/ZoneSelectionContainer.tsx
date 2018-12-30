@@ -1,7 +1,7 @@
 import { IPanel } from "@blueprintjs/core";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import * as Constants from "../../common/constants";
+import * as Constants from "../../../common/constants";
 import { IZoneSelectionProps, ZoneSelection } from "../components/ZoneSelection";
 import { ZonePanelContainer } from "./ZonePanelContainer";
 
