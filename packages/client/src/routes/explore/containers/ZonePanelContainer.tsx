@@ -7,10 +7,6 @@ import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { ILocationPanelProps, LocationPanel, TreeNodeItem } from "../components/LocationPanel";
 
-export interface IZonePanelContainerProps {
-    regionId: string;
-}
-
 interface IZonePanelContainerState {
     isLoading: boolean;
     hasError: boolean;
@@ -18,7 +14,7 @@ interface IZonePanelContainerState {
 }
 
 class ZonePanelContainerBase extends Component<
-    WithApolloClient<IPanelProps & RouteComponentProps<ExploreRouteParams> & IZonePanelContainerProps>,
+    WithApolloClient<IPanelProps & RouteComponentProps<ExploreRouteParams>>,
     IZonePanelContainerState
 > {
     public readonly state: IZonePanelContainerState = {
@@ -30,14 +26,16 @@ class ZonePanelContainerBase extends Component<
     public componentDidMount() {
         const {
             client,
-            regionId,
             history,
             match: {
                 params: { regionName, zoneName },
             },
         } = this.props;
         client
-            .query<RegionQueryResponse, RegionQueryVariables>({ query: REGION_QUERY, variables: { id: regionId } })
+            .query<RegionQueryResponse, RegionQueryVariables>({
+                query: REGION_QUERY,
+                variables: { name: regionName || "" },
+            })
             .then(({ loading, errors, data }) => {
                 let { isLoading, hasError, treeNodes } = this.state;
                 isLoading = loading;
@@ -52,7 +50,6 @@ class ZonePanelContainerBase extends Component<
                                 label: names[0].name,
                                 icon: "map",
                                 nodeData: {
-                                    id,
                                     name,
                                 },
                             })

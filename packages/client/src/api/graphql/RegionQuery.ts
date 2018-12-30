@@ -2,8 +2,8 @@ import gql from "graphql-tag";
 import { Query, QueryProps } from "react-apollo";
 
 export const REGION_QUERY = gql`
-    query Region($id: ID!) {
-        region(id: $id) {
+    query Region($name: ID!) {
+        region(name: $name) {
             id
             name
             names(languages: [EN]) {
@@ -38,7 +38,7 @@ export type RegionQueryResponse = {
 };
 
 export type RegionQueryVariables = {
-    id: string;
+    name: string;
 };
 
 export class RegionQuery extends Query<RegionQueryResponse, RegionQueryVariables> {

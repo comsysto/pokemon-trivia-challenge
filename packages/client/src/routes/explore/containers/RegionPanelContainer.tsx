@@ -6,7 +6,7 @@ import { REGIONS_QUERY, RegionsQueryResponse } from "../../../api/graphql/Region
 import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { ILocationPanelProps, LocationPanel, TreeNodeItem } from "../components/LocationPanel";
-import { IZonePanelContainerProps, ZonePanelContainer } from "./ZonePanelContainer";
+import { ZonePanelContainer } from "./ZonePanelContainer";
 
 interface IRegionPanelContainerState {
     isLoading: boolean;
@@ -44,7 +44,6 @@ class RegionPanelContainerBase extends Component<
                         label: names[0].name,
                         icon: "globe",
                         nodeData: {
-                            id,
                             name,
                         },
                     })
@@ -94,12 +93,9 @@ class RegionPanelContainerBase extends Component<
             node.isSelected = true;
 
             history.push(`${Constants.ExploreRoute}/${nodeData.name}${zoneName !== undefined ? `/${zoneName}` : ""}`);
-            openPanel<IZonePanelContainerProps>({
+            openPanel({
                 title: `Zone`,
                 component: ZonePanelContainer,
-                props: {
-                    regionId: nodeData.id,
-                },
             });
         }
 

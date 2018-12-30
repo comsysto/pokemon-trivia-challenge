@@ -1,7 +1,7 @@
 import { ITreeNode, NonIdealState, Spinner, Tree } from "@blueprintjs/core";
 import React from "react";
 
-export type TreeNodeItem = ITreeNode<{ id: string; name: string }>;
+export type TreeNodeItem = ITreeNode<{ name: string }>;
 
 export interface ILocationPanelProps {
     contents: TreeNodeItem[];
