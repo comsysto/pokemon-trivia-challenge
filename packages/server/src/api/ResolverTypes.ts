@@ -44,11 +44,11 @@ export namespace QueryResolvers {
     }
 
     export interface ArgsLocation {
-        id: string;
+        name: string;
     }
 
     export interface ArgsRegion {
-        id: string;
+        name: string;
     }
 
     export type TriviaQuestionResolver = (

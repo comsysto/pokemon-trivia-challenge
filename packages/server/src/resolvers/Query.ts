@@ -16,18 +16,12 @@ export const Query: QueryResolvers.Type = {
             throw new Error(`OpenTriviaDBAPI Response Code: ${responseCode}`);
         }
     },
-    location: async (_, { id }): Promise<Location> => {
-        const locationResponse = await fetchPokeApiByQuery<LocationResponse>("location", id);
-        return { id, ...locationResponse };
-    },
+    location: async (_, { name }): Promise<Location> => fetchPokeApiByQuery<LocationResponse>("location", name),
     locations: async (): Promise<Location[]> => {
         const { results } = await fetchPokeApiByQuery<NamedResourceListResponse<LocationResponse[]>>("location");
         return Promise.all(results.map(async ({ url }) => fetchPokeApiByNamedUrl<LocationResponse>(url)));
     },
-    region: async (_, { id }): Promise<Region> => {
-        const regionResponse = await fetchPokeApiByQuery<RegionResponse>("region", id);
-        return { id, ...regionResponse };
-    },
+    region: async (_, { name }): Promise<Region> => fetchPokeApiByQuery<RegionResponse>("region", name),
     regions: async (): Promise<Region[]> => {
         const { results } = await fetchPokeApiByQuery<NamedResourceListResponse<RegionResponse[]>>("region");
         return Promise.all(results.map(async ({ url }) => fetchPokeApiByNamedUrl<RegionResponse>(url)));

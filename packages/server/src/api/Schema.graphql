@@ -9,10 +9,10 @@ type Query {
     triviaQuestion(difficulty: QuestionDifficulty, type: QuestionType): Question!
 
     # PokeAPI
-    location(id: ID!): Location!
+    location(name: ID!): Location!
     locations: [Location!]!
 
-    region(id: ID!): Region!
+    region(name: ID!): Region!
     regions: [Region!]!
 }
 
