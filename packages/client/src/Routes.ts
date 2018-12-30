@@ -1,7 +1,7 @@
 import { RouteProps } from "react-router";
 import * as Constants from "./common/constants";
-import { ExploreView } from "./explore/views/ExploreView";
-import { HomeView } from "./home/views/HomeView";
+import { ExploreView } from "./routes/explore/views/ExploreView";
+import { HomeView } from "./routes/home/views/HomeView";
 
 export const appRoutes: RouteProps[] = [
     {
