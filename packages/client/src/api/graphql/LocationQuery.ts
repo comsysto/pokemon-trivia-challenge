@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import { Query, QueryProps } from "react-apollo";
 
-export const LOCATION_QUERY = gql`
+export const LocationQueryString = gql`
     query Location($name: ID!) {
         location(name: $name) {
             id
@@ -59,6 +59,6 @@ export type LocationQueryVariables = {
 
 export class LocationQuery extends Query<LocationQueryResponse, LocationQueryVariables> {
     public static defaultProps: Partial<QueryProps> = {
-        query: LOCATION_QUERY,
+        query: LocationQueryString,
     };
 }

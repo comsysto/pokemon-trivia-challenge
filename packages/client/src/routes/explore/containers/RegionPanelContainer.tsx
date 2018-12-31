@@ -2,7 +2,7 @@ import { IPanelProps } from "@blueprintjs/core";
 import React, { Component } from "react";
 import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { REGIONS_QUERY, RegionsQueryResponse } from "../../../api/graphql/RegionsQuery";
+import { RegionsQueryResponse, RegionsQueryString } from "../../../api/graphql/RegionsQuery";
 import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { ILocationPanelProps, LocationPanel, TreeNodeItem } from "../components/LocationPanel";
@@ -32,7 +32,7 @@ class RegionPanelContainerBase extends Component<
                 params: { regionName },
             },
         } = this.props;
-        client.query<RegionsQueryResponse>({ query: REGIONS_QUERY }).then(({ loading, errors, data }) => {
+        client.query<RegionsQueryResponse>({ query: RegionsQueryString }).then(({ loading, errors, data }) => {
             let { isLoading, hasError, treeNodes } = this.state;
             isLoading = loading;
             hasError = errors !== undefined;

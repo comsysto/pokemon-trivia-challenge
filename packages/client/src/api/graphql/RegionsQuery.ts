@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import { Query, QueryProps } from "react-apollo";
 
-export const REGIONS_QUERY = gql`
+export const RegionsQueryString = gql`
     query Regions {
         regions {
             id
@@ -25,6 +25,6 @@ export type RegionsQueryResponse = {
 
 export class RegionsQuery extends Query<RegionsQueryResponse> {
     public static defaultProps: Partial<QueryProps> = {
-        query: REGIONS_QUERY,
+        query: RegionsQueryString,
     };
 }

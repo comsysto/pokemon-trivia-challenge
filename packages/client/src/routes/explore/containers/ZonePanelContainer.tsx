@@ -2,7 +2,7 @@ import { IPanelProps } from "@blueprintjs/core";
 import React, { Component } from "react";
 import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { REGION_QUERY, RegionQueryResponse, RegionQueryVariables } from "../../../api/graphql/RegionQuery";
+import { RegionQueryResponse, RegionQueryString, RegionQueryVariables } from "../../../api/graphql/RegionQuery";
 import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { ILocationPanelProps, LocationPanel, TreeNodeItem } from "../components/LocationPanel";
@@ -33,7 +33,7 @@ class ZonePanelContainerBase extends Component<
         } = this.props;
         client
             .query<RegionQueryResponse, RegionQueryVariables>({
-                query: REGION_QUERY,
+                query: RegionQueryString,
                 variables: { name: regionName || "" },
             })
             .then(({ loading, errors, data }) => {

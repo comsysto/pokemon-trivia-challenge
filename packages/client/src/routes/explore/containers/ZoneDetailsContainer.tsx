@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { LOCATION_QUERY, LocationQueryResponse, LocationQueryVariables } from "../../../api/graphql/LocationQuery";
+import { LocationQueryResponse, LocationQueryString, LocationQueryVariables } from "../../../api/graphql/LocationQuery";
 import { ExploreRouteParams } from "../../../Routes";
 import { ZoneDetails } from "../components/ZoneDetails";
 
@@ -32,7 +32,7 @@ class ZoneDetailsContainerBase extends Component<
         if (zoneName !== undefined) {
             client
                 .query<LocationQueryResponse, LocationQueryVariables>({
-                    query: LOCATION_QUERY,
+                    query: LocationQueryString,
                     variables: { name: zoneName },
                 })
                 .then(({ loading, errors, data }) => {
