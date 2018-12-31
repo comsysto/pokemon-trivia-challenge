@@ -8,7 +8,7 @@ import Styles from "../styles/ExploreView.module.scss";
 export function ExploreView() {
     return (
         <ExploreContextProvider>
-            <div className={Styles.viewContainer}>
+            <div className={Styles.container}>
                 <div className={classNames(Styles.column, Styles.sidebar)}>
                     <ZoneSelectionContainer />
                 </div>

@@ -15,7 +15,7 @@ export type Pokemon = {
     };
 };
 
-export interface IZoneDetailsProps {
+export type ZoneDetailsProps = {
     isLoading: boolean;
     hasError: boolean;
     isEmpty: boolean;
@@ -23,9 +23,9 @@ export interface IZoneDetailsProps {
     zoneName: string;
     hasPokemon: boolean;
     pokemonInZone: Pokemon[];
-}
+};
 
-export function ZoneDetails(props: IZoneDetailsProps) {
+export function ZoneDetails(props: ZoneDetailsProps) {
     const { isLoading, hasError, isEmpty, hasPokemon, zoneName, pokemonInZone } = props;
 
     return (

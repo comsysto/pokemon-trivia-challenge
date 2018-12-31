@@ -4,22 +4,24 @@ import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { createHoc } from "../../../utils";
 
-interface IExploreContextState {
-    readonly selectedRegion?: string;
-    readonly selectedZone?: string;
-}
+type ExploreContextState = Readonly<{
+    selectedRegion?: string;
+    selectedZone?: string;
+}>;
 
-interface IExploreContextActions {
+type ExploreContextActions = {
     changeLocation(selectedRegion?: string, selectedZone?: string): void;
-}
+};
 
-export type IExploreContextProps = IExploreContextState & IExploreContextActions;
+export type ExploreContextProps = ExploreContextState & ExploreContextActions;
 
-const { Consumer, Provider } = createContext<IExploreContextProps>({} as IExploreContextProps);
+const { Consumer, Provider } = createContext<ExploreContextProps>({} as ExploreContextProps);
 
-class ExploreContextProviderBase extends Component<RouteComponentProps<ExploreRouteParams>, IExploreContextState>
-    implements IExploreContextActions {
-    public readonly state: IExploreContextState = {};
+type ExploreContextProviderBaseProps = RouteComponentProps<ExploreRouteParams>;
+
+class ExploreContextProviderBase extends Component<ExploreContextProviderBaseProps, ExploreContextState>
+    implements ExploreContextActions {
+    public readonly state: ExploreContextState = {};
 
     public componentDidMount() {
         const {
@@ -30,7 +32,7 @@ class ExploreContextProviderBase extends Component<RouteComponentProps<ExploreRo
     }
 
     public render() {
-        const props: IExploreContextProps = {
+        const props: ExploreContextProps = {
             ...this.state,
             changeLocation: this.changeLocation,
         };
@@ -46,7 +48,8 @@ class ExploreContextProviderBase extends Component<RouteComponentProps<ExploreRo
         this.props.history.push(`${Constants.ExploreRoute}${separator}${route}`);
     };
 }
+
 export const ExploreContextProvider = withRouter(ExploreContextProviderBase);
 
-export type WithExploreContext = { exploreContext: IExploreContextProps };
-export const withExploreContext = createHoc<WithExploreContext, IExploreContextProps>(Consumer, "exploreContext");
+export type WithExploreContext = { exploreContext: ExploreContextProps };
+export const withExploreContext = createHoc<WithExploreContext, ExploreContextProps>(Consumer, "exploreContext");

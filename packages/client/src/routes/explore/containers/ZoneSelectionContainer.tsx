@@ -1,10 +1,12 @@
 import { IPanel } from "@blueprintjs/core";
 import React from "react";
-import { IZoneSelectionProps, ZoneSelection } from "../components/ZoneSelection";
+import { ZoneSelection, ZoneSelectionProps } from "../components/ZoneSelection";
 import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 import { RegionPanelContainer } from "./RegionPanelContainer";
 
-function ZoneSelectionContainerBase(props: WithExploreContext) {
+type ZoneSelectionContainerBaseProps = WithExploreContext;
+
+function ZoneSelectionContainerBase(props: ZoneSelectionContainerBaseProps) {
     const { exploreContext } = props;
 
     const initialPanel: IPanel = {
@@ -16,7 +18,7 @@ function ZoneSelectionContainerBase(props: WithExploreContext) {
         exploreContext.changeLocation();
     };
 
-    const componentProps: IZoneSelectionProps = { initialPanel, onClose };
+    const componentProps: ZoneSelectionProps = { initialPanel, onClose };
     return <ZoneSelection {...componentProps} />;
 }
 

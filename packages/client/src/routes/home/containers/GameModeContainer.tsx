@@ -1,21 +1,23 @@
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { GameMode, IGameModeProps } from "../components/GameMode";
+import { GameMode, GameModeProps } from "../components/GameMode";
 
-export interface IGameModeContainerProps {
+export type GameModeContainerProps = {
     title: string;
     description: string;
     buttonText: string;
     isDisabled?: boolean;
     url: string;
-}
+};
 
-function GameModeContainerBase(props: IGameModeContainerProps & RouteComponentProps) {
+type GameModeContainerBaseProps = GameModeContainerProps & RouteComponentProps;
+
+function GameModeContainerBase(props: GameModeContainerBaseProps) {
     const { history, url, ...restProps } = props;
 
     const onClick = () => history.push(url);
 
-    const componentProps: IGameModeProps = { ...restProps, onClick };
+    const componentProps: GameModeProps = { ...restProps, onClick };
     return <GameMode {...componentProps} />;
 }
 

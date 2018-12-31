@@ -4,7 +4,7 @@
 .container {
     overflow-y: auto;
     height: calc(100vh - #{$pt-navbar-height});
-    width: calc(100vw - #{$locationPanel-width});
+    width: calc(100vw - #{$app-sidebar-width});
 
     padding: 16px;
 }

@@ -8,13 +8,12 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 import "./index.scss";
 
-import { AppContainer } from "./app/containers/AppContainer";
-import * as serviceWorker from "./serviceWorker";
-
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
+import { AppContainer } from "./app/containers/AppContainer";
+import * as serviceWorker from "./serviceWorker";
 
 const httpLink = createHttpLink({
     uri: "http://localhost:4000",

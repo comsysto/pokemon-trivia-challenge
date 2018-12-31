@@ -3,15 +3,15 @@ import React from "react";
 
 export type TreeNodeItem = ITreeNode<{ name: string }>;
 
-export interface ILocationPanelProps {
+export type LocationPanelProps = {
     contents: TreeNodeItem[];
     hasError: boolean;
     isLoading: boolean;
 
     onNodeClick(node: TreeNodeItem): void;
-}
+};
 
-export function LocationPanel(props: ILocationPanelProps) {
+export function LocationPanel(props: LocationPanelProps) {
     const { hasError, isLoading, contents } = props;
 
     return (

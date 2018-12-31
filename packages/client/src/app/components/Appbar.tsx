@@ -3,12 +3,12 @@ import React from "react";
 import shortid from "shortid";
 import * as Constants from "../constants";
 
-export interface IAppbarProps {
+export type AppbarProps = {
     leftButtons: IButtonProps[];
     rightButtons: IButtonProps[];
-}
+};
 
-export function Appbar(props: IAppbarProps) {
+export function Appbar(props: AppbarProps) {
     const { leftButtons, rightButtons } = props;
 
     return (

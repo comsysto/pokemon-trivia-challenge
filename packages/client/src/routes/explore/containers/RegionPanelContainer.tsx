@@ -4,13 +4,15 @@ import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
 import { RegionsQuery } from "../../../api/graphql/RegionsQuery";
 import { ExploreRouteParams } from "../../../Routes";
-import { ILocationPanelProps, LocationPanel, TreeNodeItem } from "../components/LocationPanel";
+import { LocationPanel, LocationPanelProps, TreeNodeItem } from "../components/LocationPanel";
 import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 import { ZonePanelContainer } from "./ZonePanelContainer";
 
-class RegionPanelContainerBase extends Component<
-    WithApolloClient<IPanelProps & RouteComponentProps<ExploreRouteParams> & WithExploreContext>
-> {
+export type RegionPanelContainerProps = WithApolloClient<
+    IPanelProps & WithExploreContext & RouteComponentProps<ExploreRouteParams>
+>;
+
+class RegionPanelContainerBase extends Component<RegionPanelContainerProps> {
     public componentDidMount() {
         const {
             match: {
@@ -48,7 +50,7 @@ class RegionPanelContainerBase extends Component<
                         );
                     }
 
-                    const componentProps: ILocationPanelProps = {
+                    const componentProps: LocationPanelProps = {
                         contents,
                         isLoading: loading,
                         hasError: error !== undefined,

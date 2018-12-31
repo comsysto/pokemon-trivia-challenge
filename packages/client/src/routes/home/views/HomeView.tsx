@@ -1,11 +1,11 @@
 import React from "react";
 import shortid from "shortid";
 import * as Constants from "../../../app/constants";
-import { GameModeContainer, IGameModeContainerProps } from "../containers/GameModeContainer";
+import { GameModeContainer, GameModeContainerProps } from "../containers/GameModeContainer";
 import Styles from "../styles/HomeView.module.scss";
 
 export function HomeView() {
-    const gameModes: IGameModeContainerProps[] = [
+    const gameModes: GameModeContainerProps[] = [
         {
             title: "Exploration Mode",
             description: `Adventure through various regions and try to catch all Pokémon by answering trivia qustions in

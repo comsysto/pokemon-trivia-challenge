@@ -3,19 +3,19 @@ import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
 import { LocationQuery } from "../../../api/graphql/LocationQuery";
 import { ExploreRouteParams } from "../../../Routes";
-import { IZoneDetailsProps, ZoneDetails } from "../components/ZoneDetails";
+import { ZoneDetails, ZoneDetailsProps } from "../components/ZoneDetails";
 import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 
-function ZoneDetailsContainerBase(
-    props: WithApolloClient<RouteComponentProps<ExploreRouteParams> & WithExploreContext>
-) {
+type ZoneDetailsContainerBaseProps = WithApolloClient<RouteComponentProps<ExploreRouteParams> & WithExploreContext>;
+
+function ZoneDetailsContainerBase(props: ZoneDetailsContainerBaseProps) {
     const { exploreContext } = props;
 
-    let componentProps: IZoneDetailsProps = {
+    let componentProps: ZoneDetailsProps = {
         hasError: false,
         isEmpty: true,
         isLoading: false,
-    } as IZoneDetailsProps;
+    } as ZoneDetailsProps;
 
     return (
         <>

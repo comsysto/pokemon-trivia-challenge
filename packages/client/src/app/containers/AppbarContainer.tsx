@@ -1,10 +1,12 @@
 import { IButtonProps } from "@blueprintjs/core";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { Appbar, IAppbarProps } from "../components/Appbar";
+import { Appbar, AppbarProps } from "../components/Appbar";
 import * as Constants from "../constants";
 
-function AppbarContainerBase(props: RouteComponentProps) {
+type AppbarContainerProps = RouteComponentProps;
+
+function AppbarContainerBase(props: AppbarContainerProps) {
     const { history } = props;
 
     const leftButtons: IButtonProps[] = [
@@ -35,8 +37,7 @@ function AppbarContainerBase(props: RouteComponentProps) {
     ];
     const rightButtons: IButtonProps[] = [];
 
-    const componentProps: IAppbarProps = { leftButtons, rightButtons };
-
+    const componentProps: AppbarProps = { leftButtons, rightButtons };
     return <Appbar {...componentProps} />;
 }
 

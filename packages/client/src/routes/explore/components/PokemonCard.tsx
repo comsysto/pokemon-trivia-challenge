@@ -2,13 +2,13 @@ import { Card, Elevation, Intent, Tag } from "@blueprintjs/core";
 import React from "react";
 import Styles from "../styles/PokemonCard.module.scss";
 
-export interface IPokemonCardProps {
+export type PokemonCardProps = {
     sprite: string;
     name: string;
     isCollected?: boolean;
-}
+};
 
-export function PokemonCard(props: IPokemonCardProps) {
+export function PokemonCard(props: PokemonCardProps) {
     const intent = props.isCollected ? Intent.SUCCESS : Intent.DANGER;
 
     return (
