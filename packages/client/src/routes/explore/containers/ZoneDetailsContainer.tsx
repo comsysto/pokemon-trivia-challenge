@@ -1,59 +1,59 @@
-import React, { Component } from "react";
+import React from "react";
 import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { LocationQueryResponse, LocationQueryString, LocationQueryVariables } from "../../../api/graphql/LocationQuery";
+import { LocationQuery } from "../../../api/graphql/LocationQuery";
 import { ExploreRouteParams } from "../../../Routes";
-import { ZoneDetails } from "../components/ZoneDetails";
+import { IZoneDetailsProps, ZoneDetails } from "../components/ZoneDetails";
+import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 
-interface IZoneDetailsContainerState {
-    isLoading: boolean;
-    hasError: boolean;
-    isEmpty: boolean;
-}
+function ZoneDetailsContainerBase(
+    props: WithApolloClient<RouteComponentProps<ExploreRouteParams> & WithExploreContext>
+) {
+    const { exploreContext } = props;
 
-class ZoneDetailsContainerBase extends Component<
-    WithApolloClient<RouteComponentProps<ExploreRouteParams>>,
-    IZoneDetailsContainerState
-> {
-    public readonly state: IZoneDetailsContainerState = {
-        isLoading: false,
+    let componentProps: IZoneDetailsProps = {
         hasError: false,
-        isEmpty: false,
-    };
+        isEmpty: true,
+        isLoading: false,
+    } as IZoneDetailsProps;
 
-    public componentDidMount() {
-        const {
-            client,
-            match: {
-                params: { zoneName },
-            },
-        } = this.props;
+    return (
+        <>
+            {exploreContext.selectedZone === undefined ? (
+                <ZoneDetails {...componentProps} />
+            ) : (
+                <LocationQuery variables={{ name: exploreContext.selectedZone }}>
+                    {({ loading, error, data }) => {
+                        let { hasError, isEmpty, isLoading, zoneName, hasPokemon, pokemonInZone } = componentProps;
 
-        if (zoneName !== undefined) {
-            client
-                .query<LocationQueryResponse, LocationQueryVariables>({
-                    query: LocationQueryString,
-                    variables: { name: zoneName },
-                })
-                .then(({ loading, errors, data }) => {
-                    let { isLoading, hasError } = this.state;
-                    isLoading = loading;
-                    hasError = errors !== undefined;
+                        isEmpty = data === undefined;
+                        hasError = error !== undefined;
+                        isLoading = loading;
 
-                    if (data !== undefined) {
-                        // TODO: Fetch zone data.
-                    }
+                        if (!loading && data !== undefined) {
+                            const { location } = data;
+                            zoneName = location.names[0].name;
+                            hasPokemon = location.areas.length !== 0;
 
-                    this.setState({ isLoading, hasError, isEmpty: false });
-                });
-        } else {
-            this.setState({ isLoading: false, isEmpty: true });
-        }
-    }
+                            if (hasPokemon) {
+                                pokemonInZone = location.areas
+                                    .map((area) => area.pokemonEncounters)
+                                    .reduce((previous, current) => [...previous, ...current])
+                                    .map((item) => item.pokemon)
+                                    .filter(
+                                        (item, index, self) =>
+                                            self.findIndex((inner) => inner.name === item.name) === index
+                                    );
+                            }
+                        }
 
-    public render() {
-        return <ZoneDetails {...this.state} />;
-    }
+                        componentProps = { hasError, isEmpty, isLoading, zoneName, hasPokemon, pokemonInZone };
+                        return <ZoneDetails {...componentProps} />;
+                    }}
+                </LocationQuery>
+            )}
+        </>
+    );
 }
 
-export const ZoneDetailsContainer = withRouter(withApollo(ZoneDetailsContainerBase));
+export const ZoneDetailsContainer = withExploreContext(withRouter(withApollo(ZoneDetailsContainerBase)));

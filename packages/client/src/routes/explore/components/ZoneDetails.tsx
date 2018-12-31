@@ -3,14 +3,30 @@ import React from "react";
 import Styles from "../styles/ZoneDetails.module.scss";
 import { PokemonCard } from "./PokemonCard";
 
+export type Pokemon = {
+    name: string;
+    sprites: {
+        frontDefault: string;
+    };
+    species: {
+        names: {
+            name: string;
+        }[];
+    };
+};
+
 export interface IZoneDetailsProps {
     isLoading: boolean;
     hasError: boolean;
     isEmpty: boolean;
+
+    zoneName: string;
+    hasPokemon: boolean;
+    pokemonInZone: Pokemon[];
 }
 
 export function ZoneDetails(props: IZoneDetailsProps) {
-    const { isLoading, hasError, isEmpty } = props;
+    const { isLoading, hasError, isEmpty, hasPokemon, zoneName, pokemonInZone } = props;
 
     return (
         <>
@@ -33,39 +49,52 @@ export function ZoneDetails(props: IZoneDetailsProps) {
             {!isLoading && !hasError && !isEmpty && (
                 <div className={Styles.container}>
                     <div className={Styles.row}>
-                        <H1>Zone Name</H1>
+                        <H1>{zoneName}</H1>
                         <div className={Styles.flexSpacer} />
                     </div>
-                    <div className={Styles.row}>
-                        <Callout intent={Intent.WARNING}>
-                            <H4>There are currently no Pokémon in this zone</H4>
-                            Please select another zone from the list to continue your exploration in a different
-                            location.
-                        </Callout>
-                    </div>
-                    <div className={Styles.row}>
-                        <Button intent={Intent.PRIMARY} icon="compass" text="Start Exploration" large disabled />
-                        <div className={Styles.smallSpacer} />
-                        <div className={Styles.progress}>
-                            <H5>Current Zone Completion: 0%</H5>
-                            <ProgressBar value={0} intent={Intent.PRIMARY} animate={false} stripes={false} />
+                    {!hasPokemon ? (
+                        <div className={Styles.row}>
+                            <Callout intent={Intent.WARNING}>
+                                <H4>There are currently no Pokémon in this zone</H4>
+                                Please select another zone from the list to continue your exploration in a different
+                                location.
+                            </Callout>
                         </div>
-                        <div className={Styles.flexSpacer} />
-                    </div>
-                    <div className={Styles.row}>
-                        <div>
-                            <div className={Styles.innerRow}>
-                                <H3>X Pokémon left to collect</H3>
-                            </div>
-                            <div className={Styles.innerRow}>
-                                <PokemonCard
-                                    name="Name"
-                                    // tslint:disable-next-line:max-line-length
-                                    sprite="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png"
+                    ) : (
+                        <>
+                            <div className={Styles.row}>
+                                <Button
+                                    intent={Intent.PRIMARY}
+                                    icon="compass"
+                                    text="Start Exploration"
+                                    large
+                                    disabled
                                 />
+                                <div className={Styles.smallSpacer} />
+                                <div className={Styles.progress}>
+                                    <H5>Current Zone Completion: 0%</H5>
+                                    <ProgressBar value={0} intent={Intent.PRIMARY} animate={false} stripes={false} />
+                                </div>
+                                <div className={Styles.flexSpacer} />
                             </div>
-                        </div>
-                    </div>
+                            <div className={Styles.row}>
+                                <div>
+                                    <div className={Styles.innerRow}>
+                                        <H3>{pokemonInZone.length} Pokémon left to collect</H3>
+                                    </div>
+                                    <div className={Styles.innerRow}>
+                                        {pokemonInZone.map((pokemon) => (
+                                            <PokemonCard
+                                                name={pokemon.species.names[0].name}
+                                                sprite={pokemon.sprites.frontDefault}
+                                                key={`${zoneName}-${pokemon.name}`}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
             )}
         </>

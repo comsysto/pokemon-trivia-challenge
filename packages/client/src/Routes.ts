@@ -10,12 +10,12 @@ export const appRoutes: RouteProps[] = [
         exact: true,
     },
     {
-        path: `${Constants.ExploreRoute}/:regionName?/:zoneName?`,
+        path: `${Constants.ExploreRoute}/:selectedRegion?/:selectedZone?`,
         component: ExploreView,
     },
 ];
 
 export type ExploreRouteParams = {
-    regionName?: string;
-    zoneName?: string;
+    selectedRegion?: string;
+    selectedZone?: string;
 };

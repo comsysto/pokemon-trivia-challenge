@@ -1,12 +1,11 @@
 import { IPanel } from "@blueprintjs/core";
 import React from "react";
-import { RouteComponentProps, withRouter } from "react-router";
-import * as Constants from "../../../app/constants";
 import { IZoneSelectionProps, ZoneSelection } from "../components/ZoneSelection";
+import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 import { RegionPanelContainer } from "./RegionPanelContainer";
 
-function ZoneSelectionContainerBase(props: RouteComponentProps) {
-    const { history } = props;
+function ZoneSelectionContainerBase(props: WithExploreContext) {
+    const { exploreContext } = props;
 
     const initialPanel: IPanel = {
         title: "Region",
@@ -14,11 +13,11 @@ function ZoneSelectionContainerBase(props: RouteComponentProps) {
     };
 
     const onClose = () => {
-        history.push(Constants.ExploreRoute);
+        exploreContext.changeLocation();
     };
 
     const componentProps: IZoneSelectionProps = { initialPanel, onClose };
     return <ZoneSelection {...componentProps} />;
 }
 
-export const ZoneSelectionContainer = withRouter(ZoneSelectionContainerBase);
+export const ZoneSelectionContainer = withExploreContext(ZoneSelectionContainerBase);
