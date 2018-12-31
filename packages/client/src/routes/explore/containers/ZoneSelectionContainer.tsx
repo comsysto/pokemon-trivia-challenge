@@ -17,7 +17,7 @@ function ZoneSelectionContainerBase(props: RouteComponentProps) {
         history.push(Constants.ExploreRoute);
     };
 
-    const componentProps: IZoneSelectionProps = { initialPanel: (initialPanel as unknown) as IPanel, onClose };
+    const componentProps: IZoneSelectionProps = { initialPanel, onClose };
     return <ZoneSelection {...componentProps} />;
 }
 
