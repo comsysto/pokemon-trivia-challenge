@@ -7,10 +7,6 @@ import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { ILocationPanelProps, LocationPanel, TreeNodeItem } from "../components/LocationPanel";
 
-export interface IZonePanelContainerProps {
-    updateZoneDetails(): void;
-}
-
 interface IZonePanelContainerState {
     isLoading: boolean;
     hasError: boolean;
@@ -18,7 +14,7 @@ interface IZonePanelContainerState {
 }
 
 class ZonePanelContainerBase extends Component<
-    WithApolloClient<IPanelProps & IZonePanelContainerProps & RouteComponentProps<ExploreRouteParams>>,
+    WithApolloClient<IPanelProps & RouteComponentProps<ExploreRouteParams>>,
     IZonePanelContainerState
 > {
     public readonly state: IZonePanelContainerState = {
@@ -91,7 +87,6 @@ class ZonePanelContainerBase extends Component<
     private onNodeClick = (node: TreeNodeItem) => {
         const {
             history,
-            updateZoneDetails,
             match: {
                 params: { regionName },
             },
@@ -105,7 +100,6 @@ class ZonePanelContainerBase extends Component<
         }
 
         this.setState(({ treeNodes }) => ({ treeNodes }));
-        updateZoneDetails();
     };
 
     private forEachNode(nodes: TreeNodeItem[], callback: (node: TreeNodeItem) => void) {

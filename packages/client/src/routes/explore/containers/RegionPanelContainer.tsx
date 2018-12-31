@@ -6,11 +6,7 @@ import { REGIONS_QUERY, RegionsQueryResponse } from "../../../api/graphql/Region
 import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { ILocationPanelProps, LocationPanel, TreeNodeItem } from "../components/LocationPanel";
-import { IZonePanelContainerProps, ZonePanelContainer } from "./ZonePanelContainer";
-
-export interface IRegionPanelContainerProps {
-    updateZoneDetails(): void;
-}
+import { ZonePanelContainer } from "./ZonePanelContainer";
 
 interface IRegionPanelContainerState {
     isLoading: boolean;
@@ -19,7 +15,7 @@ interface IRegionPanelContainerState {
 }
 
 class RegionPanelContainerBase extends Component<
-    WithApolloClient<IPanelProps & IRegionPanelContainerProps & RouteComponentProps<ExploreRouteParams>>,
+    WithApolloClient<IPanelProps & RouteComponentProps<ExploreRouteParams>>,
     IRegionPanelContainerState
 > {
     public readonly state: IRegionPanelContainerState = {
@@ -86,7 +82,6 @@ class RegionPanelContainerBase extends Component<
         const {
             history,
             openPanel,
-            updateZoneDetails,
             match: {
                 params: { zoneName },
             },
@@ -98,17 +93,13 @@ class RegionPanelContainerBase extends Component<
             node.isSelected = true;
 
             history.push(`${Constants.ExploreRoute}/${nodeData.name}${zoneName !== undefined ? `/${zoneName}` : ""}`);
-            openPanel<IZonePanelContainerProps>({
+            openPanel({
                 title: `Zone`,
                 component: ZonePanelContainer,
-                props: {
-                    updateZoneDetails,
-                },
             });
         }
 
         this.setState(({ treeNodes }) => ({ treeNodes }));
-        updateZoneDetails();
     };
 
     private forEachNode(nodes: TreeNodeItem[], callback: (node: TreeNodeItem) => void) {
