@@ -1,0 +1,19 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+@import "src/scss/Variables";
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    height: calc(100vh - #{$pt-navbar-height});
+}
+
+.sidebar {
+    width: $app-sidebar-width;
+}
+
+.content {
+    width: calc(100vw - #{$app-sidebar-width});
+}

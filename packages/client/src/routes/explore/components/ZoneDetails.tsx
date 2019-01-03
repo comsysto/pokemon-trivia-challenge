@@ -23,10 +23,12 @@ export type ZoneDetailsProps = {
     zoneName: string;
     hasPokemon: boolean;
     pokemonInZone: Pokemon[];
+
+    onStartExploration(): void;
 };
 
 export function ZoneDetails(props: ZoneDetailsProps) {
-    const { isLoading, hasError, isEmpty, hasPokemon, zoneName, pokemonInZone } = props;
+    const { isLoading, hasError, isEmpty, hasPokemon, zoneName, pokemonInZone, onStartExploration } = props;
 
     return (
         <>
@@ -68,7 +70,7 @@ export function ZoneDetails(props: ZoneDetailsProps) {
                                     icon="compass"
                                     text="Start Exploration"
                                     large
-                                    disabled
+                                    onClick={onStartExploration}
                                 />
                                 <div className={Styles.smallSpacer} />
                                 <div className={Styles.progress}>

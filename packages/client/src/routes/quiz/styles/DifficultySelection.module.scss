@@ -1,0 +1,15 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+@import "src/scss/Variables";
+
+.container {
+    overflow-y: auto;
+    height: calc(100vh - #{$pt-navbar-height});
+    width: calc(100vw - #{$app-sidebar-width});
+
+    padding: 16px;
+}
+
+.pokeBallRow {
+    display: flex;
+    flex-direction: row;
+}

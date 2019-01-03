@@ -2,6 +2,7 @@ import React from "react";
 import { withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
 import { LocationQuery } from "../../../api/graphql/LocationQuery";
+import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
 import { ZoneDetails, ZoneDetailsProps } from "../components/ZoneDetails";
 import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
@@ -9,7 +10,11 @@ import { WithExploreContext, withExploreContext } from "../contexts/ExploreConte
 type ZoneDetailsContainerBaseProps = WithApolloClient<RouteComponentProps<ExploreRouteParams> & WithExploreContext>;
 
 function ZoneDetailsContainerBase(props: ZoneDetailsContainerBaseProps) {
-    const { exploreContext } = props;
+    const { exploreContext, history } = props;
+
+    const onStartExploration = () => {
+        history.push(`${Constants.QuizRoute}/${exploreContext.selectedRegion}/${exploreContext.selectedZone}`);
+    };
 
     let componentProps: ZoneDetailsProps = {
         hasError: false,
@@ -47,7 +52,15 @@ function ZoneDetailsContainerBase(props: ZoneDetailsContainerBaseProps) {
                             }
                         }
 
-                        componentProps = { hasError, isEmpty, isLoading, zoneName, hasPokemon, pokemonInZone };
+                        componentProps = {
+                            hasError,
+                            isEmpty,
+                            isLoading,
+                            zoneName,
+                            hasPokemon,
+                            pokemonInZone,
+                            onStartExploration,
+                        };
                         return <ZoneDetails {...componentProps} />;
                     }}
                 </LocationQuery>
