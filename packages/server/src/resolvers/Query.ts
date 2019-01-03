@@ -9,7 +9,7 @@ export const Query: QueryResolvers.Type = {
     ...QueryResolvers.defaultResolvers,
     triviaQuestion: async (_, args): Promise<Question> => {
         const { response_code: responseCode, results } = await fetchOpenTriviaDbApi(args);
-        if (responseCode === 200) {
+        if (responseCode === 0) {
             const result = results[0];
             return camelize<Question>(result, { recursive: true });
         } else {
