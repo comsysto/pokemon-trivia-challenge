@@ -4,7 +4,8 @@ import { createHandyClient } from "handy-redis";
 const isLocal = true;
 
 const officialBaseUrl = "https://pokeapi.co";
-const localBaseUrl = "http://localhost:7894";
+// tslint:disable-next-line:no-http-string
+const localBaseUrl = `http://${process.env.DOCKER !== undefined ? "pokeapi" : "localhost"}:7894`;
 const apiUrl = "/api/v2/";
 
 export type PokeApiEndpoint =
@@ -16,7 +17,19 @@ export type PokeApiEndpoint =
     | "pokemon-species"
     | "version";
 
-const redisClient = createHandyClient({ port: 6541 });
+const redisClient = createHandyClient({
+    host: "redis",
+    port: 6379,
+    retry_strategy: (options) => {
+        if (options.total_retry_time > 1000 * 60 * 60) {
+            return new Error("Retry time exhausted");
+        }
+        if (options.attempt > 10) {
+            return new Error("Retry time exhausted");
+        }
+        return Math.min(options.attempt * 100, 3000);
+    },
+});
 
 export async function fetchPokeApiByQuery<ResponseType>(endpoint: PokeApiEndpoint, argument?: string) {
     const url = `${isLocal ? "" : officialBaseUrl}${apiUrl}${endpoint}/${argument || ""}/`;

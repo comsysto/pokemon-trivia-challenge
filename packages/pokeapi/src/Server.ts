@@ -4,7 +4,11 @@ import * as path from "path";
 
 (() => {
     const app = express();
-    const dataFolder = path.join(__dirname, "../../..", "node_modules/api-data/data");
+    const dataFolder = path.join(
+        __dirname,
+        process.env.DOCKER !== undefined ? ".." : "../../..",
+        "node_modules/api-data/data"
+    );
     app.use("/", express.static(dataFolder, { index: ["index.json"] }));
     const server = app.listen(7894, () => {
         const addressInfo = server.address() as AddressInfo;

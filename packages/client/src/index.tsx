@@ -16,7 +16,8 @@ import { AppContainer } from "./app/containers/AppContainer";
 import * as serviceWorker from "./serviceWorker";
 
 const httpLink = createHttpLink({
-    uri: "http://localhost:4000",
+    // tslint:disable-next-line:no-http-string
+    uri: `http://${process.env.DOCKER !== undefined ? "server" : "localhost"}:4000`,
 });
 
 const apolloClient = new ApolloClient({

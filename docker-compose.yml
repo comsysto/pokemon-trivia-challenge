@@ -3,4 +3,32 @@ services:
   redis:
     image: redis:alpine
     ports:
-      - "6541:6379"
+      - "6379:6379"
+  pokeapi:
+    build:
+      context: .
+      dockerfile: docker/pokeapi.dockerfile
+    ports:
+      - "7894:7894"
+  server:
+    build:
+      context: .
+      dockerfile: docker/server.dockerfile
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis
+      - pokeapi
+    links:
+      - redis
+      - pokeapi
+  client:
+    build:
+      context: .
+      dockerfile: docker/client.dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - server
+    links:
+      - server
