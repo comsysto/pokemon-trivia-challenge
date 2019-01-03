@@ -27,8 +27,10 @@
     },
     "dependencies": {
         "@ridi/object-case-converter": "^2.0.4",
+        "@types/aws-lambda": "^8.10.17",
         "@types/jest": "^23.3.10",
         "@types/progress": "^2.0.3",
+        "@types/ws": "^6.0.1",
         "axios": "^0.18.0",
         "graphql-yoga": "^1.16.7",
         "graphqlgen": "^0.4.0",
