@@ -13,10 +13,10 @@
     },
     "scripts": {
         "clean": "lerna clean",
-        "start:redis": "docker-compose up -d",
-        "start:pokeapi": "cd packages/pokeapi && yarn dev",
-        "start:server": "cd packages/server && yarn dev",
-        "start:client": "cd packages/client && yarn start",
+        "dev:redis": "docker-compose up -d",
+        "dev:pokeapi": "cd packages/pokeapi && yarn dev",
+        "dev:server": "cd packages/server && yarn dev",
+        "dev:client": "cd packages/client && yarn start",
         "stop:redis": "docker-compose down"
     },
     "workspaces": [
