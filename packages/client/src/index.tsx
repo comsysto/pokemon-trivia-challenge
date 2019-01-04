@@ -11,13 +11,15 @@ import "./index.scss";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
+import isDocker from "is-docker";
 import { ApolloProvider } from "react-apollo";
+import * as Constants from "./app/constants";
 import { AppContainer } from "./app/containers/AppContainer";
 import * as serviceWorker from "./serviceWorker";
 
 const httpLink = createHttpLink({
     // tslint:disable-next-line:no-http-string
-    uri: `http://${process.env.DOCKER !== undefined ? "server" : "localhost"}:4000`,
+    uri: `http://${isDocker() ? Constants.GraphQLDockerHost : "localhost"}:${Constants.GraphQLPort}`,
 });
 
 const apolloClient = new ApolloClient({
