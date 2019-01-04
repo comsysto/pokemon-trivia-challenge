@@ -1,19 +1,14 @@
 import express from "express";
-import { AddressInfo } from "net";
+import isDocker from "is-docker";
 import * as path from "path";
 
 (() => {
-    const app = express();
-    const dataFolder = path.join(
-        __dirname,
-        process.env.DOCKER !== undefined ? ".." : "../../..",
-        "node_modules/api-data/data"
-    );
-    app.use("/", express.static(dataFolder, { index: ["index.json"] }));
-    const server = app.listen(7894, () => {
-        const addressInfo = server.address() as AddressInfo;
-        const host = addressInfo.address;
-        const port = addressInfo.port;
-        console.log(`🚀 PokeAPI Server running on http://${host === "::" ? "localhost" : host}:${port}/api/v2/`);
+    const serverPort = 7894;
+
+    const dataFolder = path.join(__dirname, isDocker() ? ".." : "../../..", "node_modules/api-data/data");
+    const server = express();
+
+    server.use("/", express.static(dataFolder, { index: ["index.json"] })).listen(serverPort, () => {
+        console.log(`🚀 PokeAPI Server running on http://localhost:${serverPort}`);
     });
 })();
