@@ -123,3 +123,4 @@ typings/
 
 ### graphqlgen generated files
 generated
+packages/server/src/api/ResolverTypes.ts
