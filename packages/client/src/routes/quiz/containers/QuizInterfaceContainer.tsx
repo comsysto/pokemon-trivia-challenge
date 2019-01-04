@@ -1,7 +1,8 @@
 import { NonIdealState, Spinner } from "@blueprintjs/core";
+import { ApolloQueryResult } from "apollo-client";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { QuestionQuery } from "../../../api/graphql/QuestionQuery";
+import { QuestionQuery, QuestionQueryResponse, QuestionQueryVariables } from "../../../api/graphql/QuestionQuery";
 import * as Constants from "../../../app/constants";
 import { QuizRouteParams } from "../../../Routes";
 import { DifficultySelection } from "../components/DifficultySelection";
@@ -14,6 +15,8 @@ function decodeString(text: string) {
     el.innerHTML = text;
     return el.value;
 }
+
+let refetchQuestion: (variables?: QuestionQueryVariables) => Promise<ApolloQueryResult<QuestionQueryResponse>>;
 
 type QuizInterfaceContainerProps = WithQuizContext & RouteComponentProps<QuizRouteParams>;
 
@@ -30,7 +33,12 @@ function QuizInterfaceContainerBase(props: QuizInterfaceContainerProps) {
         history.push(Constants.HomeRoute);
     };
 
-    const onContinueExploration = () => {
+    const onContinueExploration = async () => {
+        // Instead of clearing the entire Apollo store we are attempting to refetch the question with the method
+        // returned previously and hope for the best. This approach should allows us to keep the data in the store.
+        if (quizContext.difficulty) {
+            await refetchQuestion({ difficulty: quizContext.difficulty.toUpperCase() });
+        }
         history.push(`${Constants.ExploreRoute}/${selectedRegion}/${selectedZone}`);
     };
 
@@ -44,7 +52,9 @@ function QuizInterfaceContainerBase(props: QuizInterfaceContainerProps) {
     } else {
         return (
             <QuestionQuery variables={{ difficulty: quizContext.difficulty.toUpperCase() }}>
-                {({ loading, error, data }) => {
+                {({ loading, error, data, refetch }) => {
+                    refetchQuestion = refetch;
+
                     if (loading) {
                         return <NonIdealState icon={<Spinner />} />;
                     }
