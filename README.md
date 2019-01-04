@@ -34,6 +34,12 @@ This method runs all servers and the client in debug mode without production set
 1. Just Ctrl+C the `pokeapi`, `server` and `client` processes
 2. Shutdown Redis by running `yarn stop:redis`
 
+## Debugging and Ports
+
+* **PokéAPI** - the PokéAPI is being served using `express` and is available at port **7894** via http://localhost:7894/api/v2/
+* **GraphQL Server** - the GraphQL server is served at port **4000** via the `/` endpoint and you can access the playground at http://localhost:4000 and explore the schema
+* **React Client** - the React client is being served using `serve` and is available at port 5000 via http://localhost:5000
+
 ## Architecture
 
 ### **PokéAPI REST API**
