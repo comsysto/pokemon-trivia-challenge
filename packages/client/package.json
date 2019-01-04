@@ -6,10 +6,10 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ChristianIvicevic/pokemon-trivia-challenge.git"
+        "url": "git+https://github.com/comsysto/pokemon-trivia-challenge.git"
     },
     "bugs": {
-        "url": "https://github.com/ChristianIvicevic/pokemon-trivia-challenge/issues"
+        "url": "https://github.com/comsysto/pokemon-trivia-challenge/issues"
     },
     "private": true,
     "dependencies": {
