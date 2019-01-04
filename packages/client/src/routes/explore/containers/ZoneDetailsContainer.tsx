@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { LocationQuery } from "../../../api/graphql/LocationQuery";
 import * as Constants from "../../../app/constants";
 import { ExploreRouteParams } from "../../../Routes";
-import { ZoneDetails, ZoneDetailsProps } from "../components/ZoneDetails";
+import { PokemonDetails, ZoneDetails, ZoneDetailsProps } from "../components/ZoneDetails";
 import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 
 type ZoneDetailsContainerBaseProps = WithApolloClient<RouteComponentProps<ExploreRouteParams> & WithExploreContext>;
@@ -29,7 +29,9 @@ function ZoneDetailsContainerBase(props: ZoneDetailsContainerBaseProps) {
             ) : (
                 <LocationQuery variables={{ name: exploreContext.selectedZone }}>
                     {({ loading, error, data }) => {
-                        let { hasError, isEmpty, isLoading, zoneName, hasPokemon, pokemonInZone } = componentProps;
+                        let { hasError, isEmpty, isLoading, zoneName, hasPokemon } = componentProps;
+                        const caughtPokemon: PokemonDetails[] = [];
+                        let pokemonInZone: PokemonDetails[] = [];
 
                         isEmpty = data === undefined;
                         hasError = error !== undefined;
@@ -49,8 +51,25 @@ function ZoneDetailsContainerBase(props: ZoneDetailsContainerBaseProps) {
                                         (item, index, self) =>
                                             self.findIndex((inner) => inner.name === item.name) === index
                                     );
+                                const serializedData = JSON.parse(
+                                    localStorage.getItem("caughtPokemon") || "{}"
+                                ) as string[];
+                                pokemonInZone = pokemonInZone.reduce(
+                                    (previousValue, currentValue) => {
+                                        if (serializedData.includes(currentValue.name)) {
+                                            caughtPokemon.push(currentValue);
+                                            return previousValue;
+                                        } else {
+                                            return [...previousValue, currentValue];
+                                        }
+                                    },
+                                    [] as PokemonDetails[]
+                                );
                             }
                         }
+
+                        const progression = caughtPokemon.length / (pokemonInZone.length + caughtPokemon.length);
+                        const progressionText = Math.floor(progression * 100).toString();
 
                         componentProps = {
                             hasError,
@@ -59,6 +78,9 @@ function ZoneDetailsContainerBase(props: ZoneDetailsContainerBaseProps) {
                             zoneName,
                             hasPokemon,
                             pokemonInZone,
+                            caughtPokemon,
+                            progression,
+                            progressionText,
                             onStartExploration,
                         };
                         return <ZoneDetails {...componentProps} />;

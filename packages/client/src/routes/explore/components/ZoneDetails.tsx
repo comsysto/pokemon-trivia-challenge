@@ -23,12 +23,29 @@ export type ZoneDetailsProps = {
     zoneName: string;
     hasPokemon: boolean;
     pokemonInZone: PokemonDetails[];
+    caughtPokemon: PokemonDetails[];
+
+    progression: number;
+    progressionText: string;
 
     onStartExploration(): void;
 };
 
+// TODO: REFACTOR AND BREAK THIS MONSTER APART!
+// tslint:disable-next-line:max-func-body-length
 export function ZoneDetails(props: ZoneDetailsProps) {
-    const { isLoading, hasError, isEmpty, hasPokemon, zoneName, pokemonInZone, onStartExploration } = props;
+    const {
+        isLoading,
+        hasError,
+        isEmpty,
+        hasPokemon,
+        zoneName,
+        pokemonInZone,
+        caughtPokemon,
+        progression,
+        progressionText,
+        onStartExploration,
+    } = props;
 
     return (
         <>
@@ -65,36 +82,66 @@ export function ZoneDetails(props: ZoneDetailsProps) {
                     ) : (
                         <>
                             <div className={Styles.row}>
-                                <Button
-                                    intent={Intent.PRIMARY}
-                                    icon="compass"
-                                    text="Start Exploration"
-                                    large
-                                    onClick={onStartExploration}
-                                />
-                                <div className={Styles.smallSpacer} />
+                                {pokemonInZone.length > 0 && (
+                                    <>
+                                        <Button
+                                            intent={Intent.PRIMARY}
+                                            icon="compass"
+                                            text="Start Exploration"
+                                            large
+                                            onClick={onStartExploration}
+                                        />
+                                        <div className={Styles.smallSpacer} />
+                                    </>
+                                )}
                                 <div className={Styles.progress}>
-                                    <H5>Current Zone Completion: 0%</H5>
-                                    <ProgressBar value={0} intent={Intent.PRIMARY} animate={false} stripes={false} />
+                                    <H5>Current Zone Completion: {progressionText}%</H5>
+                                    <ProgressBar
+                                        value={progression}
+                                        intent={Intent.PRIMARY}
+                                        animate={false}
+                                        stripes={false}
+                                    />
                                 </div>
                                 <div className={Styles.flexSpacer} />
                             </div>
-                            <div className={Styles.row}>
-                                <div>
-                                    <div className={Styles.innerRow}>
-                                        <H3>{pokemonInZone.length} Pokémon left to collect</H3>
-                                    </div>
-                                    <div className={Styles.innerRow}>
-                                        {pokemonInZone.map((pokemon) => (
-                                            <PokemonCard
-                                                name={pokemon.species.names[0].name}
-                                                sprite={pokemon.sprites.frontDefault}
-                                                key={`${zoneName}-${pokemon.name}`}
-                                            />
-                                        ))}
+                            {pokemonInZone.length > 0 && (
+                                <div className={Styles.row}>
+                                    <div>
+                                        <div className={Styles.innerRow}>
+                                            <H3>{pokemonInZone.length} Pokémon left to collect</H3>
+                                        </div>
+                                        <div className={Styles.innerRow}>
+                                            {pokemonInZone.map((pokemon) => (
+                                                <PokemonCard
+                                                    name={pokemon.species.names[0].name}
+                                                    sprite={pokemon.sprites.frontDefault}
+                                                    key={`${zoneName}-${pokemon.name}`}
+                                                />
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
+                            {caughtPokemon.length > 0 && (
+                                <div className={Styles.row}>
+                                    <div>
+                                        <div className={Styles.innerRow}>
+                                            <H3>{caughtPokemon.length} Pokémon already in collection</H3>
+                                        </div>
+                                        <div className={Styles.innerRow}>
+                                            {caughtPokemon.map((pokemon) => (
+                                                <PokemonCard
+                                                    name={pokemon.species.names[0].name}
+                                                    sprite={pokemon.sprites.frontDefault}
+                                                    key={`${zoneName}-${pokemon.name}`}
+                                                    isCollected
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>

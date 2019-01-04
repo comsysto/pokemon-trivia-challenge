@@ -93,11 +93,19 @@ class QuizContextProviderBase extends Component<QuizContextProviderBaseProps, Qu
                     ? "Success! You caught the Pokémon and it was added to your collection."
                     : "The Pokémon broke free from the Poké Ball. Better luck next time.",
             });
-            toaster.show({
-                intent: Intent.WARNING,
-                icon: "warning-sign",
-                message: "There is no persistent database yet, so unfortunately nothing has been saved :("
-            });
+
+            if (isCaught) {
+                const serializedData = JSON.parse(localStorage.getItem("caughtPokemon") || "{}") as string[];
+                if (serializedData.length > 0) {
+                    if (serializedData.includes(encounterData.name)) {
+                        return;
+                    }
+                    serializedData.push(encounterData.name);
+                    localStorage.setItem("caughtPokemon", JSON.stringify(serializedData));
+                } else {
+                    localStorage.setItem("caughtPokemon", JSON.stringify([encounterData.name]));
+                }
+            }
         }
     };
 

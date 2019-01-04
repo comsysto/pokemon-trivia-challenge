@@ -66,12 +66,12 @@ Redux for such a small project is pretty much overkill and annoying to set up in
     - [x] Region list
     - [x] Zone list
     - [x] Zone details
-    - [ ] Quiz
+    - [x] Quiz
         - [x] Random encounter selection
         - [x] Question difficulty selection
         - [x] Question and answer handling
-        - [ ] Storing caught Pokémon in collection (Pokédex) (see also: *Persistence*)
+        - [x] Storing caught Pokémon in collection (Pokédex) - **currently only via `localStorage`!**
 - [ ] Trial mode
 - [ ] Persistence
     - [ ] Users
-    - [ ] Pokémon collection (Pokédex)
+    - [x] Pokémon collection (Pokédex)
