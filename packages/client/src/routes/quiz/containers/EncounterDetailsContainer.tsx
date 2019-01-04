@@ -17,7 +17,7 @@ function EncounterDetailsContainerBase(props: EncounterDetailsContainerBaseProps
         const chanceToCatch: ChanceToCatch =
             captureRate > 170 ? ChanceToCatch.High : captureRate > 85 ? ChanceToCatch.Medium : ChanceToCatch.Low;
 
-        const serializedData = JSON.parse(localStorage.getItem("caughtPokemon") || "{}") as string[];
+        const serializedData = JSON.parse(localStorage.getItem("caughtPokemon") || "[]") as string[];
         const isCollected = serializedData.includes(quizContext.encounterData.name);
 
         return <EncounterDetails {...{ chanceToCatch, isCollected }} />;

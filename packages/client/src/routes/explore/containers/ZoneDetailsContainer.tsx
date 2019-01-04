@@ -52,7 +52,7 @@ function ZoneDetailsContainerBase(props: ZoneDetailsContainerBaseProps) {
                                             self.findIndex((inner) => inner.name === item.name) === index
                                     );
                                 const serializedData = JSON.parse(
-                                    localStorage.getItem("caughtPokemon") || "{}"
+                                    localStorage.getItem("caughtPokemon") || "[]"
                                 ) as string[];
                                 pokemonInZone = pokemonInZone.reduce(
                                     (previousValue, currentValue) => {

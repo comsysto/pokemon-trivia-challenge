@@ -95,7 +95,7 @@ class QuizContextProviderBase extends Component<QuizContextProviderBaseProps, Qu
             });
 
             if (isCaught) {
-                const serializedData = JSON.parse(localStorage.getItem("caughtPokemon") || "{}") as string[];
+                const serializedData = JSON.parse(localStorage.getItem("caughtPokemon") || "[]") as string[];
                 if (serializedData.length > 0) {
                     if (serializedData.includes(encounterData.name)) {
                         return;
