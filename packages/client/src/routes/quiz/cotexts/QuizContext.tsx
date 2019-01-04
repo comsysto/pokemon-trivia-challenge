@@ -1,3 +1,4 @@
+import { Intent, Toaster } from "@blueprintjs/core";
 import React, { Component, createContext } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { QuizRouteParams } from "../../../Routes";
@@ -64,6 +65,40 @@ class QuizContextProviderBase extends Component<QuizContextProviderBaseProps, Qu
 
     public readonly finishQuiz = (isCorrect?: boolean) => {
         this.setState({ hasFinished: true, isCorrect });
+
+        const { difficulty, encounterData } = this.state;
+        if (difficulty !== undefined && encounterData !== undefined && isCorrect) {
+            let randomNumber: number;
+            switch (difficulty) {
+                case "Easy":
+                    randomNumber = this.getRandomNumber(0, 255);
+                    break;
+                case "Medium":
+                    randomNumber = this.getRandomNumber(0, 200);
+                    break;
+                case "Hard":
+                    randomNumber = this.getRandomNumber(0, 150);
+                    break;
+                default:
+                    randomNumber = 0;
+            }
+
+            const isCaught = randomNumber <= encounterData.captureRate;
+
+            const toaster = Toaster.create();
+            toaster.show({
+                intent: isCaught ? Intent.SUCCESS : Intent.DANGER,
+                icon: "info-sign",
+                message: isCaught
+                    ? "Success! You caught the Pokémon and it was added to your collection."
+                    : "The Pokémon broke free from the Poké Ball. Better luck next time.",
+            });
+            toaster.show({
+                intent: Intent.WARNING,
+                icon: "warning-sign",
+                message: "There is no persistent database yet, so unfortunately nothing has been saved :("
+            });
+        }
     };
 
     public readonly getShuffledAnswers = () => {
@@ -85,6 +120,10 @@ class QuizContextProviderBase extends Component<QuizContextProviderBaseProps, Qu
 
         return this.state.answerOrder;
     };
+
+    private getRandomNumber(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
 }
 
 export const QuizContextProvider = withRouter(QuizContextProviderBase);
