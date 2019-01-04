@@ -13,11 +13,12 @@
     },
     "scripts": {
         "clean": "lerna clean",
-        "dev:redis": "docker-compose up -d",
         "dev:pokeapi": "cd packages/pokeapi && yarn dev",
         "dev:server": "cd packages/server && yarn dev",
         "dev:client": "cd packages/client && yarn start",
-        "stop:redis": "docker-compose down"
+        "dev:redis": "docker-compose up -d redis",
+        "stop:redis": "docker-compose down",
+        "docker:prune": "docker images -a | grep \"pokemon-trivia-challenge\" | awk '{print $3}' | xargs docker rmi"
     },
     "workspaces": [
         "packages/*"
