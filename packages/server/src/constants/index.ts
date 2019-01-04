@@ -1,10 +1,10 @@
-export const graphqlServerPort = 4000;
-export const redisServerPort = 6379;
-export const pokeapiServerPort = 7894;
+export const GraphQLServerPort = 4000;
+export const RedisServerPort = 6379;
+export const PokeApiServerPort = 7894;
 
-export const pokeapiDockerHost = "pokeapi";
-export const redisDockerHost = "redis";
+export const PokeApiDockerHost = "pokeapi";
+export const RedisDockerHost = "redis";
 
-export const pokeapiOfficialHost = "https://pokeapi.co";
+export const PokeApiOfficialHost = "https://pokeapi.co";
 
-export const isUsingLocalPokeapi = true;
+export const IsUsingLocalPokeapi = true;

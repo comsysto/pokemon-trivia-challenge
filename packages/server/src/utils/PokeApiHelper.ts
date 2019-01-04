@@ -4,7 +4,7 @@ import isDocker from "is-docker";
 import * as Constants from "../constants";
 
 // tslint:disable-next-line:no-http-string
-const localBaseUrl = `http://${isDocker() ? Constants.pokeapiDockerHost : "localhost"}:${Constants.pokeapiServerPort}`;
+const localBaseUrl = `http://${isDocker() ? Constants.PokeApiDockerHost : "localhost"}:${Constants.PokeApiServerPort}`;
 const apiUrl = "/api/v2/";
 
 export type PokeApiEndpoint =
@@ -17,8 +17,8 @@ export type PokeApiEndpoint =
     | "version";
 
 const redisClient = createHandyClient({
-    host: isDocker() ? Constants.redisDockerHost : "localhost",
-    port: Constants.redisServerPort,
+    host: isDocker() ? Constants.RedisDockerHost : "localhost",
+    port: Constants.RedisServerPort,
     retry_strategy: (options) => {
         if (options.total_retry_time > 1000 * 60 * 60) {
             return new Error("Retry time exhausted");
@@ -31,14 +31,14 @@ const redisClient = createHandyClient({
 });
 
 export async function fetchPokeApiByQuery<ResponseType>(endpoint: PokeApiEndpoint, argument?: string) {
-    const { isUsingLocalPokeapi, pokeapiOfficialHost } = Constants;
+    const { IsUsingLocalPokeapi: isUsingLocalPokeapi, PokeApiOfficialHost: pokeapiOfficialHost } = Constants;
     const url = `${isUsingLocalPokeapi ? "" : pokeapiOfficialHost}${apiUrl}${endpoint}/${argument || ""}/`;
     return fetchPokeApiByNamedUrl<ResponseType>(url);
 }
 
 export async function fetchPokeApiByNamedUrl<ResponseType>(url: string) {
     // Named urls from the official API are prefixed with the correct host. We have to prefix local ones manually.
-    const apiEndpoint = `${url.startsWith(Constants.pokeapiOfficialHost) ? "" : localBaseUrl}${url}`;
+    const apiEndpoint = `${url.startsWith(Constants.PokeApiOfficialHost) ? "" : localBaseUrl}${url}`;
     const cachedData = await redisClient.get(apiEndpoint);
 
     if (cachedData === null) {

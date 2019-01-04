@@ -1,8 +1,8 @@
 import { GraphQLServer } from "graphql-yoga";
 import { Context } from "./api/SchemaTypes";
+import * as Constants from "./constants";
 import { resolvers } from "./resolvers";
 import { prefetchPokeApi } from "./utils/Prefetch";
-import * as Constants from "./constants";
 
 (async () => {
     await prefetchPokeApi();
@@ -16,10 +16,10 @@ import * as Constants from "./constants";
 
     void graphqlServer.start(
         {
-            port: Constants.graphqlServerPort,
+            port: Constants.GraphQLServerPort,
         },
         async () => {
-            console.log(`🚀 GraphQL Server running on http://localhost:${Constants.graphqlServerPort}`);
+            console.log(`🚀 GraphQL Server running on http://localhost:${Constants.GraphQLServerPort}`);
         }
     );
 })();
