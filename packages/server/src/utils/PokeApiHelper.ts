@@ -18,7 +18,7 @@ export type PokeApiEndpoint =
     | "version";
 
 const redisClient = createHandyClient({
-    host: "redis",
+    host: process.env.DOCKER !== undefined ? "redis" : "localhost",
     port: 6379,
     retry_strategy: (options) => {
         if (options.total_retry_time > 1000 * 60 * 60) {
