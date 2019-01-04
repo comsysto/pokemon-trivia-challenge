@@ -50,6 +50,10 @@ In order to alleviate strain on the filesystem induced by constant queries, the 
 
 For this application the current implementation of the frontend is using React and leverages the capabilities of Apollo as a GraphQL client instead of Relay. We make use of the caching capabilities of Apollo, even though sometimes this can be really tricky to handle.
 
+#### State Management
+
+Redux for such a small project is pretty much overkill and annoying to set up in the first place. Passing down props through four children, just to share the state was not feasible either. This project leverages the React contexts to share state and actions across multiple components.
+
 ## Features
 
 - [ ] Exploration mode
