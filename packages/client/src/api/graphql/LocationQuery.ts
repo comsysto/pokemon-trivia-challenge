@@ -11,6 +11,9 @@ export const LocationQueryString = gql`
             }
             areas {
                 pokemonEncounters {
+                    versionDetails {
+                        maxChance
+                    }
                     pokemon {
                         name
                         sprites {
@@ -20,6 +23,7 @@ export const LocationQueryString = gql`
                             names(languages: [EN]) {
                                 name
                             }
+                            captureRate
                         }
                     }
                 }
@@ -37,6 +41,9 @@ export type LocationQueryResponse = {
         }[];
         areas: {
             pokemonEncounters: {
+                versionDetails: {
+                    maxChance: number;
+                }[];
                 pokemon: {
                     name: string;
                     sprites: {
@@ -46,6 +53,7 @@ export type LocationQueryResponse = {
                         names: {
                             name: string;
                         }[];
+                        captureRate: number;
                     };
                 };
             }[];

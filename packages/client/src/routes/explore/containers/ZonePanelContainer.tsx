@@ -7,11 +7,11 @@ import { ExploreRouteParams } from "../../../Routes";
 import { LocationPanel, LocationPanelProps, TreeNodeItem } from "../components/LocationPanel";
 import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 
-export type ZonePanelContainerProps = WithApolloClient<
+type ZonePanelContainerBaseProps = WithApolloClient<
     IPanelProps & WithExploreContext & RouteComponentProps<ExploreRouteParams>
 >;
 
-class ZonePanelContainerBase extends Component<ZonePanelContainerProps> {
+class ZonePanelContainerBase extends Component<ZonePanelContainerBaseProps> {
     public componentDidMount() {
         const {
             exploreContext,

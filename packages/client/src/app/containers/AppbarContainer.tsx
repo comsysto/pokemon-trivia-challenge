@@ -4,9 +4,9 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { Appbar, AppbarProps } from "../components/Appbar";
 import * as Constants from "../constants";
 
-type AppbarContainerProps = RouteComponentProps;
+type AppbarContainerBaseProps = RouteComponentProps;
 
-function AppbarContainerBase(props: AppbarContainerProps) {
+function AppbarContainerBase(props: AppbarContainerBaseProps) {
     const { history } = props;
 
     const leftButtons: IButtonProps[] = [

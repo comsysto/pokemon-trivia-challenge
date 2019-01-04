@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { withApollo, WithApolloClient } from "react-apollo";
-import {
-    EncounterQueryResponse,
-    EncounterQueryString,
-    EncounterQueryVariables,
-} from "../../../api/graphql/EncounterQuery";
+import { LocationQueryResponse, LocationQueryString, LocationQueryVariables } from "../../../api/graphql/LocationQuery";
 import { Encounter, EncounterProps } from "../components/Encounter";
 import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
 
@@ -23,8 +19,8 @@ class EncounterContainerBase extends Component<EncounterContainerProps, Encounte
         // This should hopefully be always true, but better be safe than sorry nonetheless...
         if (quizContext.selectedZone !== undefined) {
             client
-                .query<EncounterQueryResponse, EncounterQueryVariables>({
-                    query: EncounterQueryString,
+                .query<LocationQueryResponse, LocationQueryVariables>({
+                    query: LocationQueryString,
                     variables: { name: quizContext.selectedZone },
                 })
                 .then(({ loading, errors, data }) => {

@@ -4,7 +4,7 @@ import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
 import Styles from "../styles/Question.module.scss";
 import { AnswerButton, AnswerButtonProps } from "./AnswerButton";
 
-export type Answer = Pick<AnswerButtonProps, "isCorrect" | "text">;
+export type Answer = AnswerButtonProps;
 
 export type QuestionProps = {
     question: string;

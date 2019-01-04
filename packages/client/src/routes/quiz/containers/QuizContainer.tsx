@@ -5,9 +5,9 @@ import * as Constants from "../../../app/constants";
 import { Quiz } from "../components/Quiz";
 import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
 
-export type QuizContainerProps = WithQuizContext & RouteComponentProps;
+type QuizContainerBaseProps = WithQuizContext & RouteComponentProps;
 
-function QuizContainerBase(props: QuizContainerProps) {
+function QuizContainerBase(props: QuizContainerBaseProps) {
     const { history, quizContext } = props;
 
     const onClickZoneSelection = () => {

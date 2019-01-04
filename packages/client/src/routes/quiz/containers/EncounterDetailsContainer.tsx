@@ -2,9 +2,9 @@ import React from "react";
 import { ChanceToCatch, EncounterDetails } from "../components/EncounterDetails";
 import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
 
-type EncounterDetailsContainerProps = WithQuizContext;
+type EncounterDetailsContainerBaseProps = WithQuizContext;
 
-function EncounterDetailsContainerBase(props: EncounterDetailsContainerProps) {
+function EncounterDetailsContainerBase(props: EncounterDetailsContainerBaseProps) {
     const { quizContext } = props;
 
     if (quizContext.encounterData === undefined) {

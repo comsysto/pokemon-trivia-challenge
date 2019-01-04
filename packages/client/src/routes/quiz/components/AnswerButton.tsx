@@ -6,9 +6,11 @@ import Styles from "../styles/AnswerButton.module.scss";
 export type AnswerButtonProps = {
     text: string;
     isCorrect?: boolean;
-} & WithQuizContext;
+};
 
-function AnswerButtonBase(props: AnswerButtonProps) {
+type AnswerButtonBaseProps = AnswerButtonProps & WithQuizContext;
+
+function AnswerButtonBase(props: AnswerButtonBaseProps) {
     const { isCorrect, text, quizContext } = props;
     const intent = !quizContext.hasFinished ? Intent.NONE : isCorrect ? Intent.SUCCESS : Intent.NONE;
 

@@ -3,7 +3,7 @@ import React from "react";
 import Styles from "../styles/ZoneDetails.module.scss";
 import { PokemonCard } from "./PokemonCard";
 
-export type Pokemon = {
+export type PokemonDetails = {
     name: string;
     sprites: {
         frontDefault: string;
@@ -22,7 +22,7 @@ export type ZoneDetailsProps = {
 
     zoneName: string;
     hasPokemon: boolean;
-    pokemonInZone: Pokemon[];
+    pokemonInZone: PokemonDetails[];
 
     onStartExploration(): void;
 };

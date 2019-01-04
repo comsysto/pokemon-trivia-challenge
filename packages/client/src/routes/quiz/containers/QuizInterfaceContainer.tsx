@@ -16,11 +16,12 @@ function decodeString(text: string) {
     return el.value;
 }
 
+// Used to "clear the cache"
 let refetchQuestion: (variables?: QuestionQueryVariables) => Promise<ApolloQueryResult<QuestionQueryResponse>>;
 
-type QuizInterfaceContainerProps = WithQuizContext & RouteComponentProps<QuizRouteParams>;
+type QuizInterfaceContainerBaseProps = WithQuizContext & RouteComponentProps<QuizRouteParams>;
 
-function QuizInterfaceContainerBase(props: QuizInterfaceContainerProps) {
+function QuizInterfaceContainerBase(props: QuizInterfaceContainerBaseProps) {
     const {
         quizContext,
         history,

@@ -8,11 +8,11 @@ import { LocationPanel, LocationPanelProps, TreeNodeItem } from "../components/L
 import { WithExploreContext, withExploreContext } from "../contexts/ExploreContext";
 import { ZonePanelContainer } from "./ZonePanelContainer";
 
-export type RegionPanelContainerProps = WithApolloClient<
+type RegionPanelContainerBaseProps = WithApolloClient<
     IPanelProps & WithExploreContext & RouteComponentProps<ExploreRouteParams>
 >;
 
-class RegionPanelContainerBase extends Component<RegionPanelContainerProps> {
+class RegionPanelContainerBase extends Component<RegionPanelContainerBaseProps> {
     public componentDidMount() {
         const {
             match: {
@@ -67,7 +67,7 @@ class RegionPanelContainerBase extends Component<RegionPanelContainerProps> {
 
         exploreContext.changeLocation(selectedRegion, selectedZone);
         openPanel({
-            title: `Zone`,
+            title: "Zone",
             component: ZonePanelContainer,
         });
     };
