@@ -40,6 +40,7 @@
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
         "react-scripts": "2.1.1",
+        "serve": "^10.1.1",
         "shortid": "^2.2.14",
         "tslint": "^5.11.0",
         "tslint-config-prettier": "^1.17.0",
@@ -51,7 +52,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "tslint -c ../tslint.json -p . --format stylish"
+        "lint": "tslint -c ../tslint.json -p . --format stylish",
+        "serve": "serve -s build"
     },
     "eslintConfig": {
         "extends": "react-app"
