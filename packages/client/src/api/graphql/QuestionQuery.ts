@@ -1,3 +1,4 @@
+import { DocumentNode } from "graphql";
 import gql from "graphql-tag";
 import { Query, QueryProps } from "react-apollo";
 
@@ -9,7 +10,7 @@ export const QuestionQueryString = gql`
             incorrectAnswers
         }
     }
-`;
+` as DocumentNode;
 
 export type QuestionQueryResponse = {
     triviaQuestion: {

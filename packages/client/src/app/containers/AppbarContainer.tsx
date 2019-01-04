@@ -14,7 +14,9 @@ function AppbarContainerBase(props: AppbarContainerBaseProps) {
             text: "Home",
             icon: "home",
             minimal: true,
-            onClick: () => history.push(Constants.HomeRoute),
+            onClick: () => {
+                history.push(Constants.HomeRoute);
+            },
         },
         {
             text: "Pokédex",
@@ -26,7 +28,9 @@ function AppbarContainerBase(props: AppbarContainerBaseProps) {
             text: "Explore",
             icon: "map",
             minimal: true,
-            onClick: () => history.push(Constants.ExploreRoute),
+            onClick: () => {
+                history.push(Constants.ExploreRoute);
+            },
         },
         {
             text: "Trial",

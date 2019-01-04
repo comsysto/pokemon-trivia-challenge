@@ -4,7 +4,7 @@ import * as Constants from "./constants";
 import { resolvers } from "./resolvers";
 import { prefetchPokeApi } from "./utils/Prefetch";
 
-(async () => {
+void (async () => {
     await prefetchPokeApi();
 
     const graphqlServer = new GraphQLServer({

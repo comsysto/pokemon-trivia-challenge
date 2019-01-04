@@ -1,3 +1,4 @@
+import { DocumentNode } from "graphql";
 import gql from "graphql-tag";
 import { Query, QueryProps } from "react-apollo";
 
@@ -11,7 +12,7 @@ export const RegionsQueryString = gql`
             }
         }
     }
-`;
+` as DocumentNode;
 
 export type RegionsQueryResponse = {
     regions: {

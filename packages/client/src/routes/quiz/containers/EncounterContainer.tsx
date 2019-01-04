@@ -74,6 +74,9 @@ class EncounterContainerBase extends Component<EncounterContainerProps, Encounte
                         name,
                         sprite,
                     });
+                })
+                .catch(() => {
+                    throw new Error("Unexpected error while handling Promise in EncounterContainer");
                 });
         }
     }

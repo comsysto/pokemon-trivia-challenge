@@ -1,3 +1,4 @@
+import { DocumentNode } from "graphql";
 import gql from "graphql-tag";
 import { Query, QueryProps } from "react-apollo";
 
@@ -30,7 +31,7 @@ export const LocationQueryString = gql`
             }
         }
     }
-`;
+` as DocumentNode;
 
 export type LocationQueryResponse = {
     location: {

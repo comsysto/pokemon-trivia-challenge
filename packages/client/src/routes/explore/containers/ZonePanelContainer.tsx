@@ -70,7 +70,7 @@ class ZonePanelContainerBase extends Component<ZonePanelContainerBaseProps> {
         );
     }
 
-    private onNodeClick = (node: TreeNodeItem) => {
+    private readonly onNodeClick = (node: TreeNodeItem) => {
         const { exploreContext } = this.props;
         const { nodeData } = node;
 

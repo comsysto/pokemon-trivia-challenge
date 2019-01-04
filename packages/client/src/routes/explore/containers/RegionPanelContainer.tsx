@@ -62,7 +62,7 @@ class RegionPanelContainerBase extends Component<RegionPanelContainerBaseProps> 
         );
     }
 
-    private changeLocation = (selectedRegion?: string, selectedZone?: string) => {
+    private readonly changeLocation = (selectedRegion?: string, selectedZone?: string) => {
         const { openPanel, exploreContext } = this.props;
 
         exploreContext.changeLocation(selectedRegion, selectedZone);
@@ -72,7 +72,7 @@ class RegionPanelContainerBase extends Component<RegionPanelContainerBaseProps> 
         });
     };
 
-    private onNodeClick = (node: TreeNodeItem) => {
+    private readonly onNodeClick = (node: TreeNodeItem) => {
         const { exploreContext } = this.props;
         const { nodeData } = node;
 
