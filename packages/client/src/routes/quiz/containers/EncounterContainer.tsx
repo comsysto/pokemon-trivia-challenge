@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withApollo, WithApolloClient } from "react-apollo";
 import { LocationQueryResponse, LocationQueryString, LocationQueryVariables } from "../../../api/graphql/LocationQuery";
 import { Encounter, EncounterProps } from "../components/Encounter";
-import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
+import { WithQuizContext, withQuizContext } from "../contexts/QuizContext";
 
 type EncounterContainerProps = WithApolloClient<WithQuizContext>;
 type EncounterContainerState = Readonly<EncounterProps>;

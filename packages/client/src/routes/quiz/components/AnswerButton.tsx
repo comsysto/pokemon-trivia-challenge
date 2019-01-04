@@ -1,6 +1,6 @@
 import { Button, Intent } from "@blueprintjs/core";
 import React from "react";
-import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
+import { WithQuizContext, withQuizContext } from "../contexts/QuizContext";
 import Styles from "../styles/AnswerButton.module.scss";
 
 export type AnswerButtonProps = {

@@ -3,7 +3,7 @@ import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import * as Constants from "../../../app/constants";
 import { Quiz } from "../components/Quiz";
-import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
+import { WithQuizContext, withQuizContext } from "../contexts/QuizContext";
 
 type QuizContainerBaseProps = WithQuizContext & RouteComponentProps;
 

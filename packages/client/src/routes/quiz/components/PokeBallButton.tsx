@@ -1,6 +1,6 @@
 import { Button, Intent, Tag, Tooltip } from "@blueprintjs/core";
 import React from "react";
-import { withQuizContext, WithQuizContext } from "../cotexts/QuizContext";
+import { withQuizContext, WithQuizContext } from "../contexts/QuizContext";
 import Styles from "../styles/PokeBallButton.module.scss";
 
 export enum PokeBallType {

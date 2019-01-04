@@ -1,6 +1,6 @@
 import { Button, Callout, Card, Elevation, H4, Intent } from "@blueprintjs/core";
 import React from "react";
-import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
+import { WithQuizContext, withQuizContext } from "../contexts/QuizContext";
 import Styles from "../styles/Question.module.scss";
 import { AnswerButton, AnswerButtonProps } from "./AnswerButton";
 

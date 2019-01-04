@@ -1,6 +1,6 @@
 import React from "react";
 import { ChanceToCatch, EncounterDetails } from "../components/EncounterDetails";
-import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
+import { WithQuizContext, withQuizContext } from "../contexts/QuizContext";
 
 type EncounterDetailsContainerBaseProps = WithQuizContext;
 

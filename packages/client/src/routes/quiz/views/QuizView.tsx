@@ -1,6 +1,6 @@
 import React from "react";
 import { QuizContainer } from "../containers/QuizContainer";
-import { QuizContextProvider } from "../cotexts/QuizContext";
+import { QuizContextProvider } from "../contexts/QuizContext";
 
 export function QuizView() {
     return (

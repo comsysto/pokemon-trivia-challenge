@@ -7,7 +7,7 @@ import * as Constants from "../../../app/constants";
 import { QuizRouteParams } from "../../../Routes";
 import { DifficultySelection } from "../components/DifficultySelection";
 import { Answer, Question, QuestionProps } from "../components/Question";
-import { WithQuizContext, withQuizContext } from "../cotexts/QuizContext";
+import { WithQuizContext, withQuizContext } from "../contexts/QuizContext";
 
 function decodeString(text: string) {
     const el = document.createElement("textarea");
