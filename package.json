@@ -18,7 +18,7 @@
         "dev:client": "cd packages/client && yarn start",
         "dev:redis": "docker-compose up -d redis",
         "stop:redis": "docker-compose down",
-        "docker:prune": "docker images -a | grep \"pokemon-trivia-challenge\" | awk '{print $3}' | xargs docker rmi"
+        "docker:prune": "docker images -a | grep \"pokemon-trivia-challenge\" | awk '{print $3}' | xargs docker rmi && docker image prune -f"
     },
     "workspaces": [
         "packages/*"

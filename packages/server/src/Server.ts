@@ -1,4 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
+import * as path from "path";
 import { Context } from "./api/SchemaTypes";
 import * as Constants from "./constants";
 import { resolvers } from "./resolvers";
@@ -8,7 +9,7 @@ void (async () => {
     await prefetchPokeApi();
 
     const graphqlServer = new GraphQLServer({
-        typeDefs: "./src/api/Schema.graphql",
+        typeDefs: path.join(__dirname, "api/Schema.graphql"),
         resolvers,
         context: {} as Context,
         // tslint:disable-next-line:no-any

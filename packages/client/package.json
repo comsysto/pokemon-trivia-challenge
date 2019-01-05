@@ -12,12 +12,9 @@
         "url": "https://github.com/comsysto/pokemon-trivia-challenge/issues"
     },
     "private": true,
-    "dependencies": {
-        "@blueprintjs/core": "^3.10.0",
-        "@blueprintjs/icons": "^3.4.0",
+    "devDependencies": {
         "@types/classnames": "^2.2.6",
         "@types/graphql": "^14.0.4",
-        "@types/is-docker": "^1.1.0",
         "@types/jest": "23.3.10",
         "@types/node": "10.12.15",
         "@types/react": "16.7.17",
@@ -25,27 +22,30 @@
         "@types/react-router": "^4.4.3",
         "@types/react-router-dom": "^4.3.1",
         "@types/shortid": "^0.0.29",
+        "node-sass": "^4.11.0",
+        "react-scripts": "2.1.1",
+        "tslint": "^5.11.0",
+        "tslint-config-prettier": "^1.17.0",
+        "tslint-plugin-prettier": "^2.0.1",
+        "typescript": "3.2.2"
+    },
+    "dependencies": {
+        "@blueprintjs/core": "^3.10.0",
+        "@blueprintjs/icons": "^3.4.0",
         "apollo-cache-inmemory": "^1.3.12",
         "apollo-client": "^2.4.8",
         "apollo-link-http": "^1.5.9",
         "classnames": "^2.2.6",
         "graphql": "^14.0.2",
         "graphql-tag": "^2.10.0",
-        "is-docker": "^1.1.0",
-        "node-sass": "^4.11.0",
         "normalize.css": "^8.0.1",
         "react": "^16.6.3",
         "react-apollo": "^2.3.3",
         "react-dom": "^16.6.3",
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
-        "react-scripts": "2.1.1",
         "serve": "^10.1.1",
-        "shortid": "^2.2.14",
-        "tslint": "^5.11.0",
-        "tslint-config-prettier": "^1.17.0",
-        "tslint-plugin-prettier": "^2.0.1",
-        "typescript": "3.2.2"
+        "shortid": "^2.2.14"
     },
     "scripts": {
         "start": "react-scripts start",

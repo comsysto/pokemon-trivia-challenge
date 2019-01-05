@@ -12,11 +12,17 @@
 
 If you want to deploy the application in production mode without developing anything new, you don't even need to `yarn install` anything since you can just follow these steps:
 
+### Starting
+
 1. Run `docker-compose up` in your terminal
 2. Get a cup of tea or coffee and give Docker a few minutes to build the containers
 3. Once the server reports `🚀 GraphQL Server running on http://localhost:4000` in the terminal you can navigate to http://localhost:5000 (**mind the port!**) and play the game
 
-To stop the containers gracefully Ctrl+C and run `docker-compose down` in your terminal and optionally follow up with `yarn docker:prune` to remove the built images in order to free up some space.
+### Stopping
+
+1. Ctrl+C to attempt a graceful stop of the process
+2. Run `docker-compose down`
+3. Follow up with `yarn docker:prune` to to remove the built images in order to free up some space as well as dangling references
 
 ## Local development
 
@@ -62,7 +68,7 @@ Redux for such a small project is pretty much overkill and annoying to set up in
 
 ## Features
 
-- [ ] Exploration mode
+- [x] Exploration mode
     - [x] Region list
     - [x] Zone list
     - [x] Zone details

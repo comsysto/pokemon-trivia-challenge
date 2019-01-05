@@ -12,7 +12,7 @@
     },
     "private": true,
     "scripts": {
-        "build": "graphqlgen && tsc",
+        "build": "graphqlgen && tsc && copyfiles -u 1 \"**/Schema.graphql\" build",
         "start": "node build/Server.js",
         "dev": "graphqlgen && ts-node src/Server.ts",
         "test": "jest",
@@ -25,25 +25,28 @@
     "bugs": {
         "url": "https://github.com/comsysto/pokemon-trivia-challenge/issues"
     },
-    "dependencies": {
-        "@ridi/object-case-converter": "^2.0.4",
+    "devDependencies": {
         "@types/aws-lambda": "^8.10.17",
         "@types/is-docker": "^1.1.0",
         "@types/jest": "^23.3.10",
         "@types/progress": "^2.0.3",
         "@types/ws": "^6.0.1",
-        "axios": "^0.18.0",
-        "graphql-yoga": "^1.16.7",
+        "copyfiles": "^2.1.0",
         "graphqlgen": "^0.4.0",
-        "handy-redis": "^1.5.1",
-        "is-docker": "^1.1.0",
         "jest": "^23.6.0",
-        "progress": "^2.0.3",
         "ts-jest": "^23.10.5",
         "ts-node": "^7.0.1",
         "tslint": "^5.11.0",
         "tslint-config-prettier": "^1.17.0",
         "tslint-plugin-prettier": "^2.0.1",
         "typescript": "^3.2.2"
+    },
+    "dependencies": {
+        "@ridi/object-case-converter": "^2.0.4",
+        "axios": "^0.18.0",
+        "graphql-yoga": "^1.16.7",
+        "handy-redis": "^1.5.1",
+        "is-docker": "^1.1.0",
+        "progress": "^2.0.3"
     }
 }
