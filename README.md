@@ -4,9 +4,14 @@
 
 ## Requirements
 
+### Deployment only
+
+* **Docker** - used to deploy production builds either locally or remotely
+
+### Development
+
 * **Node 10+** - self-explanatory
 * **yarn** - this is a monorepo that initially leveraged the features of lerna, but has been taught to use yarn workspaces for efficient hoisting of packages.
-* **Docker** - used to deploy production builds either locally or remotely
 
 ## Deployment via Docker
 
@@ -16,11 +21,11 @@ If you want to deploy the application in production mode without developing anyt
 
 1. Run `docker-compose up` in your terminal
 2. Get a cup of tea or coffee and give Docker a few minutes to build the containers
-3. Once the server reports `🚀 GraphQL Server running on http://localhost:4000` in the terminal you can navigate to http://localhost:5000 (**mind the port!**) and play the game
+3. Once the server reports `🚀 GraphQL Server running on http://localhost:4000` in the terminal you can navigate to your host at port **5000** and start playing the game
 
 ### Stopping
 
-1. Ctrl+C to attempt a graceful stop of the process
+1. Ctrl+C to attempt a graceful stop the process
 2. Run `docker-compose down`
 3. Follow up with `yarn docker:prune` to to remove the built images in order to free up some space as well as dangling references
 
