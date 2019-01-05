@@ -16,11 +16,9 @@ import * as Constants from "./app/constants";
 import { AppContainer } from "./app/containers/AppContainer";
 import * as serviceWorker from "./serviceWorker";
 
-const isDocker = () => process.env.REACT_APP_DOCKERENV === "true";
-
 const httpLink = createHttpLink({
     // tslint:disable-next-line:no-http-string
-    uri: `http://localhost:${Constants.GraphQLPort}`,
+    uri: `http://${window.location.hostname}:${Constants.GraphQLPort}`,
 });
 
 const apolloClient = new ApolloClient({
