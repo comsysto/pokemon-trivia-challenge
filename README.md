@@ -51,6 +51,10 @@ This method runs all servers and the client in debug mode without production set
 * **GraphQL Server** - the GraphQL server is served at port **4000** via the `/` endpoint and you can access the playground at http://localhost:4000 and explore the schema
 * **React Client** - the React client is being served using `serve` and is available at port **5000** via http://localhost:5000
 
+## Security
+
+Please keep in mind that the Docker containers, especially the Redis instance, are not secured at all. Running them in production environments without a proper setup using an actual password and blocking ports will make you vulnerabled. This configuration can allow attackers to gain local access to your machine, as well as the ability to read, change, or destroy any data hosted in your Redis instance. This issue could result in severe security breaches, and we strongly urge you to take immediate action to secure the Redis instance for production environments.
+
 ## Architecture
 
 ### **PokéAPI REST API**
